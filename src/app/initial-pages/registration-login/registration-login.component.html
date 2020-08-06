@@ -1,0 +1,110 @@
+<ActionBar>
+    <ActionItem text="Logout" (tap)="logout()"></ActionItem>
+</ActionBar>
+<FlexboxLayout class="outer">
+
+    <StackLayout class="regform">
+
+        <!-- sign up -->
+        <StackLayout *ngIf="isSignUp" class="form" [formGroup]="signUpForm">
+            <StackLayout class="title">
+                <Label class="h1 text-center" text="Sign Up Today"></Label>
+                <Label textWrap="true" class="h3 text-center" text="Please, fill out the registration form"></Label>
+            </StackLayout>
+            <!-- username -->
+            <StackLayout class="input-group">
+                <Label class="label text-center" [ngClass]="{'invalid': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched, 'valid': !signUpForm.get('usernameUp').errors}" text="Username"></Label>
+                <TextField class="input" [ngClass]="{'invalid': signUpForm.get('usernameUp').errors && signUpForm.get('usernameUp').touched, 'valid': !signUpForm.get('usernameUp').errors}" returnKeyType="next" autocapitalizationType="none" formControlName="usernameUp"></TextField>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout *ngIf="signUpForm.get('usernameUp').hasError('required') && signUpForm.get('usernameUp').touched">
+                    <Label class="invalid" text="Username is required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signUpForm.get('usernameUp').hasError('minlength') && signUpForm.get('usernameUp').touched">
+                    <Label class="invalid" text="Username should be at least 4 characters required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signUpForm.get('usernameUp').hasError('maxlength') && signUpForm.get('usernameUp').touched">
+                    <Label class="invalid" text="Username should be no longer than 10 characters"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signUpForm.get('usernameUp').hasError('pattern') && signUpForm.get('usernameUp').touched">
+                    <Label class="invalid" text="You need to have at least 1 letter and number"></Label>
+                </StackLayout>
+            </StackLayout>
+            <!-- password -->
+            <StackLayout class="input-group">
+                <Label class="label text-center" [ngClass]="{'invalid': signUpForm.get('userpassUp').errors && signUpForm.get('userpassUp').touched, 
+                'valid': !signUpForm.get('userpassUp').errors}" text="Password"></Label>
+                <TextField class="input" [secure]="true" returnKeyType="done" autocapitalizationType="none" formControlName="userpassUp"></TextField>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout *ngIf="signUpForm.get('userpassUp').hasError('required') && signUpForm.get('userpassUp').touched">
+                    <Label class="invalid" text="Password is required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signUpForm.get('userpassUp').hasError('minlength') && signUpForm.get('userpassUp').touched">
+                    <Label class="invalid" text="Password should be at least 4 characters required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signUpForm.get('userpassUp').hasError('maxlength') && signUpForm.get('userpassUp').touched">
+                    <Label class="invalid" text="Password should be no longer than 8 characters"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signUpForm.get('userpassUp').hasError('pattern') && signUpForm.get('userpassUp').touched">
+                    <Label class="invalid" text="You need to have at least 1 letter and number"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Button class="btn btn-secondary btn-block" text="Create Account" (tap)="onSignUp()"></Button>
+            </StackLayout>
+            <Button text="Already have an account? Sign in!" (tap)="switchCard()"></Button>
+        </StackLayout>
+        <!-- sign in -->
+        <StackLayout *ngIf="!isSignUp" class="form" [formGroup]="signInForm">
+            <StackLayout class="title">
+                <Label class="h1 text-center" text="Sign In"></Label>
+                <Label textWrap="true" class="h3 text-center" text="Please, fill out the signin form"></Label>
+            </StackLayout>
+            <!-- username -->
+            <StackLayout class="input-group">
+                <Label class="label text-center" [ngClass]="{'invalid': signInForm.get('usernameIn').errors && signInForm.get('usernameIn').touched}" text="Username"></Label>
+                <TextField returnKeyType="next" autocapitalizationType="none" formControlName="usernameIn" class="input text-center"></TextField>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout *ngIf="signInForm.get('usernameIn').hasError('required') && signInForm.get('usernameIn').touched">
+                    <Label class="invalid" text="Username is required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signInForm.get('usernameIn').hasError('minlength') && signInForm.get('usernameIn').touched">
+                    <Label class="invalid" text="Username should be at least 4 characters required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signInForm.get('usernameIn').hasError('maxlength') && signInForm.get('usernameIn').touched">
+                    <Label class="invalid" text="Username should be no longer than 10 characters"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signInForm.get('usernameIn').hasError('pattern') && signInForm.get('usernameIn').touched">
+                    <Label class="invalid" text="You need to have at least 1 letter and number"></Label>
+                </StackLayout>
+            </StackLayout>
+            <!-- password -->
+            <StackLayout class="input-group">
+                <Label class="label text-center" [ngClass]="{'invalid': signInForm.get('userpassIn').errors && signInForm.get('userpassIn').touched}" text="Password"></Label>
+                <TextField [secure]="true" returnKeyType="done" autocapitalizationType="none" formControlName="userpassIn" class="input text-center"></TextField>
+            </StackLayout>
+            <!-- <StackLayout>
+                <StackLayout *ngIf="signInForm.get('userpassIn').hasError('required') && signInForm.get('userpassIn').touched">
+                    <Label class="invalid" text="Password is required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signInForm.get('userpassIn').hasError('minlength') && signInForm.get('userpassIn').touched">
+                    <Label class="invalid" text="Password should be at least 4 characters required"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signInForm.get('userpassIn').hasError('maxlength') && signInForm.get('userpassIn').touched">
+                    <Label class="invalid" text="Password should be no longer than 8 characters"></Label>
+                </StackLayout>
+                <StackLayout *ngIf="signInForm.get('userpassIn').hasError('pattern') && signInForm.get('userpassIn').touched">
+                    <Label class="invalid" text="You need to have at least 1 letter and number"></Label>
+                </StackLayout>
+            </StackLayout> -->
+            <StackLayout>
+                <Button class="btn btn-secondary btn-block" text="Log in" (tap)="onSignIn()"></Button>
+            </StackLayout>
+            <Button text="Sign up" (tap)="switchCard()"></Button>
+        </StackLayout>
+
+    </StackLayout>
+
+</FlexboxLayout>

@@ -1,0 +1,41 @@
+.regform {
+    background-color: #264653;
+    margin: 20;
+    border-width: 1;
+    border-radius: 20;
+    height: 90%;
+    width: 80%;
+    padding: 10;
+    android-elevation: 7;
+    font-family: "Montserrat-Regular", "Montserrat";
+}
+
+.title Label {
+    color: white;
+}
+
+.outer {
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #ddd9ff, #c5c5c5);
+}
+
+.label,
+.input {
+    color: white;
+    font-size: 20;
+}
+
+.ng-invalid.ng-touched {
+    border-bottom-color: red;
+    color: red;
+}
+
+.invalid {
+    color: red;
+}
+
+.valid {
+    color: rgb(152, 255, 152);
+    border-bottom-color: rgb(152, 255, 152);
+}

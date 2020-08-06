@@ -1,0 +1,175 @@
+<ActionBar>
+    <ActionItem text="Logout" (tap)="logout()"></ActionItem>
+</ActionBar>
+<ScrollView>
+    <StackLayout>
+        <StackLayout class="container">
+            <StackLayout [formGroup]="walletForm">
+                <StackLayout>
+                    <Label matTooltip="Название кошелька" class="input-group-text" [ngClass]="{'invalid': walletForm.get('title').errors && walletForm.get('title').touched,
+            'valid': !walletForm.get('title').errors}" text="Wallet Title"></Label>
+                    <TextField [ngClass]="{'is-invalid': walletForm.get('title').errors && walletForm.get('title').touched,
+                        'is-valid': !walletForm.get('title').errors}" type="text" formControlName="title" class="form-control"></TextField>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout *ngIf="walletForm.get('title').hasError('required') && walletForm.get('title').touched" class="invalid">
+                        <Label text="Title is required"></Label>
+                    </StackLayout>
+                    <StackLayout *ngIf="walletForm.get('title').hasError('minlength') && walletForm.get('title').touched" class="invalid">
+                        <Label text="Title should be at least 2 characters required"></Label>
+                    </StackLayout>
+                    <StackLayout *ngIf="walletForm.get('title').hasError('maxlength') && walletForm.get('title').touched" class="invalid">
+                        <Label text="Title should be no longer than 10 characters"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+
+                <StackLayout>
+                    <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': walletForm.get('limit').errors && walletForm.get('limit').touched,
+                          'valid': !walletForm.get('limit').errors}"></Label>
+                    <TextField [ngClass]="{'invalid': walletForm.get('limit').errors && walletForm.get('limit').touched,
+                                      'valid': !walletForm.get('limit').errors}" type="number" formControlName="limit" class="form-control"></TextField>
+                </StackLayout>
+                <StackLayout *ngIf="walletForm.get('limit').hasError('min') && walletForm.get('limit').touched" class="invalid-feedback">
+                    <Label text="Limit should be at least $10"></Label>
+                </StackLayout>
+                <StackLayout class="form-group">
+                    <Button (tap)="createWallet()" class="btn -outline -rounded-sm btn-block" [isEnabled]="(walletForm.valid && finalCategories.length >= 5)" [ngClass]="{'-outline-success': walletForm.valid && finalCategories.length >= 5}" text="Create wallet"></Button>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="form-group">
+                <button matTooltip="Назад" (tap)="back()" class="btn btn-outline-warning">Back</button>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout>
+            <Label text="You need to choose from 5 to 10 categories for the wallet. After confirming, you will need to log in once more.">
+    </Label>
+        </StackLayout>
+        <FlexboxLayout class="categories">
+            <StackLayout class="category-group text-center">
+                <Label textWrap="true" class="header-category" text="Food"></Label>
+                <StackLayout (tap)="toggleCategory(1)" [ngClass]="isActive[0].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Food"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(2)" [ngClass]="isActive[1].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Vegetables"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(3)" [ngClass]="isActive[2].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Meat"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(4)" [ngClass]="isActive[3].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Alcohol"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(5)" [ngClass]="isActive[4].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Sweets"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(6)" [ngClass]="isActive[5].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Fast-Food"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(7)" [ngClass]="isActive[6].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Fruits"></Label>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout class="category-group text-center">
+                <Label textWrap="true" class="header-category" text="Housekeeping"></Label>
+                <StackLayout (tap)="toggleCategory(8)" [ngClass]="isActive[7].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Housekeeping"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(9)" [ngClass]="isActive[8].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Electricity"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(10)" [ngClass]="isActive[9].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Gas"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(11)" [ngClass]="isActive[10].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Water"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="category-group text-center">
+                <Label textWrap="true" class="header-category" text="Entertainment"></Label>
+                <StackLayout (tap)="toggleCategory(12)" [ngClass]="isActive[11].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Entertainment"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(13)" [ngClass]="isActive[12].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Internet Shopping"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(14)" [ngClass]="isActive[13].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Restaurants & Cafes"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(15)" [ngClass]="isActive[14].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Cinema"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(16)" [ngClass]="isActive[15].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Theatre"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(17)" [ngClass]="isActive[16].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Smoking"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="category-group text-center">
+                <Label textWrap="true" class="header-category" text="Medicine"></Label>
+                <StackLayout (tap)="toggleCategory(18)" [ngClass]="isActive[17].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Medicine"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(19)" [ngClass]="isActive[18].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Medicaments"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(20)" [ngClass]="isActive[19].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Treatment"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="category-group text-center">
+                <Label textWrap="true" class="header-category" text="Beauty"></Label>
+                <StackLayout (tap)="toggleCategory(21)" [ngClass]="isActive[20].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Beauty"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(22)" [ngClass]="isActive[21].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Beauty Accessories"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(23)" [ngClass]="isActive[22].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Beauty Products"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(24)" [ngClass]="isActive[23].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Beauty Procedures"></Label>
+                </StackLayout>
+
+            </StackLayout>
+            <StackLayout class="category-group text-center">
+                <Label textWrap="true" class="header-category" text="Sport"></Label>
+                <StackLayout (tap)="toggleCategory(25)" [ngClass]="isActive[24].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Sport"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(26)" [ngClass]="isActive[25].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Sport Events"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(27)" [ngClass]="isActive[26].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Sport Gambling"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(28)" [ngClass]="isActive[27].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Sport Inventory"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(29)" [ngClass]="isActive[28].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Sport Activities"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="category-group text-center">
+                <Label textWrap="true" class="header-category" text="Transportation"></Label>
+                <StackLayout (tap)="toggleCategory(30)" [ngClass]="isActive[29].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Transportation"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(31)" [ngClass]="isActive[30].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Air Transportation"></Label>
+                </StackLayout>
+                <StackLayout (tap)="toggleCategory(32)" [ngClass]="isActive[31].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label textWrap="true" class="item-text" text="Land Transportation"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout class="category-group text-center">
+                <Label text="Other"></Label>
+                <StackLayout (tap)="toggleCategory(33)" [ngClass]="isActive[32].status ? 'alert alert-success' : ''" class="category-item">
+                    <Label text=""></Label>Other</StackLayout>
+            </StackLayout>
+        </FlexboxLayout>
+    </StackLayout>
+</ScrollView>

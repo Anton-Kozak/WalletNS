@@ -1,0 +1,54 @@
+<ScrollView>
+    <StackLayout class="container">
+        <StackLayout>
+            <Label class="label-title" textWrap="true" [text]="'You want to add to ' + selectedCategoryName"></Label>
+        </StackLayout>
+        <StackLayout [formGroup]="newExpenseForm">
+            <StackLayout>
+                <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
+                    'bg-success text-white': !newExpenseForm.get('title').errors}" text="Expense Title" class="label"></Label>
+                <TextField [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
+                    'is-valid': !newExpenseForm.get('title').errors}" type="number" formControlName="title" class="form-control"></TextField>
+            </StackLayout>
+            <StackLayout *ngIf="newExpenseForm.get('title').hasError('required') && newExpenseForm.get('title').touched" class="invalid-feedback">
+                <Label text="Title is required"></Label>
+            </StackLayout>
+            <StackLayout *ngIf="newExpenseForm.get('title').hasError('minlength') && newExpenseForm.get('title').touched" class="invalid-feedback">
+                <Label text=" Title should be at least 4 characters required"></Label>
+            </StackLayout>
+            <StackLayout *ngIf="newExpenseForm.get('title').hasError('maxlength') && newExpenseForm.get('title').touched" class="invalid-feedback">
+                <Label text="Title should be no longer than 16 characters"></Label>
+            </StackLayout>
+
+            <StackLayout>
+                <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
+                    'bg-success text-white': !newExpenseForm.get('desc').errors}" text="Expense Description" class="label"></Label>
+                <TextField [ngClass]="{'invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
+                    'is-valid': !newExpenseForm.get('desc').errors}" formControlName="desc" class="form-control"></TextField>
+            </StackLayout>
+            <StackLayout *ngIf="newExpenseForm.get('desc').hasError('minlength') && newExpenseForm.get('desc').touched" class="invalid-feedback">
+                <Label text="Description should be at least 4 characters required"></Label>
+            </StackLayout>
+            <StackLayout *ngIf="newExpenseForm.get('desc').hasError('maxlength') && newExpenseForm.get('desc').touched" class="invalid-feedback">
+                <Label text="Description should be no longer than 20 characters"></Label>
+            </StackLayout>
+
+            <StackLayout>
+                <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
+                    'bg-success text-white': !newExpenseForm.get('money').errors}" text="$" class="label"></Label>
+                <TextField [ngClass]="{'invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
+                    'is-valid': !newExpenseForm.get('money').errors}" type="number" formControlName="money" class="form-control"></TextField>
+            </StackLayout>
+            <StackLayout *ngIf="newExpenseForm.get('money').hasError('required') && newExpenseForm.get('money').touched" class="invalid-feedback">
+                <Label text="Money required"></Label>
+            </StackLayout>
+
+            <StackLayout class="form-group">
+                <Button (tap)="createExpense()" class="btn -outline -rounded-sm btn-block" [ngClass]="{'-outline-success': newExpenseForm.valid}" text="Add expense"></Button>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="form-group">
+            <button text="Back" (tap)="back()" class="btn btn-outline-warning"></button>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

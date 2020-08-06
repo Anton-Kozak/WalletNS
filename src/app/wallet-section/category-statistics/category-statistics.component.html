@@ -1,0 +1,71 @@
+<ScrollView>
+    <GridLayout columns="*" rows="1200" [visibility]="!isLoading ? 'visible' : 'collapse'">
+        <StackLayout row="0" col="0">
+            <Label [text]="chosenCategoryName" class="h1 text-center"></Label>
+            <StackLayout class="most-used-category">
+                <Label text="Most used user"></Label>
+                <Label [text]="mostUsedUser.userName"></Label>
+            </StackLayout>
+            <StackLayout class="most-spent-category">
+                <Label text="Most spent user"></Label>
+                <Label [text]="mostSpentUser.userName"></Label>
+            </StackLayout>
+            <StackLayout class="avg">
+                <Label text="Largest expense"></Label>
+                <Label [text]="'$' + largestExpense"></Label>
+            </StackLayout>
+            <StackLayout class="total">
+                <Label text="Month's largest expense"></Label>
+                <Label [text]="'$' + currentMonthLargestExpense"></Label>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout *ngIf="expenses !== null">
+                    <FlexboxLayout class="row-cell">
+                        <Label class="first-item" text="Title"></Label>
+                        <Label class="third-item" text="Date"></Label>
+                        <Label class="fourth-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell" *ngFor="let expense of expenses">
+                        <Label class="first-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="third-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="fourth-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout *ngIf="topFiveUsers !== null">
+                <StackLayout [visibility]="topFiveUsers.length > 1 ? 'visible' : 'collapse'" class="top-users">
+                    <Label text="Top 5 users"></Label>
+                    <GridLayout rows="*">
+                        <RadPieChart allowAnimation="true" row="0">
+                            <PieSeries showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.4" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="Amount" legendLabel="userName"></PieSeries>
+                            <RadLegendView tkPieLegend position="Right" title="Users" offsetOrigin="TopRight" width="110" enableSelection="true">
+                            </RadLegendView>
+                        </RadPieChart>
+                    </GridLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <GridLayout [visibility]="lastSixMonths !== null ? 'visible' : 'collapse'" height="300" rows="*">
+                    <RadCartesianChart row="0" style="font-size: 12;">
+                        <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                        <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                        <LineSeries tkCartesianSeries [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
+                        </LineSeries>
+                    </RadCartesianChart>
+                </GridLayout>
+                <GridLayout [visibility]="lastMonthDataToCompare !== null ? 'visible' : 'collapse'" height="300" rows="*">
+                    <RadCartesianChart row="0" style="font-size: 12;">
+                        <CategoricalAxis tkCartesianVerticalAxis></CategoricalAxis>
+                        <LinearAxis tkCartesianHorizontalAxis></LinearAxis>
+                        <BarSeries fillColor="green" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="month" valueProperty="amount">
+                            <PointLabelStyle textSize="15" textColor="black"></PointLabelStyle>
+                        </BarSeries>
+                        <BarSeries fillColor="red" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="month" valueProperty="amount">
+                            <PointLabelStyle textSize="15" textColor="black"></PointLabelStyle>
+                        </BarSeries>
+                    </RadCartesianChart>
+                </GridLayout>
+            </StackLayout>
+        </StackLayout>
+    </GridLayout>
+</ScrollView>

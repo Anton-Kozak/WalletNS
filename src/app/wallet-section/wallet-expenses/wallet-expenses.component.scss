@@ -1,0 +1,39 @@
+.row-cell {
+    /* flex-direction: column; */
+    border-width: 1;
+    border-color: red;
+    justify-content: center;
+    text-align: center;
+    font-size: 25;
+}
+
+.category-name {
+    text-align: center;
+    font-size: 30;
+    font-weight: bold;
+}
+
+.row-cell Label {
+    text-align: center;
+    font-size: 18;
+}
+
+.first-item {
+    width: 25%;
+}
+
+.second-item {
+    width: 40%;
+}
+
+.fourth-item {
+    width: 25%;
+}
+
+.fifth-item {
+    width: 10%;
+}
+
+.test {
+    background-color: red;
+}
