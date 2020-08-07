@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ExpenseForAdminTable } from '../_models/expense-for-admin-table';
-import { UserForAdmin } from '../_models/user-for-admin';
-import { AdminService } from '../_services/admin.service';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ExpenseForAdminTable } from '../../_models/expense-for-admin-table';
+import { UserForAdmin } from '../../_models/user-for-admin';
+import { AdminService } from '../../_services/admin.service';
+import { ModalDialogService } from '@nativescript/angular/modal-dialog';
+import { DataService } from '../../_services/data.service';
+import { CreateInviteComponent } from '../create-invite/create-invite.component';
 @Component({
   selector: 'ns-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -10,7 +13,10 @@ import { AdminService } from '../_services/admin.service';
 export class WalletAdminComponent implements OnInit {
 
   constructor(private admService: AdminService,
-    private adminService: AdminService) { }
+    private adminService: AdminService,
+    private modalDialog: ModalDialogService,
+    private vcRef: ViewContainerRef,
+    private dataService: DataService) { }
   expenses: ExpenseForAdminTable[] = [];
   users: UserForAdmin[] = [];
 
@@ -38,10 +44,14 @@ export class WalletAdminComponent implements OnInit {
     });
   }
 
-  sendInvitation() {
-    // const dialogRef = this.dialog.open(CreateInviteComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
+  addNewUser() {
+    this.modalDialog
+      .showModal(CreateInviteComponent, {
+        fullscreen: true,
+        viewContainerRef: this.dataService.getRootVCRef()
+          ? this.dataService.getRootVCRef()
+          : this.vcRef,
+      })
   }
 
   openDialog(id: number, rowIndex: number): void {

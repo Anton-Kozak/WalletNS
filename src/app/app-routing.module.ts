@@ -10,7 +10,7 @@ import { NoWalletComponent } from "./initial-pages/no-wallet/no-wallet.component
 import { WalletStatisticsComponent } from "./wallet-section/wallet-statistics/wallet-statistics.component";
 import { UserStatisticsComponent } from "./wallet-section/user-statistics/user-statistics.component";
 import { CategoryStatisticsComponent } from "./wallet-section/category-statistics/category-statistics.component";
-import { WalletAdminComponent } from "./wallet-admin/wallet-admin.component";
+import { WalletAdminComponent } from "./admin/wallet-admin/wallet-admin.component";
 const routes: Routes = [
     { path: '', component: RegistrationLoginComponent, canActivate: [AuthGuard] },
     { path: 'no-wallet', component: NoWalletComponent },

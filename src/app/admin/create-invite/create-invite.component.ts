@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import * as Toast from 'nativescript-toast';
+import { InviteService } from '../../_services/invite.service';
 import { ModalDialogParams } from '@nativescript/angular/modal-dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { RequestService } from '../../_services/request.service';
-import * as Toast from 'nativescript-toast';
 @Component({
-  selector: 'ns-create-request',
-  templateUrl: './create-request.component.html',
-  styleUrls: ['./create-request.component.scss']
+  selector: 'ns-create-invite',
+  templateUrl: './create-invite.component.html',
+  styleUrls: ['./create-invite.component.scss']
 })
-export class CreateRequestComponent implements OnInit {
+export class CreateInviteComponent implements OnInit {
   emailForm: FormGroup;
-  constructor(private modalParams: ModalDialogParams,
-    private reqService: RequestService) { }
+  constructor(
+    private invService: InviteService,
+    private modalParams: ModalDialogParams
+  ) { }
 
   ngOnInit(): void {
     this.emailForm = new FormGroup({
@@ -19,11 +21,12 @@ export class CreateRequestComponent implements OnInit {
     })
   }
 
-  confirm() {
+  onSubmit() {
     if (this.emailForm.valid) {
-      this.reqService.createRequestForAccess(this.emailForm.value['email']).subscribe((response: any) => {
+      this.invService.createInvite(this.emailForm.value['email']).subscribe((response: any) => {
+        let toast = Toast.makeText(response);
+        toast.show();
         console.log(response);
-        this.modalParams.closeCallback();
       }, error => {
         let toast = Toast.makeText(error.error);
         toast.show();
@@ -33,12 +36,11 @@ export class CreateRequestComponent implements OnInit {
       let toast = Toast.makeText('Email is too short');
       toast.show();
     }
-
-
-
   }
-  back() {
+
+  goBack() {
     this.modalParams.closeCallback();
   }
+
 
 }

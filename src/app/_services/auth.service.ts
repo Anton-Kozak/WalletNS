@@ -53,7 +53,6 @@ export class AuthService {
 
   getToken() {
     const token = getString('token');
-    console.log('This is current token:', token);
     if (token !== null) {
       this.decodedToken = jwt_decode(token);
       return this.decodedToken;

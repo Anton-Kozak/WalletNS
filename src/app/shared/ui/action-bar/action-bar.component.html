@@ -1,0 +1,4 @@
+<ActionBar>
+    <ActionItem *ngIf="showLogout" text="Logout" (tap)="logout()"></ActionItem>
+    <ActionItem *ngIf="showNotificationBar" [text]="'Notifications: ' + notificationCount" (tap)="showNotifications()"></ActionItem>
+</ActionBar>

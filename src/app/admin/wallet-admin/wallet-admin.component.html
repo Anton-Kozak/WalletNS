@@ -1,7 +1,8 @@
 <ScrollView>
-
-
     <StackLayout>
+        <StackLayout>
+            <Button text="Add new user" (tap)="addNewUser()" class="btn c-bg-charcoal c-sky"></Button>
+        </StackLayout>
         <StackLayout *ngIf="expenses !== null">
             <FlexboxLayout class="row-cell">
                 <Label class="first-item" text="Title"></Label>
@@ -29,6 +30,9 @@
                 <Label class="third-item" [text]="user.dateJoined | date :'short'" textWrap="true"></Label>
                 <Label class="fourth-item" [text]="user.userRoles" textWrap="true"></Label>
             </FlexboxLayout>
+        </StackLayout>
+        <StackLayout>
+            <ns-check-request></ns-check-request>
         </StackLayout>
     </StackLayout>
 </ScrollView>

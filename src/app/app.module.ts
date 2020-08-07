@@ -9,7 +9,7 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 import { StartComponent } from './start/start.component';
 import { RegistrationLoginComponent } from './initial-pages/registration-login/registration-login.component';
 import { NativeScriptUIChartModule } from "nativescript-ui-chart/angular";
-
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from "./app.component";
 import { CreateWalletComponent } from './initial-pages/create-wallet/create-wallet.component';
@@ -23,9 +23,11 @@ import { CreateExpenseComponent } from './expenses/create-expense/create-expense
 import { WalletStatisticsComponent } from './wallet-section/wallet-statistics/wallet-statistics.component';
 import { UserStatisticsComponent } from './wallet-section/user-statistics/user-statistics.component';
 import { CategoryStatisticsComponent } from './wallet-section/category-statistics/category-statistics.component';
-import { WalletAdminComponent } from './wallet-admin/wallet-admin.component';
+import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 
 import { HasRoleDirective } from './_directives/hasRole.directive';
+import { CheckRequestComponent } from './admin/check-request/check-request.component';
+import { CreateInviteComponent } from './admin/create-invite/create-invite.component';
 
 @NgModule({
     bootstrap: [
@@ -39,7 +41,8 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
         NativeScriptHttpClientModule,
         NativeScriptRouterModule,
         NativeScriptUISideDrawerModule,
-        NativeScriptUIChartModule
+        NativeScriptUIChartModule,
+        SharedModule
     ],
     declarations: [
         AppComponent,
@@ -57,7 +60,9 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
         UserStatisticsComponent,
         CategoryStatisticsComponent,
         WalletAdminComponent,
-        HasRoleDirective
+        HasRoleDirective,
+        CheckRequestComponent,
+        CreateInviteComponent
     ],
     providers: [],
     schemas: [

@@ -1,6 +1,66 @@
-<ActionBar>
-    <ActionItem text="Logout" (tap)="logout()"></ActionItem>
-</ActionBar>
+<ns-action-bar></ns-action-bar>
 <StackLayout>
-    <Label text="Home"></Label>
+    <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-body">
+            <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                <StackLayout col="0" row="0" class="card-icon">
+                    <Label class="fas icon-text" color="#28a745" text="&#xf0cb;"></Label>
+                </StackLayout>
+                <StackLayout col="1" row="0" class="card-text">
+                    <StackLayout class="card-title">
+                        <Label text="Most Used Category"></Label>
+                    </StackLayout>
+                    <StackLayout class="card-desc">
+                        <Label text="Meat"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+        <FlexboxLayout class="card-footer">
+            <Label class="fas footer-icon" text="&#xf885;"></Label>
+            <Label class="footer-text" text="Number of expenses"></Label>
+        </FlexboxLayout>
+    </StackLayout>
+    <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-body">
+            <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                <StackLayout col="0" row="0" class="card-icon">
+                    <Label class="far icon-text" color="#007bff" text="&#xf3d1;"></Label>
+                </StackLayout>
+                <StackLayout col="1" row="0" class="card-text">
+                    <StackLayout class="card-title">
+                        <Label text="Most Spent Category"></Label>
+                    </StackLayout>
+                    <StackLayout class="card-desc">
+                        <Label text="Meat"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+        <FlexboxLayout class="card-footer">
+            <Label class="fas footer-icon" text="&#xf688;"></Label>
+            <Label class="footer-text" text="Total sum of expenses"></Label>
+        </FlexboxLayout>
+    </StackLayout>
 </StackLayout>
+
+<!-- 
+<div _ngcontent-gjs-c108="" class="card card-stats">
+    <div _ngcontent-gjs-c108="" class="card-body">
+        <div _ngcontent-gjs-c108="" class="row">
+            <div _ngcontent-gjs-c108="" class="col-5 col-md-4">
+                <div _ngcontent-gjs-c108="" class="icon-big text-center icon-success"><i _ngcontent-gjs-c108="" class="nc-icon nc-chart-bar-32 text-success"></i></div>
+            </div>
+            <div _ngcontent-gjs-c108="" class="col-7 col-md-8">
+                <div _ngcontent-gjs-c108="" class="numbers">
+                    <p _ngcontent-gjs-c108="" class="card-category mb-2">Most used category</p>
+                    <p _ngcontent-gjs-c108="" class="card-title">Meat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div _ngcontent-gjs-c108="" class="card-footer">
+        <hr _ngcontent-gjs-c108="">
+        <div _ngcontent-gjs-c108="" class="stats"><i _ngcontent-gjs-c108="" class="fa fa-sort-amount-asc"></i> Number of expenses </div>
+    </div>
+</div> -->

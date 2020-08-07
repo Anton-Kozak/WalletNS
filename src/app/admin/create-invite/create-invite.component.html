@@ -2,7 +2,7 @@
     <form [formGroup]="emailForm" class="form-group">
         <Label text="Email"></Label>
         <TextField type="email" formControlName="email" placeholder="Enter name" class="form-control"></TextField>
-        <Button (tap)="confirm()" text="Send request" class="btn btn-outline-secondary btn-block mt-2"></Button>
+        <Button (tap)="onSubmit()" text="Send request" class="btn btn-outline-secondary btn-block mt-2"></Button>
     </form>
-    <Button text="Back" (tap)="back()"></Button>
+    <Button text="Back" (tap)="goBack()"></Button>
 </StackLayout>

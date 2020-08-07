@@ -1,0 +1,15 @@
+<StackLayout>
+    <FlexboxLayout class="row-cell">
+        <Label class="first-item" text="From"></Label>
+        <Label class="first-item" text="Date"></Label>
+        <Label class="third-item" text="Action"></Label>
+    </FlexboxLayout>
+    <FlexboxLayout class="row-cell" *ngFor="let request of requests; let i = index">
+        <Label class="first-item" [text]="request.requestCreatorEmail" textWrap="true"></Label>
+        <Label class="second-item" [text]="request.inviteCreationTime" textWrap="true"></Label>
+        <FlexboxLayout>
+            <Button text="Accept" (tap)="acceptRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-forest"></Button>
+            <Button text="Decline" (tap)="declineRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-error"></Button>
+        </FlexboxLayout>
+    </FlexboxLayout>
+</StackLayout>
