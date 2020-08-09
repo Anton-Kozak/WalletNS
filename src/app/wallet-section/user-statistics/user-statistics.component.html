@@ -1,60 +1,187 @@
 <ns-action-bar></ns-action-bar>
 <ScrollView>
-    <GridLayout columns="*" rows="1200" [visibility]="!isLoading ? 'visible' : 'collapse'">
-        <StackLayout row="0" col="0">
-            <StackLayout class="most-used-category">
-                <Label text="Most used category"></Label>
-                <Label [text]="mostUsedCategory"></Label>
-            </StackLayout>
-            <StackLayout class="most-spent-category">
-                <Label text="Most spent category"></Label>
-                <Label [text]="mostSpentCategory"></Label>
-            </StackLayout>
-            <StackLayout class="avg">
-                <Label text="Average daily"></Label>
-                <Label [text]="avgDailyExpenses"></Label>
-            </StackLayout>
-            <StackLayout class="total">
-                <Label text="Total money spent"></Label>
-                <Label [text]="amountOfMoneySpent"></Label>
-            </StackLayout>
-            <StackLayout>
-                <GridLayout height="300" rows="*">
-                    <RadCartesianChart row="0" style="font-size: 12;">
-                        <CategoricalAxis tkCartesianVerticalAxis></CategoricalAxis>
-                        <LinearAxis tkCartesianHorizontalAxis></LinearAxis>
-                        <BarSeries fillColor="green" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
-                            <PointLabelStyle textSize="15" textColor="black"></PointLabelStyle>
-                        </BarSeries>
-                    </RadCartesianChart>
-                </GridLayout>
-                <GridLayout height="300" rows="*">
-                    <RadCartesianChart row="0" style="font-size: 12;">
-                        <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
-                        <LinearAxis tkCartesianVerticalAxis></LinearAxis>
-                        <LineSeries tkCartesianSeries [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
-                        </LineSeries>
-                    </RadCartesianChart>
+    <StackLayout class="background" height="auto" [visibility]="!isLoading ? 'visible' : 'collapse'">
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                    <StackLayout col="0" row="0" class="card-icon">
+                        <Label class="far icon-text" color="#28a745" text="&#xf080;"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" row="0" class="card-text">
+                        <StackLayout class="card-title">
+                            <Label textWarp="true" text="Most Used Category"></Label>
+                        </StackLayout>
+                        <StackLayout class="card-desc">
+                            <Label [text]="mostUsedCategory"></Label>
+                        </StackLayout>
+                    </StackLayout>
                 </GridLayout>
             </StackLayout>
-            <StackLayout>
-                <StackLayout *ngIf="expenses !== null">
-                    <FlexboxLayout class="row-cell">
-                        <Label class="first-item" text="Title"></Label>
-                        <Label class="second-item" text="Category"></Label>
-                        <Label class="third-item" text="Date"></Label>
-                        <Label class="fourth-item" text="$"></Label>
-                        <Label class="fifth-item" text="Actions"></Label>
-                    </FlexboxLayout>
-                    <FlexboxLayout class="row-cell" *ngFor="let expense of expenses">
-                        <Label class="first-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                        <Label class="second-item" [text]="expense.expenseCategory" textWrap="true"></Label>
-                        <Label class="third-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                        <Label class="fourth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-                        <Label class="fifth-item" text="Actions here"></Label>
-                    </FlexboxLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Number of expenses"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                    <StackLayout col="0" row="0" class="card-icon">
+                        <Label class="fas icon-text" color="#6c757d" text="&#xf161;"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" row="0" class="card-text">
+                        <StackLayout class="card-title">
+                            <Label textWarp="true" text="Most Spent Category"></Label>
+                        </StackLayout>
+                        <StackLayout class="card-desc">
+                            <Label [text]="mostSpentCategory"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Category with the largest expenses"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                    <StackLayout col="0" row="0" class="card-icon">
+                        <Label class="fas icon-text" color="#ffc107" text="&#xf51e;"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" row="0" class="card-text">
+                        <StackLayout class="card-title">
+                            <Label fontSize="17" textWarp="true" text="Average Daily Expenses"></Label>
+                        </StackLayout>
+                        <StackLayout class="card-desc">
+                            <Label [text]="avgDailyExpenses"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Average per 1 day"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                    <StackLayout col="0" row="0" class="card-icon">
+                        <Label class="fas icon-text" color="#007bff" text="&#xf688;"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" row="0" class="card-text">
+                        <StackLayout class="card-title">
+                            <Label text="Total Spent"></Label>
+                        </StackLayout>
+                        <StackLayout class="card-desc">
+                            <Label [text]="amountOfMoneySpent"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Total sum"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title">
+                        <Label text="Categories"></Label>
+                    </StackLayout>
+                    <StackLayout class="card-desc">
+                        <Label text="Expenses for each Category"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-chart">
+                    <GridLayout height="300" rows="*">
+                        <RadPieChart allowAnimation="true" row="0">
+                            <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category"></DonutSeries>
+                            <RadLegendView tkPieLegend position="Right" title="Users" width="110" enableSelection="true">
+                            </RadLegendView>
+                            <Palette tkPiePalette seriesName="Pie">
+                                <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+
+                                <PaletteEntry tkPiePaletteEntry fillColor="#e0aaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                            </Palette>
+                        </RadPieChart>
+                    </GridLayout>
+                    <!-- <GridLayout height="300" rows="*">
+                        <RadCartesianChart row="0" style="font-size: 12;">
+                            <CategoricalAxis tkCartesianVerticalAxis></CategoricalAxis>
+                            <LinearAxis tkCartesianHorizontalAxis></LinearAxis>
+                            <BarSeries showLabels="true" strokeColor="#58ecaa" strokeWidth="1" fillColor="#aaf0d1" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
+                                <PointLabelStyle tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle>
+                            </BarSeries>
+                        </RadCartesianChart>
+                    </GridLayout> -->
+                </StackLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Number of expenses"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title">
+                        <Label text="Last 6 months"></Label>
+                    </StackLayout>
+                    <StackLayout class="card-desc">
+                        <Label text="Overall progress"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-chart">
+                    <GridLayout height="300" rows="*">
+                        <RadCartesianChart row="0" style="font-size: 12;">
+                            <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                            <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                            <LineSeries tkCartesianSeries strokeColor="#58ecaa" [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
+                            </LineSeries>
+                        </RadCartesianChart>
+                    </GridLayout>
+                </StackLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Number of expenses"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <StackLayout *ngIf="expenses !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title">
+                        <Label color="black" text="Your Expenses"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-desc text-center">
+                        <Label col="0" text="Title"></Label>
+                        <Label col="1" text="Category"></Label>
+                        <Label col="2" text="Details"></Label>
+                        <Label col="3" text="Date"></Label>
+                        <Label col="4" text="$"></Label>
+                    </GridLayout>
+                    <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-data text-center" (tap)="onExpenseTap()" *ngFor="let expense of expenses">
+                        <Label col="0" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label col="1" [text]="expense.expenseCategory" textWrap="true"></Label>
+                        <Label col="2" [text]="expense.expenseDescription" textWrap="true"></Label>
+                        <Label col="3" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label col="4" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </GridLayout>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
-    </GridLayout>
+    </StackLayout>
 </ScrollView>

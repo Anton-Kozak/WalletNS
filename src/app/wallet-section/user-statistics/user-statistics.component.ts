@@ -7,6 +7,7 @@ import { ExpenseForTable } from '../../_models/expense-for-table';
 import { ExpenseList } from '../../_models/expense-list';
 import { LastMonthStat } from '../../_models/lastMonthStat';
 import { CategoryData } from '../../_models/categoryData';
+import { ObservableArray } from 'tns-core-modules/data/observable-array';
 
 @Component({
   selector: 'ns-user-statistics',
@@ -33,7 +34,7 @@ export class UserStatisticsComponent implements OnInit {
   spentAll: number;
   avgDailyExpenses: number = 0;
   amountOfMoneySpent: number = 0;
-  barExpenses: ExpenseList;
+  barExpenses = null;
   currentMonthDataToCompare: ExpenseList;
   lastMonthDataToCompare: ExpenseList;
   mostSpentCategory: string;
@@ -67,8 +68,12 @@ export class UserStatisticsComponent implements OnInit {
         this.avgDailyExpenses = response['averageDailyExpense'];
         this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
         this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
-        this.barExpenses = response['barExpenses'];
-        this.lastSixMonths = response['lastSixMonths'];
+        let barArr: { Amount: number, Category: string }[] = [];
+        response['barExpenses'].forEach((val, i) => {
+          barArr.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })
+        });
+        this.barExpenses = new ObservableArray([...barArr]);
+        this.lastSixMonths = response['lastSixMonths'].reverse();
         this.mostUsedCategory = response['mostUsedCategory'];
         this.mostSpentCategory = response['mostSpentCategory'];
         this.amountOfMoneySpent = response['amountOfMoneySpent'];
@@ -100,6 +105,10 @@ export class UserStatisticsComponent implements OnInit {
     //     this.expenses.data[rowIndex].creationDate = result['creationDate'];
     //   }
     // });
+  }
+
+  onExpenseTap(){
+    console.log('Expense tapped');
   }
 
 }

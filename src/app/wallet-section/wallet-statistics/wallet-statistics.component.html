@@ -149,9 +149,22 @@
                         <RadCartesianChart row="0" style="font-size: 12;">
                             <CategoricalAxis tkCartesianVerticalAxis></CategoricalAxis>
                             <LinearAxis tkCartesianHorizontalAxis></LinearAxis>
-                            <BarSeries showLabels="true" fillColor="#aaf0d1" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
-                                <PointLabelStyle tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle>
+                            <BarSeries paletteMode="Item" showLabels="true" seriesName="Bar" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
+                                <!-- <PointLabelStyle tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle> -->
                             </BarSeries>
+                            <Palette tkCartesianPalette seriesName="Bar">
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#e0aaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                            </Palette>
                         </RadCartesianChart>
                     </GridLayout>
                 </StackLayout>
