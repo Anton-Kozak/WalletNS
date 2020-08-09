@@ -24,6 +24,11 @@
     margin-right: 20;
 }
 
+.card-chart-text {
+    text-align: left;
+    margin-right: 20;
+}
+
 .card-title {
     font-size: 20;
     color: #9a9a9a;
@@ -52,4 +57,70 @@
 
 .footer-icon {
     font-size: 17;
+}
+
+.row-cell-desc Label {
+    font-size: 15;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.row-cell-data Label,
+.row-cell-desc Label {
+    border-bottom-width: 0.3;
+    border-color: rgba(0, 0, 0, 0.12);
+    padding-bottom: 5;
+    padding-top: 5;
+}
+
+// .row-cell-data,
+// .row-cell-desc {
+//     align-items: center;
+// }
+.user-item {
+    width: 20%;
+}
+
+.title-item {
+    width: 30%;
+}
+
+.desc-item {
+    width: 20%;
+}
+
+.date-item {
+    width: 25%;
+}
+
+.money-item {
+    width: 5%;
+}
+
+.catregory-item {
+    width: 15%;
+}
+
+.double-cards {
+    width: 94%;
+}
+
+.double-cards .card-stats {
+    margin: 10;
+}
+
+.user-icon {
+    padding: 8;
+    padding-right: 9;
+    background-color: white;
+    text-align: center;
+    border-radius: 5;
+    color: #28a745;
+    border-width: 1;
+    border-color: #28a745;
+}
+
+.members {
+    // justify-content: space-evenly;
+    padding-top: 5;
+    padding-bottom: 5;
 }

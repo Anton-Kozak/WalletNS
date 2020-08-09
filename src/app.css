@@ -27,6 +27,10 @@ Button.-primary {
     font-size: 18;
 }
 
+.background {
+    background: linear-gradient(to bottom, #c7f0de, #c9e8f1);
+}
+
 .fa {
     font-family: 'FontAwesome', 'Font-Awesome';
 }

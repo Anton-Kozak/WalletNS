@@ -1,204 +1,300 @@
 <ns-action-bar></ns-action-bar>
 <ScrollView>
     <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
-    <StackLayout *ngIf="!isLoading">
-        <Label text="Wallet Expenses"></Label>
-        <StackLayout>
+    <StackLayout class="background" *ngIf="!isLoading">
+        <!-- <StackLayout>
             <Button class="test btn btn-primary btn-block" text="Add expense" (tap)="addExpense()"></Button>
-        </StackLayout>
-        <StackLayout>
-            <Label [text]="'Title ' + walletTitle"></Label>
-            <Label [text]="'Limit ' + walletLimit"></Label>
-        </StackLayout>
+        </StackLayout> -->
+        <FlexboxLayout class="double-cards">
+            <StackLayout class="card-stats" androidElevation="10" ios:shadowRadius="3">
+                <StackLayout class="card-body">
+                    <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                        <StackLayout col="0" row="0" class="card-icon">
+                            <Label class="fas icon-text" color="#007bff" text="&#xf555;"></Label>
+                        </StackLayout>
+                        <StackLayout col="1" row="0" class="card-text">
+                            <StackLayout class="card-title">
+                                <Label textWrap="true" text="Wallet Title"></Label>
+                            </StackLayout>
+                            <StackLayout class="card-desc">
+                                <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+                <FlexboxLayout class="card-footer">
+                </FlexboxLayout>
+            </StackLayout>
+            <StackLayout class="card-stats" androidElevation="10" ios:shadowRadius="3">
+                <StackLayout class="card-body">
+                    <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                        <StackLayout col="0" row="0" class="card-icon">
+                            <Label class="fas icon-text" color="#ffc107" text="&#xf1ce;"></Label>
+                        </StackLayout>
+                        <StackLayout col="1" row="0" class="card-text">
+                            <StackLayout class="card-title">
+                                <Label textWrap="true" text="Wallet Limit"></Label>
+                            </StackLayout>
+                            <StackLayout class="card-desc">
+                                <Label textWrap="true" fontSize="18" [text]="'$' + walletLimit"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+                <FlexboxLayout class="card-footer">
+                </FlexboxLayout>
+            </StackLayout>
+        </FlexboxLayout>
         <!-- first -->
-        <StackLayout *ngIf="first.expenses !== null">
-            <Label class="category-name" [text]="first.categoryName" + expenses></Label>
+        <StackLayout *ngIf="first.expenses !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="first.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of first.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + first.categoryName" (tap)="addCategoryExpense(first.categoryId, first.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of first.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 2 -->
-        <StackLayout *ngIf="second.expenses !== null">
-            <Label class="category-name" [text]="second.categoryName" + expenses></Label>
+        <StackLayout *ngIf="second.expenses !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="second.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of second.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + second.categoryName" (tap)="addCategoryExpense(second.categoryId, second.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of second.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 3 -->
-        <StackLayout *ngIf="third.expenses !== null">
-            <Label class="category-name" [text]="third.categoryName" + expenses></Label>
+        <StackLayout *ngIf="third.expenses !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="third.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of third.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + third.categoryName" (tap)="addCategoryExpense(third.categoryId, third.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of third.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 4 -->
-        <StackLayout *ngIf="fourth.expenses !== null">
-            <Label class="category-name" [text]="fourth.categoryName" + expenses></Label>
+        <StackLayout *ngIf="fourth.expenses !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="fourth.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of fourth.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + fourth.categoryName" (tap)="addCategoryExpense(fourth.categoryId, fourth.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of fourth.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
+
         <!-- 5 -->
-        <StackLayout *ngIf="fifth.expenses !== null">
-            <Label class="category-name" [text]="fifth.categoryName" + expenses></Label>
+        <StackLayout *ngIf="fifth.expenses !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="fifth.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of fifth.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + fifth.categoryName" (tap)="addCategoryExpense(fifth.categoryId, fifth.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of fifth.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 6 -->
-        <StackLayout *ngIf="sixth.categoryId != 0">
-            <Label class="category-name" [text]="sixth.categoryName" + expenses></Label>
+        <StackLayout *ngIf="sixth.categoryId !== 0" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="sixth.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of sixth.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + sixth.categoryName" (tap)="addCategoryExpense(sixth.categoryId, sixth.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of sixth.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 7 -->
-        <StackLayout *ngIf="seventh.categoryId != 0">
-            <Label class="category-name" [text]="seventh.categoryName" + expenses></Label>
+        <StackLayout *ngIf="seventh.categoryId !== 0" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="seventh.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of seventh.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + seventh.categoryName" (tap)="addCategoryExpense(seventh.categoryId, seventh.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of seventh.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 8 -->
-        <StackLayout *ngIf="eigth.categoryId != 0">
-            <Label class="category-name" [text]="eigth.categoryName" + expenses></Label>
+        <StackLayout *ngIf="eigth.categoryId !== 0" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="eigth.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of eigth.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + eigth.categoryName" (tap)="addCategoryExpense(eigth.categoryId, eigth.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of eigth.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 9 -->
-        <StackLayout *ngIf="nineth.categoryId != 0">
-            <Label class="category-name" [text]="nineth.categoryName" + expenses></Label>
+        <StackLayout *ngIf="nineth.categoryId !== 0" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="nineth.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of nineth.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + nineth.categoryName" (tap)="addCategoryExpense(nineth.categoryId, nineth.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of nineth.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
         <!-- 10 -->
-        <StackLayout *ngIf="tenth.categoryId != 0">
-            <Label class="category-name" [text]="tenth.categoryName" + expenses></Label>
+        <StackLayout *ngIf="tenth.categoryId !== 0" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" [text]="tenth.categoryName + ' Expenses'"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout class="card-table">
+                    <FlexboxLayout class="row-cell-desc text-center">
+                        <Label class="user-item" text="User"></Label>
+                        <Label class="title-item" text="Title"></Label>
+                        <Label class="date-item" text="Date"></Label>
+                        <Label class="money-item" text="$"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of tenth.expenses">
+                        <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                        <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                        <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                        <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+            </StackLayout>
             <Button [text]="'Add to ' + tenth.categoryName" (tap)="addCategoryExpense(tenth.categoryId, tenth.categoryName)"></Button>
-            <FlexboxLayout class="row-cell">
-                <Label class="first-item" text="User"></Label>
-                <Label class="second-item" text="Title"></Label>
-                <!-- <Label class="third-item" text="Details"></Label> -->
-                <Label class="fourth-item" text="Date"></Label>
-                <Label class="fifth-item" text="$"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout class="row-cell" *ngFor="let expense of tenth.expenses">
-                <Label class="first-item" [text]="expense.userName" textWrap="true"></Label>
-                <Label class="second-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                <!-- <Label class="third-item" [text]="expense.expenseDescription" textWrap="true"></Label> -->
-                <Label class="fourth-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                <Label class="fifth-item" [text]="expense.moneySpent" textWrap="true"></Label>
-            </FlexboxLayout>
         </StackLayout>
     </StackLayout>
 </ScrollView>

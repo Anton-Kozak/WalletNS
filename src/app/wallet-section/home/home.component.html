@@ -1,66 +1,157 @@
 <ns-action-bar></ns-action-bar>
-<StackLayout>
-    <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
-        <StackLayout class="card-body">
-            <GridLayout columns="3*, 7*" rows="auto" class="card-row">
-                <StackLayout col="0" row="0" class="card-icon">
-                    <Label class="fas icon-text" color="#28a745" text="&#xf0cb;"></Label>
-                </StackLayout>
-                <StackLayout col="1" row="0" class="card-text">
+<ScrollView>
+    <StackLayout class="background" height="auto">
+        <!-- green icon -->
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                    <StackLayout col="0" row="0" class="card-icon">
+                        <Label class="fas icon-text" color="#28a745" text="&#xf0cb;"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" row="0" class="card-text">
+                        <StackLayout class="card-title">
+                            <Label text="Most Used Category"></Label>
+                        </StackLayout>
+                        <StackLayout class="card-desc">
+                            <Label text="Meat"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Number of expenses"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <!-- blue icon -->
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                    <StackLayout col="0" row="0" class="card-icon">
+                        <Label class="far icon-text" color="#007bff" text="&#xf3d1;"></Label>
+                    </StackLayout>
+                    <StackLayout col="1" row="0" class="card-text">
+                        <StackLayout class="card-title">
+                            <Label text="Most Spent Category"></Label>
+                        </StackLayout>
+                        <StackLayout class="card-desc">
+                            <Label text="Meat"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf688;"></Label>
+                <Label class="footer-text" text="Total sum of expenses"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+        <!-- chart -->
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
-                        <Label text="Most Used Category"></Label>
+                        <Label text="Top 5 Users"></Label>
                     </StackLayout>
                     <StackLayout class="card-desc">
-                        <Label text="Meat"></Label>
+                        <Label text="Users with most Expenses"></Label>
                     </StackLayout>
                 </StackLayout>
-            </GridLayout>
+                <StackLayout class="card-chart">
+                    <!-- <GridLayout rows="*" height="320">
+                        <RadPieChart allowAnimation="true" row="0">
+                            <PieSeries tkPieSeries selectionMode="DataPoint" expandRadius="0.4" outerRadiusFactor="0.7" [items]="pieSource" valueProperty="Amount" legendLabel="Brand"></PieSeries>
+                            <RadLegendView tkPieLegend position="Right" title="Brands" offsetOrigin="TopRight" width="110" enableSelection="true"></RadLegendView>
+                        </RadPieChart>
+                    </GridLayout> -->
+                </StackLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Number of expenses"></Label>
+            </FlexboxLayout>
         </StackLayout>
-        <FlexboxLayout class="card-footer">
-            <Label class="fas footer-icon" text="&#xf885;"></Label>
-            <Label class="footer-text" text="Number of expenses"></Label>
-        </FlexboxLayout>
-    </StackLayout>
-    <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
-        <StackLayout class="card-body">
-            <GridLayout columns="3*, 7*" rows="auto" class="card-row">
-                <StackLayout col="0" row="0" class="card-icon">
-                    <Label class="far icon-text" color="#007bff" text="&#xf3d1;"></Label>
-                </StackLayout>
-                <StackLayout col="1" row="0" class="card-text">
-                    <StackLayout class="card-title">
-                        <Label text="Most Spent Category"></Label>
-                    </StackLayout>
-                    <StackLayout class="card-desc">
-                        <Label text="Meat"></Label>
+        <!-- table -->
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title text-center">
+                        <Label color="black" text="Expenses"></Label>
                     </StackLayout>
                 </StackLayout>
-            </GridLayout>
+                <StackLayout class="card-table">
+                    <StackLayout>
+                        <FlexboxLayout class="row-cell-desc text-center">
+                            <Label class="user-item" text="User"></Label>
+                            <Label class="title-item" text="Title"></Label>
+                            <Label class="date-item" text="Date"></Label>
+                            <Label class="money-item" text="$"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of first.expenses">
+                            <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                            <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                            <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                            <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                        </FlexboxLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
-        <FlexboxLayout class="card-footer">
-            <Label class="fas footer-icon" text="&#xf688;"></Label>
-            <Label class="footer-text" text="Total sum of expenses"></Label>
+        <!-- double cards -->
+        <FlexboxLayout class="double-cards">
+            <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+                <StackLayout class="card-body">
+                    <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                        <StackLayout col="0" row="0" class="card-icon">
+                            <Label class="fas icon-text" color="#007bff" text="&#xf555;"></Label>
+                        </StackLayout>
+                        <StackLayout col="1" row="0" class="card-text">
+                            <StackLayout class="card-title">
+                                <Label textWrap="true" text="Wallet Title"></Label>
+                            </StackLayout>
+                            <StackLayout class="card-desc">
+                                <Label textWrap="true" fontSize="18" text=""></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+                <FlexboxLayout class="card-footer">
+                </FlexboxLayout>
+            </StackLayout>
+            <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+                <StackLayout class="card-body">
+                    <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                        <StackLayout col="0" row="0" class="card-icon">
+                            <Label class="fas icon-text" color="#ffc107" text="&#xf1ce;"></Label>
+                        </StackLayout>
+                        <StackLayout col="1" row="0" class="card-text">
+                            <StackLayout class="card-title">
+                                <Label textWrap="true" text="Wallet Limit"></Label>
+                            </StackLayout>
+                            <StackLayout class="card-desc">
+                                <Label textWrap="true" fontSize="18" text=""></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+                <FlexboxLayout class="card-footer">
+                </FlexboxLayout>
+            </StackLayout>
         </FlexboxLayout>
-    </StackLayout>
-</StackLayout>
 
-<!-- 
-<div _ngcontent-gjs-c108="" class="card card-stats">
-    <div _ngcontent-gjs-c108="" class="card-body">
-        <div _ngcontent-gjs-c108="" class="row">
-            <div _ngcontent-gjs-c108="" class="col-5 col-md-4">
-                <div _ngcontent-gjs-c108="" class="icon-big text-center icon-success"><i _ngcontent-gjs-c108="" class="nc-icon nc-chart-bar-32 text-success"></i></div>
-            </div>
-            <div _ngcontent-gjs-c108="" class="col-7 col-md-8">
-                <div _ngcontent-gjs-c108="" class="numbers">
-                    <p _ngcontent-gjs-c108="" class="card-category mb-2">Most used category</p>
-                    <p _ngcontent-gjs-c108="" class="card-title">Meat</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div _ngcontent-gjs-c108="" class="card-footer">
-        <hr _ngcontent-gjs-c108="">
-        <div _ngcontent-gjs-c108="" class="stats"><i _ngcontent-gjs-c108="" class="fa fa-sort-amount-asc"></i> Number of expenses </div>
-    </div>
-</div> -->
+        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+            <StackLayout class="card-body">
+                <StackLayout class="card-chart-text">
+                    <StackLayout class="card-title">
+                        <Label text="Wallet Members"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <GridLayout columns="9*, 1*" rows="auto" *ngFor="let member of members" class="members">
+                    <Label col="0" fontSize="18" [text]="member.name"></Label>
+                    <Label col="1" text="&#xf007;" fontSize="18" class="fas user-icon"></Label>
+                </GridLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+            </FlexboxLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
