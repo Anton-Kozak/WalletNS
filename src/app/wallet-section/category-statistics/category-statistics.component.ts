@@ -81,6 +81,7 @@ export class CategoryStatisticsComponent implements OnInit {
           //this.topFiveUsers = data['topFiveUsers'];
           this.topFiveUsers = new ObservableArray([...data['topFiveUsers']]);
           this.lastSixMonths = new ObservableArray([...data['lastSixMonths']]).reverse();
+          console.log(this.topFiveUsers);
           //this.lastSixMonths = data['lastSixMonths'];
 
           this.showData = true;

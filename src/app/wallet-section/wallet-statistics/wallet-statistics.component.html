@@ -1,7 +1,7 @@
 <ns-action-bar></ns-action-bar>
 <ScrollView>
     <StackLayout class="background" height="auto" [visibility]="!isLoading ? 'visible' : 'collapse'">
-        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -16,7 +16,7 @@
             <FlexboxLayout class="card-footer">
             </FlexboxLayout>
         </StackLayout>
-        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                     <StackLayout col="0" row="0" class="card-icon">
@@ -37,7 +37,7 @@
                 <Label class="footer-text" text="Number of expenses"></Label>
             </FlexboxLayout>
         </StackLayout>
-        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                     <StackLayout col="0" row="0" class="card-icon">
@@ -58,7 +58,7 @@
                 <Label class="footer-text" text="Category with the largest expenses"></Label>
             </FlexboxLayout>
         </StackLayout>
-        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                     <StackLayout col="0" row="0" class="card-icon">
@@ -79,7 +79,7 @@
                 <Label class="footer-text" text="Average per 1 day"></Label>
             </FlexboxLayout>
         </StackLayout>
-        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                     <StackLayout col="0" row="0" class="card-icon">
@@ -101,7 +101,7 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="topFiveUsers.length >= 2" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout *ngIf="topFiveUsers.length >= 2" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -134,7 +134,7 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -175,7 +175,7 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -202,7 +202,7 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">

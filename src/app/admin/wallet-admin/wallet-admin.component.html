@@ -3,7 +3,7 @@
         <StackLayout>
             <Button text="Add new user" (tap)="addNewUser()" class="btn c-bg-charcoal c-sky"></Button>
         </StackLayout>
-        <StackLayout *ngIf="expenses !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout *ngIf="expenses !== null" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -30,7 +30,7 @@
         </StackLayout>
 
 
-        <StackLayout *ngIf="users !== null" class="card-stats" androidElevation="15" ios:shadowRadius="3">
+        <StackLayout *ngIf="users !== null" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
