@@ -96,25 +96,40 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-chart">
-                    <GridLayout ios:height="500" android:height="300" rows="*">
+                    <GridLayout height="500" rows="*">
                         <RadPieChart allowAnimation="true" row="0">
-                            <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category">
-                                <PointLabelStyle tkDonutLabelStyle fillColor="white" strokeColor="black" margin="15"></PointLabelStyle>
+                            <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset"
+                                expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses"
+                                valueProperty="Amount" legendLabel="Category">
+                                <ios>
+                                    <PointLabelStyle tkDonutLabelStyle fillColor="white" strokeColor="black"
+                                        margin="15"></PointLabelStyle>
+                                </ios>
                             </DonutSeries>
                             <RadLegendView tkPieLegend position="Top" title="Users">
                             </RadLegendView>
                             <Palette tkPiePalette seriesName="Pie">
-                                <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
 
-                                <PaletteEntry tkPiePaletteEntry fillColor="#e0aaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#e0aaf0" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0e8aa" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#c4f0a2" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#a2e7f0" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0a2c4" strokeWidth="0.5"
+                                    strokeColor="black"></PaletteEntry>
                             </Palette>
                         </RadPieChart>
                     </GridLayout>
@@ -149,7 +164,8 @@
                         <RadCartesianChart row="0" style="font-size: 12;">
                             <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
                             <LinearAxis tkCartesianVerticalAxis></LinearAxis>
-                            <LineSeries tkCartesianSeries strokeColor="#58ecaa" [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
+                            <LineSeries tkCartesianSeries strokeColor="#58ecaa" [items]="lastSixMonths"
+                                categoryProperty="month" valueProperty="expenseSum">
                             </LineSeries>
                         </RadCartesianChart>
                     </GridLayout>
@@ -175,7 +191,8 @@
                         <Label col="3" text="Date"></Label>
                         <Label col="4" text="$"></Label>
                     </GridLayout>
-                    <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-data text-center" (tap)="onExpenseTap()" *ngFor="let expense of expenses">
+                    <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-data text-center"
+                        (tap)="onExpenseTap()" *ngFor="let expense of expenses">
                         <Label col="0" [text]="expense.expenseTitle" textWrap="true"></Label>
                         <Label col="1" [text]="expense.expenseCategory" textWrap="true"></Label>
                         <Label col="2" [text]="expense.expenseDescription" textWrap="true"></Label>
