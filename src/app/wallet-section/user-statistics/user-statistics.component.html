@@ -96,10 +96,12 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-chart">
-                    <GridLayout height="300" rows="*">
+                    <GridLayout height="500" rows="*">
                         <RadPieChart allowAnimation="true" row="0">
-                            <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category"></DonutSeries>
-                            <RadLegendView tkPieLegend position="Right" title="Users" width="110" enableSelection="true">
+                            <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category">
+                                <PointLabelStyle tkDonutLabelStyle fillColor="white" strokeColor="black" margin="15"></PointLabelStyle>
+                            </DonutSeries>
+                            <RadLegendView tkPieLegend position="Top" title="Users">
                             </RadLegendView>
                             <Palette tkPiePalette seriesName="Pie">
                                 <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>

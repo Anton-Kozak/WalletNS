@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import * as Toast from 'nativescript-toast';
+import { isAndroid, isIOS } from "tns-core-modules/platform";
 @Component({
   selector: 'ns-registration-login',
   templateUrl: './registration-login.component.html',
@@ -57,8 +58,11 @@ export class RegistrationLoginComponent implements OnInit {
       const password = this.signInForm.value['userpassIn'];
       console.log(username, password);
       this.authService.login(username, password).subscribe((data: any) => {
-        var toast = Toast.makeText("Welcome: " + data.user['userName']);
-        toast.show();
+        if (isAndroid) {
+          var toast = Toast.makeText("Welcome: " + data.user['userName']);
+          toast.show();
+          console.log("Welcome: " + data.user['userName'])
+        }
         if (this.hasWallet()) {
           console.log('Has wallet');
           // go to wallet
@@ -70,15 +74,19 @@ export class RegistrationLoginComponent implements OnInit {
           //go to wallet creation
         }
       }, error => {
-        var toast = Toast.makeText(error.error);
-        toast.show();
+        if (isAndroid) {
+          var toast = Toast.makeText(error.error);
+          toast.show();
+        }
+        console.log(error.error);
       })
+
     }
     else
       console.log('Form is invalid');
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 

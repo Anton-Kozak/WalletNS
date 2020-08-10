@@ -10,6 +10,7 @@ import { StartComponent } from './start/start.component';
 import { RegistrationLoginComponent } from './initial-pages/registration-login/registration-login.component';
 import { NativeScriptUIChartModule } from "nativescript-ui-chart/angular";
 import { SharedModule } from './shared/shared.module';
+import { NgShadowModule } from "nativescript-ngx-shadow";
 
 import { AppComponent } from "./app.component";
 import { CreateWalletComponent } from './initial-pages/create-wallet/create-wallet.component';
@@ -42,7 +43,8 @@ import { CreateInviteComponent } from './admin/create-invite/create-invite.compo
         NativeScriptRouterModule,
         NativeScriptUISideDrawerModule,
         NativeScriptUIChartModule,
-        SharedModule
+        SharedModule,
+        NgShadowModule
     ],
     declarations: [
         AppComponent,

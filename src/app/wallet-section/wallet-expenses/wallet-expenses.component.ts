@@ -51,13 +51,14 @@ export class WalletExpensesComponent implements OnInit {
     this.isLoading = true;
     this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
       this.walletTitle = walletData['title'];
+      this.walletLimit = walletData['monthlyLimit'];
       this.expenseService.expensesSubject.subscribe(expData => {
         this.walletExpenses = expData;
         this.expensesToShow = expData;
         this.checkLimit();
       });
 
-      this.walletLimit = walletData['monthlyLimit'];
+      
       this.checkLimit();
       this.expenseService.showAllExpenses();
       this.expenseService.firstSubject.subscribe(exp => {

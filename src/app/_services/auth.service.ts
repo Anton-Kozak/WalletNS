@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { sitePath } from './environment';
 import {
@@ -28,10 +27,8 @@ export class AuthService {
   }
 
   login(username: string, userpass: string) {
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json"
-    });
-    return this.http.post(this.baseUrl + 'login', { username: username, password: userpass }, { headers: headers }).pipe(map((response: any) => {
+    return this.http.post(this.baseUrl + 'login', { username: username, password: userpass }).pipe(map((response: any) => {
+      console.log('I recieved response');
       if (response) {
         setString('username', username);
         setString('password', userpass);
