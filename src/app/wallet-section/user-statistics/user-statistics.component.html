@@ -96,7 +96,7 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-chart">
-                    <GridLayout height="500" rows="*">
+                    <GridLayout ios:height="500" android:height="300" rows="*">
                         <RadPieChart allowAnimation="true" row="0">
                             <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category">
                                 <PointLabelStyle tkDonutLabelStyle fillColor="white" strokeColor="black" margin="15"></PointLabelStyle>
