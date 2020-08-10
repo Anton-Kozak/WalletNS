@@ -5,46 +5,90 @@
         <!-- <StackLayout>
             <Button class="test btn btn-primary btn-block" text="Add expense" (tap)="addExpense()"></Button>
         </StackLayout> -->
-        <StackLayout class="card-stats" shadow="40" ios:shadow="10">
-            <StackLayout class="card-body">
-                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
-                    <StackLayout col="0" row="0" class="card-icon">
-                        <Label class="fas icon-text" color="#007bff" text="&#xf555;"></Label>
+        <ios>
+            <StackLayout>
+                <StackLayout class="card-stats" shadow="25">
+                    <StackLayout class="card-body">
+                        <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                            <StackLayout col="0" row="0" class="card-icon">
+                                <Label class="fas icon-text" color="#007bff" text="&#xf555;"></Label>
+                            </StackLayout>
+                            <StackLayout col="1" row="0" class="card-text">
+                                <StackLayout class="card-title">
+                                    <Label textWrap="true" text="Wallet Title"></Label>
+                                </StackLayout>
+                                <StackLayout class="card-desc">
+                                    <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </GridLayout>
                     </StackLayout>
-                    <StackLayout col="1" row="0" class="card-text">
-                        <StackLayout class="card-title">
-                            <Label textWrap="true" text="Wallet Title"></Label>
-                        </StackLayout>
-                        <StackLayout class="card-desc">
-                            <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
-                        </StackLayout>
+                    <FlexboxLayout class="card-footer">
+                    </FlexboxLayout>
+                </StackLayout>
+                <StackLayout class="card-stats" shadow="25">
+                    <StackLayout class="card-body">
+                        <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                            <StackLayout col="0" row="0" class="card-icon">
+                                <Label class="fas icon-text" color="#ffc107" text="&#xf1ce;"></Label>
+                            </StackLayout>
+                            <StackLayout col="1" row="0" class="card-text">
+                                <StackLayout class="card-title">
+                                    <Label textWrap="true" text="Wallet Limit"></Label>
+                                </StackLayout>
+                                <StackLayout class="card-desc">
+                                    <Label textWrap="true" fontSize="18" [text]="'$' + walletLimit"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </GridLayout>
                     </StackLayout>
-                </GridLayout>
+                    <FlexboxLayout class="card-footer">
+                    </FlexboxLayout>
+                </StackLayout>
             </StackLayout>
-            <FlexboxLayout class="card-footer">
-            </FlexboxLayout>
-        </StackLayout>
-        <StackLayout class="card-stats" shadow="40" ios:shadow="10">
-            <StackLayout class="card-body">
-                <GridLayout columns="3*, 7*" rows="auto" class="card-row">
-                    <StackLayout col="0" row="0" class="card-icon">
-                        <Label class="fas icon-text" color="#ffc107" text="&#xf1ce;"></Label>
-                    </StackLayout>
-                    <StackLayout col="1" row="0" class="card-text">
-                        <StackLayout class="card-title">
-                            <Label textWrap="true" text="Wallet Limit"></Label>
+        </ios>
+        <android>
+            <StackLayout class="card-stats" shadow="25">
+                <StackLayout class="card-body">
+                    <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                        <StackLayout col="0" row="0" class="card-icon">
+                            <Label class="fas icon-text" color="#007bff" text="&#xf555;"></Label>
                         </StackLayout>
-                        <StackLayout class="card-desc">
-                            <Label textWrap="true" fontSize="18" [text]="'$' + walletLimit"></Label>
+                        <StackLayout col="1" row="0" class="card-text">
+                            <StackLayout class="card-title">
+                                <Label textWrap="true" text="Wallet Title"></Label>
+                            </StackLayout>
+                            <StackLayout class="card-desc">
+                                <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                </GridLayout>
+                    </GridLayout>
+                </StackLayout>
+                <FlexboxLayout class="card-footer">
+                </FlexboxLayout>
             </StackLayout>
-            <FlexboxLayout class="card-footer">
-            </FlexboxLayout>
-        </StackLayout>
+            <StackLayout class="card-stats" shadow="25">
+                <StackLayout class="card-body">
+                    <GridLayout columns="3*, 7*" rows="auto" class="card-row">
+                        <StackLayout col="0" row="0" class="card-icon">
+                            <Label class="fas icon-text" color="#ffc107" text="&#xf1ce;"></Label>
+                        </StackLayout>
+                        <StackLayout col="1" row="0" class="card-text">
+                            <StackLayout class="card-title">
+                                <Label textWrap="true" text="Wallet Limit"></Label>
+                            </StackLayout>
+                            <StackLayout class="card-desc">
+                                <Label textWrap="true" fontSize="18" [text]="'$' + walletLimit"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+                <FlexboxLayout class="card-footer">
+                </FlexboxLayout>
+            </StackLayout>
+        </android>
         <!-- first -->
-        <StackLayout *ngIf="first.expenses !== null" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="first.expenses !== null" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -69,7 +113,7 @@
             <Button class="btn btn-block btn-primary" [text]="'Add to ' + first.categoryName" (tap)="addCategoryExpense(first.categoryId, first.categoryName)"></Button>
         </StackLayout>
         <!-- 2 -->
-        <StackLayout *ngIf="second.expenses !== null" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="second.expenses !== null" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -94,7 +138,7 @@
             <Button [text]="'Add to ' + second.categoryName" (tap)="addCategoryExpense(second.categoryId, second.categoryName)"></Button>
         </StackLayout>
         <!-- 3 -->
-        <StackLayout *ngIf="third.expenses !== null" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="third.expenses !== null" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -119,7 +163,7 @@
             <Button [text]="'Add to ' + third.categoryName" (tap)="addCategoryExpense(third.categoryId, third.categoryName)"></Button>
         </StackLayout>
         <!-- 4 -->
-        <StackLayout *ngIf="fourth.expenses !== null" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="fourth.expenses !== null" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -145,7 +189,7 @@
         </StackLayout>
 
         <!-- 5 -->
-        <StackLayout *ngIf="fifth.expenses !== null" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="fifth.expenses !== null" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -170,7 +214,7 @@
             <Button [text]="'Add to ' + fifth.categoryName" (tap)="addCategoryExpense(fifth.categoryId, fifth.categoryName)"></Button>
         </StackLayout>
         <!-- 6 -->
-        <StackLayout *ngIf="sixth.categoryId !== 0" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="sixth.categoryId !== 0" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -195,7 +239,7 @@
             <Button [text]="'Add to ' + sixth.categoryName" (tap)="addCategoryExpense(sixth.categoryId, sixth.categoryName)"></Button>
         </StackLayout>
         <!-- 7 -->
-        <StackLayout *ngIf="seventh.categoryId !== 0" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="seventh.categoryId !== 0" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -220,7 +264,7 @@
             <Button [text]="'Add to ' + seventh.categoryName" (tap)="addCategoryExpense(seventh.categoryId, seventh.categoryName)"></Button>
         </StackLayout>
         <!-- 8 -->
-        <StackLayout *ngIf="eigth.categoryId !== 0" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="eigth.categoryId !== 0" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -245,7 +289,7 @@
             <Button [text]="'Add to ' + eigth.categoryName" (tap)="addCategoryExpense(eigth.categoryId, eigth.categoryName)"></Button>
         </StackLayout>
         <!-- 9 -->
-        <StackLayout *ngIf="nineth.categoryId !== 0" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="nineth.categoryId !== 0" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
@@ -270,7 +314,7 @@
             <Button [text]="'Add to ' + nineth.categoryName" (tap)="addCategoryExpense(nineth.categoryId, nineth.categoryName)"></Button>
         </StackLayout>
         <!-- 10 -->
-        <StackLayout *ngIf="tenth.categoryId !== 0" class="card-stats" shadow="40" ios:shadow="10">
+        <StackLayout *ngIf="tenth.categoryId !== 0" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
