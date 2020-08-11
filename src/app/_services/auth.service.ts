@@ -28,7 +28,6 @@ export class AuthService {
 
   login(username: string, userpass: string) {
     return this.http.post(this.baseUrl + 'login', { username: username, password: userpass }).pipe(map((response: any) => {
-      console.log('I recieved response');
       if (response) {
         setString('username', username);
         setString('password', userpass);

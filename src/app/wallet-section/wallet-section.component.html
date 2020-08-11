@@ -1,42 +1,41 @@
 <RadSideDrawer>
     <GridLayout tkDrawerContent rows="auto, *" class="nt-drawer__content">
         <StackLayout row="0" class="nt-drawer__header">
-            <Image class="nt-drawer__header-image fas t-36" src="font://&#xf2bd;"></Image>
-            <Label class="nt-drawer__header-brand" text="User Name"></Label>
-            <Label class="nt-drawer__header-footnote" text="username@mail.com"></Label>
+            <Image class="nt-drawer__header-image fas t-36" src="res://xcoin"></Image>
+            <Label class="nt-drawer__header-brand" text="Welcome"></Label>
+            <Label class="nt-drawer__header-footnote text-capitalize" *ngIf="userName !== '' " [text]="userName"></Label>
         </StackLayout>
 
         <ScrollView row="1" class="nt-drawer__body">
             <StackLayout>
-
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/wallet/home')" (tap)="onNavItemTap('/wallet/home')">
-                    <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                    <Label col="1" text="Home" class="p-r-10"></Label>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [ngClass]="{'selected': isComponentSelected('/wallet/home')}" (tap)="onNavItemTap('/wallet/home')">
+                    <Label col="0" text="&#xf015;" fontSize="20" marginRight="5" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Home" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/wallet/walletExpenses')" (tap)="onNavItemTap('/wallet/walletExpenses')">
-                    <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                    <Label col="1" text="walletExpenses" class="p-r-10"></Label>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [ngClass]="{'selected':isComponentSelected('/wallet/walletExpenses')}" (tap)="onNavItemTap('/wallet/walletExpenses')">
+                    <Label col="0" text="&#xf19c;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="walletExpenses" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/wallet/walletStatistics')" (tap)="onNavItemTap('/wallet/walletStatistics')">
-                    <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                    <Label col="1" text="Wallet Statistics" class="p-r-10"></Label>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [ngClass]="{'selected':isComponentSelected('/wallet/walletStatistics')}" (tap)="onNavItemTap('/wallet/walletStatistics')">
+                    <Label col="0" text="&#xf080;" fontSize="20" class="nt-icon far"></Label>
+                    <Label col="1" text="Wallet Statistics" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/wallet/userStatistics/' + id)" (tap)="onNavItemTap('/wallet/userStatistics/' + id)">
-                    <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                    <Label col="1" text="User Statistics" class="p-r-10"></Label>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [ngClass]="{'selected':isComponentSelected('/wallet/userStatistics/' + id)}" (tap)="onNavItemTap('/wallet/userStatistics/' + id)">
+                    <Label col="0" text="&#xf2bd;" fontSize="20" class="nt-icon far"></Label>
+                    <Label col="1" text="User Statistics" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/wallet/walletAdmin')" (tap)="onNavItemTap('/wallet/walletAdmin')">
-                    <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                    <Label col="1" text="Admin Panel" class="p-r-10"></Label>
+                <GridLayout *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" [ngClass]="{'selected':isComponentSelected('/wallet/walletAdmin')}" (tap)="onNavItemTap('/wallet/walletAdmin')">
+                    <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Admin Panel" class="item-list p-r-10"></Label>
                 </GridLayout>
                 <GridLayout *ngIf="isAdminDefined" columns="auto, *, *" class="nt-drawer__list-item" (tap)="showCategory = !showCategory">
-                    <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                    <Label col="1" text="Category" class="p-r-10"></Label>
+                    <Label col="0" text="&#xf200;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Category" class="item-list p-r-10"></Label>
                 </GridLayout>
                 <StackLayout *ngIf="showCategory">
-                    <GridLayout *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/wallet/categoryStatistics/' + category.id)" (tap)="onNavItemTap('/wallet/categoryStatistics/'+ category.id)">
-                        <Label col="0" text="&#xf015;" class="nt-icon fas"></Label>
-                        <Label col="1" [text]="category.title" class="p-r-10"></Label>
+                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" [ngClass]="{'selected':isComponentSelected('/wallet/categoryStatistics/' + category.id)}" (tap)="onNavItemTap('/wallet/categoryStatistics/'+ category.id)">
+                        <Label col="0" [text]="category.icon" fontSize="20" class="nt-icon fas"></Label>
+                        <Label col="1" [text]="category.title" class="item-list p-r-10"></Label>
                     </GridLayout>
                 </StackLayout>
             </StackLayout>

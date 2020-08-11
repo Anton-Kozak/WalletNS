@@ -54,7 +54,6 @@ export class UserStatisticsComponent implements OnInit {
   @ViewChildren('rows') tableBody: QueryList<ElementRef>;
   private id;
   ngOnInit(): void {
-
     this.expService.updateHeaders();
     this.isThisUser = false;
     let userId = this.authService.decodedToken.nameid;
@@ -92,6 +91,7 @@ export class UserStatisticsComponent implements OnInit {
       this.isLoading = false;
       console.log('l', this.tableBody.length);
     })
+
   }
 
 

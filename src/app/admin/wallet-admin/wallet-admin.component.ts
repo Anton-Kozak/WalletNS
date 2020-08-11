@@ -54,23 +54,7 @@ export class WalletAdminComponent implements OnInit {
       })
   }
 
-  openDialog(id: number, rowIndex: number): void {
-    // var exp = this.expenses.data.find(x => x.id === id);
-    // exp.isAdmin = true;
-    // const dialogRef = this.dialog.open(EditExpenseModalComponent, {
-    //   width: '550px',
-    //   data: exp
-    // });
 
-    // dialogRef.afterClosed().subscribe(result => {     
-    //   if (result !== undefined && result !== null) {
-    //     this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-    //     this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
-    //     this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-    //     this.expenses.data[rowIndex].creationDate = result['creationDate'];
-    //   }
-    // });
-  }
 
   expenseDelete(id: number, rowIndex: number) {
     this.adminService.onExpenseDelete(id).subscribe((response: any) => {

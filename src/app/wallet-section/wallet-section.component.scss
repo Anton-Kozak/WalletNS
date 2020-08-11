@@ -1,0 +1,28 @@
+.nt-drawer__content {
+    background-color: #e3f2ff;
+}
+
+.nt-drawer__header {
+    background-color: #eef7ff;
+    border-bottom-width: 0.3;
+    border-bottom-color: #b3dbff;
+}
+
+.item-list {
+    font-family: "Montserrat", "Montserrat-Regular";
+    text-transform: uppercase;
+}
+
+.nt-drawer__list-item .sub {
+    margin-left: 10;
+}
+
+.nt-drawer__list-item {
+    font-size: 15;
+    color: #66615b;
+}
+
+.selected {
+    font-weight: bold;
+    color: #0084ff;
+}
