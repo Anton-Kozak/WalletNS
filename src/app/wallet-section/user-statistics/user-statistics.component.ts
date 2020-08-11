@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ExpenseService } from '../../_services/expense.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../_services/wallet.service';
@@ -8,7 +8,11 @@ import { ExpenseList } from '../../_models/expense-list';
 import { LastMonthStat } from '../../_models/lastMonthStat';
 import { CategoryData } from '../../_models/categoryData';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
-
+import { ModalDialogService } from '@nativescript/angular/modal-dialog';
+import { DataService } from '../../_services/data.service';
+import { ModalExpenseComponent } from '../../expenses/modal-expense/modal-expense.component';
+import { ExpenseForBar } from '../../_models/barExpense';
+import * as Toast from 'nativescript-toast';
 @Component({
   selector: 'ns-user-statistics',
   templateUrl: './user-statistics.component.html',
@@ -20,7 +24,10 @@ export class UserStatisticsComponent implements OnInit {
     private route: ActivatedRoute,
     private walletService: WalletService,
     private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private modalDialog: ModalDialogService,
+    private vcRef: ViewContainerRef,
+    private dataService: DataService,) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
@@ -42,8 +49,12 @@ export class UserStatisticsComponent implements OnInit {
   lastSixMonths: LastMonthStat[];
   categories: CategoryData[] = [];
   isThisUser: boolean;
+  showModal = false;
+
+  @ViewChildren('rows') tableBody: QueryList<ElementRef>;
   private id;
   ngOnInit(): void {
+
     this.expService.updateHeaders();
     this.isThisUser = false;
     let userId = this.authService.decodedToken.nameid;
@@ -68,7 +79,7 @@ export class UserStatisticsComponent implements OnInit {
         this.avgDailyExpenses = response['averageDailyExpense'];
         this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
         this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
-        let barArr: { Amount: number, Category: string }[] = [];
+        let barArr: ExpenseForBar[] = [];
         response['barExpenses'].forEach((val, i) => {
           barArr.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })
         });
@@ -79,36 +90,42 @@ export class UserStatisticsComponent implements OnInit {
         this.amountOfMoneySpent = response['amountOfMoneySpent'];
       }
       this.isLoading = false;
+      console.log('l', this.tableBody.length);
     })
   }
 
-  expenseDelete(id: number, rowIndex: number) {
-    this.expService.onExpenseDelete(id).subscribe((response: any) => {
-      // this.expenses.data.splice(rowIndex, 1);
-      // this.expenses.data = this.expenses.data;
-    }, error => {
-    });
-  }
 
-  openDialog(id: number, rowIndex: number): void {
-    // var exp = this.expenses.data.find(x => x.id === id);
-    // const dialogRef = this.dialog.open(EditExpenseModalComponent, {
-    //   width: '550px',
-    //   data: exp
-    // });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result != null) {
-    //     this.expenses.data[rowIndex].expenseTitle = result['expenseTitle'];
-    //     this.expenses.data[rowIndex].expenseDescription = result['expenseDescription'];
-    //     this.expenses.data[rowIndex].moneySpent = result['moneySpent'];
-    //     this.expenses.data[rowIndex].creationDate = result['creationDate'];
-    //   }
-    // });
-  }
 
-  onExpenseTap(){
-    console.log('Expense tapped');
+  onExpenseTap(expense: ExpenseForTable, rowIndex: number) {
+    this.modalDialog
+      .showModal(ModalExpenseComponent, {
+        fullscreen: true,
+        viewContainerRef: this.dataService.getRootVCRef()
+          ? this.dataService.getRootVCRef()
+          : this.vcRef,
+        context: expense
+      }).then((result: { status: string, expense: ExpenseForTable }) => {
+        if (result.status === 'edit') {
+          console.log('edit');
+          this.expenses[rowIndex].expenseTitle = result.expense['expenseTitle'];
+          this.expenses[rowIndex].expenseDescription = result.expense['expenseDescription'];
+          this.expenses[rowIndex].moneySpent = result.expense['moneySpent'];
+          this.expenses[rowIndex].creationDate = result.expense['creationDate'];
+          this.expenses[rowIndex].userName = result.expense['userName'];
+        }
+        else if (result.status === 'delete') {
+          this.expService.onExpenseDelete(expense.id).subscribe((response: any) => {
+            var toast = Toast.makeText(response);
+            toast.show();
+            this.expenses.splice(rowIndex, 1);
+          }, error => {
+            var toast = Toast.makeText(error.error);
+            toast.show();
+          });
+
+        }
+      })
   }
 
 }

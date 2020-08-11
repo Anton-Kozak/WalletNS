@@ -1,0 +1,72 @@
+<ScrollView>
+    <StackLayout class="background" height="100%">
+        <StackLayout class="card-stats" shadow="25">
+            <StackLayout class="card-body">
+                <StackLayout [formGroup]="expenseForm">
+                    <GridLayout columns="1*, 3*, 5*" rows="auto" class="card-row">
+                        <FlexboxLayout col="0" row="0" class="card-icon">
+                            <Label class="fas" color="#007bff" text="&#xf034;"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout col="1" row="0" class="card-title">
+                            <Label textWarp="true" text="Title" [ngClass]="{'ng-invalid': expenseForm.get('title').errors && expenseForm.get('title').touched}"></Label>
+                        </FlexboxLayout>
+                        <StackLayout col="2" row="0" class="card-data">
+                            <TextField formControlName="title" class="text-center"></TextField>
+                            <StackLayout *ngIf="expenseForm.get('title').hasError('required') && expenseForm.get('title').touched" class="invalid-feedback">
+                                <Label class="text-center" text="Required"></Label>
+                            </StackLayout>
+                            <StackLayout *ngIf="expenseForm.get('title').hasError('minlength') && expenseForm.get('title').touched" class="invalid-feedback">
+                                <Label class="text-center" text="4 characters minimum"></Label>
+                            </StackLayout>
+                            <StackLayout *ngIf="expenseForm.get('title').hasError('maxlength') && expenseForm.get('title').touched" class="invalid-feedback">
+                                <Label class="text-center" text="No longer than 16 characters"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+
+                    <GridLayout columns="1*, 3*, 5*" rows="auto" class="card-row">
+                        <FlexboxLayout col="0" row="0" class="card-icon">
+                            <Label class="fas" color="#6c757d" text="&#xf05a;"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout col="1" row="0" class="card-title">
+                            <Label textWarp="true" text="Description"></Label>
+                        </FlexboxLayout>
+                        <StackLayout col="2" row="0" class="card-data">
+                            <TextField formControlName="description" class="text-center"></TextField>
+                            <StackLayout *ngIf="expenseForm.get('description').hasError('minlength') && expenseForm.get('description').touched" class="invalid-feedback">
+                                <Label class="text-center" text="4 characters minimum"></Label>
+                            </StackLayout>
+                            <StackLayout *ngIf="expenseForm.get('description').hasError('maxlength') && expenseForm.get('description').touched" class="invalid-feedback">
+                                <Label class="text-center" text="No longer than 20 characters"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+
+                    <GridLayout columns="1*, 3*, 5*" rows="auto" class="card-row">
+                        <FlexboxLayout col="0" row="0" class="card-icon">
+                            <Label class="far" color="#28a745" text="&#xf3d1;"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout col="1" row="0" class="card-title">
+                            <Label textWarp="true" text="Money"></Label>
+                        </FlexboxLayout>
+                        <StackLayout col="2" row="0" class="card-data">
+                            <TextField keyboardType="number" formControlName="money" class="text-center"></TextField>
+                            <StackLayout *ngIf="expenseForm.get('money').hasError('required') && expenseForm.get('money').touched" class="invalid-feedback">
+                                <Label class="text-center" text="Required"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                    <StackLayout>
+                        <Button (tap)="onEdit()" [isEnabled]="expenseForm.valid" text="Edit" class="c-bg-forest c-white"></Button>
+                        <Button (tap)="deleteExpense()" text="Delete" class="delete"></Button>
+                        <Button (tap)="back()" text="Back" class="back"></Button>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <FlexboxLayout class="card-footer">
+                <Label class="fas footer-icon" text="&#xf885;"></Label>
+                <Label class="footer-text" text="Number of expenses"></Label>
+            </FlexboxLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

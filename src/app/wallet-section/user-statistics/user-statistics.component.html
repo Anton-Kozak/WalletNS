@@ -175,7 +175,7 @@
                         <Label col="3" text="Date"></Label>
                         <Label col="4" text="$"></Label>
                     </GridLayout>
-                    <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-data text-center" (tap)="onExpenseTap()" *ngFor="let expense of expenses">
+                    <GridLayout *ngFor="let expense of expenses; let i = index" columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-data text-center" (tap)="onExpenseTap(expense, i)">
                         <Label col="0" [text]="expense.expenseTitle" textWrap="true"></Label>
                         <Label col="1" [text]="expense.expenseCategory" textWrap="true"></Label>
                         <Label col="2" [text]="expense.expenseDescription" textWrap="true"></Label>

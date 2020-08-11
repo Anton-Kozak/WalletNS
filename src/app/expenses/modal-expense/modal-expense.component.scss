@@ -1,0 +1,86 @@
+.card-stats {
+    margin-top: 25%;
+    border-radius: 8;
+    width: 90%;
+    background-color: white;
+    font-family: "Montserrat", "Montserrat-Regular";
+}
+
+.card-body {
+    margin: 10;
+}
+
+.card-icon,
+.card-title {
+    flex-direction: column;
+    font-size: 17;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-title {
+    color: #555555;
+}
+
+.icon-text {
+    font-size: 40;
+    margin-top: 10;
+}
+
+.card-row,
+.card-row-last {
+    margin-top: 3;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-row {
+    border-bottom-width: 0.3;
+    border-bottom-color: #919191;
+}
+
+.card-edit {
+    text-align: center;
+    padding-top: 7;
+}
+
+.card-desc {
+    font-size: 23;
+    color: black;
+}
+
+.card-footer {
+    padding-top: 10;
+    padding-bottom: 10;
+    margin-left: 15;
+    margin-right: 15;
+    margin-bottom: 5;
+    border-top-width: 0.3;
+    border-color: #9a9a9a;
+}
+
+.footer-text {
+    margin-left: 10;
+    font-size: 17;
+}
+
+.footer-icon {
+    font-size: 17;
+}
+
+.ng-invalid,
+.invalid-feedback {
+    color: red;
+}
+
+.back {
+    border-width: 1;
+    border-color: orange;
+    color: rgb(175, 114, 0);
+}
+
+.delete {
+    background-color: red;
+    color: white;
+}

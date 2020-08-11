@@ -29,6 +29,7 @@ import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.componen
 import { HasRoleDirective } from './_directives/hasRole.directive';
 import { CheckRequestComponent } from './admin/check-request/check-request.component';
 import { CreateInviteComponent } from './admin/create-invite/create-invite.component';
+import { ModalExpenseComponent } from './expenses/modal-expense/modal-expense.component';
 
 @NgModule({
     bootstrap: [
@@ -64,7 +65,8 @@ import { CreateInviteComponent } from './admin/create-invite/create-invite.compo
         WalletAdminComponent,
         HasRoleDirective,
         CheckRequestComponent,
-        CreateInviteComponent
+        CreateInviteComponent,
+        ModalExpenseComponent
     ],
     providers: [],
     schemas: [

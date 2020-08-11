@@ -6,6 +6,7 @@ import { CategoryData } from '../../_models/categoryData';
 import { TopUsersStat } from '../../_models/top-users-stat'
 import { User } from '../../_models/user'
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
+import { ExpenseForBar } from 'src/app/_models/barExpense';
 @Component({
   selector: 'ns-wallet-statistics',
   templateUrl: './wallet-statistics.component.html',
@@ -55,12 +56,12 @@ export class WalletStatisticsComponent implements OnInit {
           }
         }
         if (this.hasPreviousMonths) {
-          let currMonth: { Amount: number, Category: string }[] = [];
+          let currMonth: ExpenseForBar[] = [];
           response['barCompareExpensesWithLastMonth']['currentMonthData'].forEach((val, i) => {
             currMonth.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })
           });
           this.currentMonthDataToCompare = new ObservableArray([...currMonth]);
-          let lastMonth: { Amount: number, Category: string }[] = [];
+          let lastMonth: ExpenseForBar[] = [];
           response['barCompareExpensesWithLastMonth']['lastMonthData'].forEach((val, i) => {
             lastMonth.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })
           });
@@ -74,7 +75,7 @@ export class WalletStatisticsComponent implements OnInit {
         response['topFiveUsers'].forEach((val, i) => {
           this.topFiveUsers.push({ Amount: val['sum'], userName: val['userName'] })
         });
-        let barArr: { Amount: number, Category: string }[] = [];
+        let barArr: ExpenseForBar[] = [];
         response['barExpenses'].forEach((val, i) => {
           barArr.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })
         });
