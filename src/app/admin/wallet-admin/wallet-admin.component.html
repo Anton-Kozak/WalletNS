@@ -18,7 +18,7 @@
                         <Label col="3" text="Date"></Label>
                         <Label col="4" text="$"></Label>
                     </GridLayout>
-                    <GridLayout columns="2*, 2*, 2*, 2*, 2*" rows="auto" class="row-cell-data text-center" *ngFor="let expense of expenses">
+                    <GridLayout (tap)="onExpenseTap(expense, i)" columns="2*, 2*, 2*, 2*, 2*" rows="auto" class="row-cell-data text-center" *ngFor="let expense of expenses; let i = index;">
                         <Label col="0" [text]="expense.expenseTitle" textWrap="true"></Label>
                         <Label col="1" [text]="expense.category" textWrap="true"></Label>
                         <Label col="2" [text]="expense.userName" textWrap="true"></Label>

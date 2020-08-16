@@ -56,11 +56,12 @@
                             </StackLayout>
                         </StackLayout>
                     </GridLayout>
-                    <StackLayout>
-                        <Button (tap)="onEdit()" [isEnabled]="expenseForm.valid" text="Edit" class="c-bg-forest c-white"></Button>
-                        <Button (tap)="deleteExpense()" text="Delete" class="delete"></Button>
-                        <Button (tap)="back()" text="Back" class="back"></Button>
-                    </StackLayout>
+                    <GridLayout columns="*" rows="auto, auto, auto" *ngIf="isAdmin !== null">
+                        <Button col="0" row="0" *ngIf="isAdmin" (tap)="onEditAdmin()" [isEnabled]="expenseForm.valid" text="Admin Edit" class="c-bg-forest c-white"></Button>
+                        <Button col="0" row="0" *ngIf="!isAdmin" (tap)="onEdit()" [isEnabled]="expenseForm.valid" text="Edit" class="c-bg-forest c-white"></Button>
+                        <Button col="0" row="1" (tap)="deleteExpense()" text="Delete" class="delete"></Button>
+                        <Button col="0" row="2" (tap)="back()" text="Back" class="back"></Button>
+                    </GridLayout>
                 </StackLayout>
             </StackLayout>
             <FlexboxLayout class="card-footer">

@@ -5,6 +5,10 @@ import { AdminService } from '../../_services/admin.service';
 import { ModalDialogService } from '@nativescript/angular/modal-dialog';
 import { DataService } from '../../_services/data.service';
 import { CreateInviteComponent } from '../create-invite/create-invite.component';
+import { ExpenseForTable } from '../../_models/expense-for-table'
+import { ModalExpenseComponent } from '../../expenses/modal-expense/modal-expense.component';
+import * as Toast from 'nativescript-toast';
+import { ExpenseService } from '../../_services/expense.service';
 @Component({
   selector: 'ns-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -16,7 +20,8 @@ export class WalletAdminComponent implements OnInit {
     private adminService: AdminService,
     private modalDialog: ModalDialogService,
     private vcRef: ViewContainerRef,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private expService: ExpenseService) { }
   expenses: ExpenseForAdminTable[] = [];
   users: UserForAdmin[] = [];
 
@@ -55,21 +60,42 @@ export class WalletAdminComponent implements OnInit {
   }
 
 
-
-  expenseDelete(id: number, rowIndex: number) {
-    this.adminService.onExpenseDelete(id).subscribe((response: any) => {
-      // this.alertify.success(response);
-      this.expenses.splice(rowIndex, 1);
-      this.expenses = this.expenses;
-    }, error => {
-      //this.alertify.error(error.error);
-    });
-  }
-
   addUserFromRequest($event) {
     this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
       this.users = usersForAdmin;
     });
   }
 
+  onExpenseTap(expense: ExpenseForAdminTable, rowIndex: number) {
+    let expenseAdmin = { expense: expense, isAdmin: true };
+    this.modalDialog
+      .showModal(ModalExpenseComponent, {
+        fullscreen: true,
+        viewContainerRef: this.dataService.getRootVCRef()
+          ? this.dataService.getRootVCRef()
+          : this.vcRef,
+        context: expenseAdmin
+      }).then((result: { status: string, expense: ExpenseForAdminTable }) => {
+        if (result.status === 'edit') {
+          console.log('edit');
+          this.expenses[rowIndex].expenseTitle = result.expense['expenseTitle'];
+          this.expenses[rowIndex].expenseDescription = result.expense['expenseDescription'];
+          this.expenses[rowIndex].moneySpent = result.expense['moneySpent'];
+          this.expenses[rowIndex].category = result.expense['category'];
+          this.expenses[rowIndex].creationDate = result.expense['creationDate'];
+          this.expenses[rowIndex].userName = result.expense['userName'];
+        }
+        else if (result.status === 'delete') {
+          this.adminService.onExpenseDelete(expense.id).subscribe((response: any) => {
+            var toast = Toast.makeText(response);
+            toast.show();
+            this.expenses.splice(rowIndex, 1);
+          }, error => {
+            var toast = Toast.makeText(error.error);
+            toast.show();
+          });
+
+        }
+      })
+  }
 }
