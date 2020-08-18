@@ -3,9 +3,9 @@
 }
 
 .nt-drawer__header {
-    background-color: #fafffb;
+    background: linear-gradient(to bottom, #005807, #499776);
     border-bottom-width: 0.3;
-    border-bottom-color: #005807;
+    border-bottom-color: #ffffff;
     margin-bottom: 10;
 }
 
@@ -27,19 +27,9 @@
 .selected {
     font-weight: bold;
     color: #00681a;
-    animation-name: select;
-    animation-iteration-count: 1;
-    animation-duration: 0.3s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes select {
-    from {
-        background-color: #e3ffe8;
-        // background-color: #e3f2ff;
-    }
-    to {
-        background-color: #b3ffb9;
-        // background-color: #b3dbff;
-    }
+    background-color: #c2ffcd;
+    border-bottom-width: 0.3;
+    border-top-width: 0.3;
+    border-top-color: #00681a;
+    border-bottom-color: #00681a;
 }

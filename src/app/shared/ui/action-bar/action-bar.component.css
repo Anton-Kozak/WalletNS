@@ -1,29 +1,8 @@
-.note {
-    padding-right: 30;
-}
-
-.menu {
-    padding-right: 150;
-}
-
-.hasNotification {
-    color: #33ff00;
-}
-
-.noNotification,
 .menu,
 .logout {
-    color: #00681a;
-}
-
-.logout {
-    padding-right: 30;
+    color: #004411;
 }
 
 ActionBar {
     background-color: #499776;
-}
-
-.test {
-    color: red;
 }
