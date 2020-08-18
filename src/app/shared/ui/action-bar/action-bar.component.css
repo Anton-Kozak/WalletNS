@@ -6,3 +6,12 @@
 ActionBar {
     background-color: #499776;
 }
+
+
+.flex-bar{
+    /* flex-direction: column; */
+    justify-content: space-between;
+    /* align-items: stretch; */
+    border-width: 1;
+    border-color: red;
+}
