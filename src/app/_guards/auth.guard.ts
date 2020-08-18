@@ -21,18 +21,15 @@ export class AuthGuard implements CanActivate {
     var token;
     if (hasToken) {
       token = this.authService.getToken();
-      // const date = new Date(new Date(token.exp).getFullYear(), new Date(token.exp).getMonth(), new Date(token.exp).getHours(), new Date(token.exp).getMinutes());
-      // console.log('Current decoded token expiration', date.toLocaleString('default', { month: 'long' }));
-      console.log('Current token expiration: ', new Date(token.exp * 1000));
-      console.log('Current time', new Date(Date.now()));
-
+      const expDate = new Date(token.exp * 1000);
+      console.log('Current token expiration: ', expDate);
+      const currDate = new Date(Date.now());
+      console.log('Current time', currDate);
       // expired
-      if (token.exp >= Date.now()) {
+      if (expDate <= currDate) {
         console.log('Token has expired. Initiating auto login.')
         if (hasKey("username") && hasKey('password')) {
-          //console.log('Token before auto login', getString('token'));
           this.authService.login(getString("username"), getString('password')).subscribe(() => {
-            //console.log('Token after auto login', getString('token'));
             this.navigation(token);
           });
         }
@@ -48,13 +45,10 @@ export class AuthGuard implements CanActivate {
   navigation(token: any) {
     if (token.hasWallet === 'true') {
       console.log('go to wallet section');
-      //go to wallet section
       this.router.navigate(['wallet/home']);
     }
     else {
       console.log('go to wallet creation section');
-      // console.log('Username', getString('username'));
-      // console.log('Password', getString('password'));
       this.router.navigate(['no-wallet']);
     }
     return false;
