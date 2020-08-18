@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { ExpensesWithCategories } from 'src/app/_models/expensesWithCategories';
+import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
+import { isAndroid } from "tns-core-modules/platform";
+import { exit } from 'nativescript-exit';
+import { Router } from '@angular/router';
 @Component({
   selector: 'ns-home',
   templateUrl: './home.component.html',
@@ -10,8 +14,20 @@ import { ExpensesWithCategories } from 'src/app/_models/expensesWithCategories';
 export class HomeComponent implements OnInit {
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   members: { name: string, roles: string[] }[] = [];
-  constructor() { }
+  constructor(private router: Router) { }
   ngOnInit(): void {
+
+    if (!isAndroid) {
+      return;
+    }
+    app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+      if (this.router.isActive("/wallet/home", true)) {
+        data.cancel = true;
+        console.log('Close App');
+        exit();
+      }
+    });
+
     this.members = [
       {
         name: 'test',

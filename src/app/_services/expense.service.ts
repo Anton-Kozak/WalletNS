@@ -47,7 +47,7 @@ export class ExpenseService {
   tenthExpenses: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    console.log('My token', getString('token'));
+    //console.log('My token', getString('token'));
     this.headers = new HttpHeaders({
       "Authorization": "Bearer " + getString('token')
     });

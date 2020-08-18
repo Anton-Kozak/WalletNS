@@ -21,16 +21,18 @@ export class AuthGuard implements CanActivate {
     var token;
     if (hasToken) {
       token = this.authService.getToken();
-      // console.log(currentToken);
-      // console.log('Current decoded token expiration', new Date(currentToken.exp).getHours());
-      // console.log('Current time', Date.now());
+      // const date = new Date(new Date(token.exp).getFullYear(), new Date(token.exp).getMonth(), new Date(token.exp).getHours(), new Date(token.exp).getMinutes());
+      // console.log('Current decoded token expiration', date.toLocaleString('default', { month: 'long' }));
+      console.log('Current token expiration: ', new Date(token.exp * 1000));
+      console.log('Current time', new Date(Date.now()));
+
       // expired
       if (token.exp >= Date.now()) {
         console.log('Token has expired. Initiating auto login.')
         if (hasKey("username") && hasKey('password')) {
-          console.log('Token before auto login', getString('token'));
+          //console.log('Token before auto login', getString('token'));
           this.authService.login(getString("username"), getString('password')).subscribe(() => {
-            console.log('Token after auto login', getString('token'));
+            //console.log('Token after auto login', getString('token'));
             this.navigation(token);
           });
         }

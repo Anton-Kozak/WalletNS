@@ -1,11 +1,12 @@
 .nt-drawer__content {
-    background-color: #e3f2ff;
+    background-color: #e3ffe8;
 }
 
 .nt-drawer__header {
-    background-color: #eef7ff;
+    background-color: #fafffb;
     border-bottom-width: 0.3;
-    border-bottom-color: #b3dbff;
+    border-bottom-color: #005807;
+    margin-bottom: 10;
 }
 
 .item-list {
@@ -20,9 +21,25 @@
 .nt-drawer__list-item {
     font-size: 15;
     color: #66615b;
+    margin-bottom: 15;
 }
 
 .selected {
     font-weight: bold;
-    color: #0084ff;
+    color: #00681a;
+    animation-name: select;
+    animation-iteration-count: 1;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes select {
+    from {
+        background-color: #e3ffe8;
+        // background-color: #e3f2ff;
+    }
+    to {
+        background-color: #b3ffb9;
+        // background-color: #b3dbff;
+    }
 }

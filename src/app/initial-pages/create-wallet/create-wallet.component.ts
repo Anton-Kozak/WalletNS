@@ -24,6 +24,7 @@ export class CreateWalletComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.walletService.updateHeaders();
     for (let i = 1; i <= 33; i++) {
       this.isActive.push({ id: i, status: false });
     }

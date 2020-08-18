@@ -3,6 +3,11 @@ import { AuthService } from '../../../_services/auth.service';
 import { NotificationService } from '../../../_services/notification.service';
 import { Notification } from '../../../_models/notification';
 import * as Toast from 'nativescript-toast';
+import * as app from "tns-core-modules/application";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { RouterExtensions } from '@nativescript/angular/router';
+
+
 @Component({
   selector: 'ns-action-bar',
   templateUrl: './action-bar.component.html',
@@ -13,15 +18,21 @@ export class ActionBarComponent implements OnInit {
   notificationCount: number = 0;
   notifications: Notification[] = [];
 
-  @Input() showNotificationBar = true;
-  @Input() showLogout = true;
 
-  constructor(private authService: AuthService,
-    private noteService: NotificationService) { }
+  @Input() showBackButton = true;
+
+
+  sideDrawer: any;
+  constructor(
+    private authService: AuthService,
+    private noteService: NotificationService,
+    private router: RouterExtensions) { }
+
+
   ngOnInit(): void {
+    this.sideDrawer = <RadSideDrawer>app.getRootView();
     this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
       if (notifications != null) {
-        console.log("Notifications: " + notifications);
         this.notifications = notifications;
         this.notificationCount = notifications.length;
       }
@@ -29,16 +40,34 @@ export class ActionBarComponent implements OnInit {
 
   }
 
+  showSideDrawer() {
+    console.log(this.sideDrawer);
+  }
+
   showNotifications() {
-    this.notifications.forEach((val) => {
-      let toast = Toast.makeText(val.message);
+    if (this.notificationCount > 0) {
+      this.notifications.forEach((val) => {
+        let toast = Toast.makeText(val.message);
+        toast.show();
+      });
+      this.noteService.deleteNotifications().subscribe();
+      this.notificationCount = 0;
+      this.notifications = null;
+    }
+    else {
+      let toast = Toast.makeText('You have no notifications!');
       toast.show();
-    });
-    this.noteService.deleteNotifications().subscribe();
-    this.notificationCount = 0;
-    this.notifications = null;
+    }
   }
   logout() {
     this.authService.logout();
+  }
+
+  get canGoBack() {
+    return this.router.canGoBack() && this.showBackButton;
+  }
+
+  back() {
+    this.router.backToPreviousPage();
   }
 }
