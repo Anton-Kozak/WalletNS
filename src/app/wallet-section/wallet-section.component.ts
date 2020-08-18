@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit } from '@angular/core';
 import { RouterExtensions } from '@nativescript/angular/router';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -8,12 +8,18 @@ import { Page } from 'tns-core-modules/ui/page';
 import { AuthService } from '../_services/auth.service';
 import { WalletService } from '../_services/wallet.service';
 import { CategoryData } from '../_models/categoryData';
+
+import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
+import { DataService } from '../_services/data.service';
+
 @Component({
   selector: 'ns-wallet-section',
   templateUrl: './wallet-section.component.html',
   styleUrls: ['./wallet-section.component.scss']
 })
-export class WalletSectionComponent implements OnInit {
+export class WalletSectionComponent implements OnInit, AfterViewInit {
+
+
   private _activatedUrl: string;
   private _sideDrawerTransition: DrawerTransitionBase;
   categoryTitles: CategoryData[] = [];
@@ -22,11 +28,18 @@ export class WalletSectionComponent implements OnInit {
   isAdmin = false;
   isAdminDefined = false;
   userName: string = '';
+
+  @ViewChild(RadSideDrawerComponent) drawerComponent: RadSideDrawerComponent;
+  drawer: RadSideDrawer;
+
   constructor(private router: Router,
     private routerExtensions: RouterExtensions,
     private page: Page,
     private authService: AuthService,
-    private walletService: WalletService) {
+    private walletService: WalletService,
+    private dataService: DataService,
+    private changeDetectionRef: ChangeDetectorRef,
+    private vcRef: ViewContainerRef) {
     // Use the component constructor to inject services.
     if (this.authService.roleMatch(['Admin'])) {
       this.isAdmin = true;
@@ -37,11 +50,21 @@ export class WalletSectionComponent implements OnInit {
     this.isAdminDefined = true;
   }
 
+  ngAfterViewInit(): void {
+    this.drawer = this.drawerComponent.sideDrawer;
+    this.changeDetectionRef.detectChanges();
+  }
 
 
   ngOnInit(): void {
+
+    this.dataService.drawerState.subscribe(() => {
+      if (this.drawer)
+        this.drawer.toggleDrawerState();
+    })
+    this.dataService.setRootVCRef(this.vcRef);
+
     this._activatedUrl = "/wallet/home";
-    this._sideDrawerTransition = new SlideInOnTopTransition();
     this.page.actionBarHidden = true;
     this.userName = this.authService.getToken()['unique_name'];
 
@@ -63,23 +86,14 @@ export class WalletSectionComponent implements OnInit {
       .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
   }
 
-  get sideDrawerTransition(): DrawerTransitionBase {
-    return this._sideDrawerTransition;
-  }
+
 
   isComponentSelected(url: string): boolean {
     return this._activatedUrl === url;
   }
 
-  onNavItemTap(navItemRoute: string): void {
-    this.routerExtensions.navigate([navItemRoute], {
-      transition: {
-        name: "fade"
-      }
-    });
-
-    const sideDrawer = <RadSideDrawer>app.getRootView();
-    sideDrawer.closeDrawer();
+  onItemTap() {
+    this.dataService.toggleDrawer();
   }
 
   getIcons() {

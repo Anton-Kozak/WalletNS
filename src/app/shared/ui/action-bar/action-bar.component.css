@@ -1,12 +1,18 @@
 .note {
-    padding-right: 100;
+    padding-right: 30;
+}
+
+.menu {
+    padding-right: 150;
 }
 
 .hasNotification {
     color: #33ff00;
 }
 
-.noNotification {
+.noNotification,
+.menu,
+.logout {
     color: #00681a;
 }
 

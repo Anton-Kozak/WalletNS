@@ -6,6 +6,7 @@ import * as Toast from 'nativescript-toast';
 import * as app from "tns-core-modules/application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { RouterExtensions } from '@nativescript/angular/router';
+import { DataService } from '../../../_services/data.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class ActionBarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private noteService: NotificationService,
-    private router: RouterExtensions) { }
+    private router: RouterExtensions,
+    private dataService: DataService) { }
 
 
   ngOnInit(): void {
@@ -65,6 +67,10 @@ export class ActionBarComponent implements OnInit {
 
   get canGoBack() {
     return this.router.canGoBack() && this.showBackButton;
+  }
+
+  onToggleMenu(){
+    this.dataService.toggleDrawer()
   }
 
   back() {

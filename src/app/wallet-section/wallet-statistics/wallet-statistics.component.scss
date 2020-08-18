@@ -106,10 +106,14 @@
 }
 
 .user-icon {
-    padding: 8;
-    padding-right: 9;
+    // padding: 8;
+    // padding-right: 9;
+    height: 35;
+    width: 35;
     background-color: white;
-    text-align: center;
+    //text-align: center;
+    justify-content: center;
+    align-items: center;
     border-radius: 5;
     color: #28a745;
     border-width: 1;

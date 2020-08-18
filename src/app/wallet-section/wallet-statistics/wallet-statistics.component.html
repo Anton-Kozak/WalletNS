@@ -8,9 +8,11 @@
                         <Label text="Wallet Members"></Label>
                     </StackLayout>
                 </StackLayout>
-                <GridLayout columns="1*, 7*, 1*, 1*" rows="auto" *ngFor="let member of walletMembers" class="members">
+                <GridLayout columns="1*, 7*, 1*, 1*" rows="50" *ngFor="let member of walletMembers" class="members">
                     <Label col="1" fontSize="18" [text]="member.username" class="text-capitalize"></Label>
-                    <Label col="2" (tap)="getUserStatistics(member.id)" text="&#xf007;" fontSize="18" class="fas user-icon"></Label>
+                    <FlexboxLayout col="2" class="user-icon">
+                        <Label (tap)="getUserStatistics(member.id)" text="&#xf007;" fontSize="18" class="fas"></Label>
+                    </FlexboxLayout>
                 </GridLayout>
             </StackLayout>
             <FlexboxLayout class="card-footer">

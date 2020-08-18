@@ -1,10 +1,12 @@
 <ActionBar title="">
     <NavigationButton *ngIf="canGoBack" text="Go Back" android.systemIcon="ic_menu_back" (tap)="back()"></NavigationButton>
+    <ActionItem ios.position="left" android.position="actionBar" (tap)="onToggleMenu()">
+        <Label fontSize="25" text="&#xf0c9;" class="fas menu"></Label>
+    </ActionItem>
     <ActionItem (tap)="showNotifications()">
         <Label fontSize="25" text="&#xf0f3;" class="far note" [ngClass]="{'hasNotification': notificationCount > 0, 'noNotification': notificationCount <= 0}"></Label>
     </ActionItem>
-    <ActionItem></ActionItem>
     <ActionItem (tap)="logout()">
-        <Label fontSize="25" class="fas logout" text="&#xf2f5;" color="#00681a"></Label>
+        <Label fontSize="25" class="fas logout" text="&#xf2f5;"></Label>
     </ActionItem>
 </ActionBar>
