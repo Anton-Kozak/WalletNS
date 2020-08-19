@@ -1,8 +1,8 @@
 <ActionBar title="">
     <ios>
-        <NavigationButton visibility="collapsed" text="Go Back" (tap)="back()"></NavigationButton>
+        <NavigationButton text="Go Back" (tap)="back()"></NavigationButton>
     </ios>
-    <GridLayout ios:width="90%" android:width="100%" columns="auto, *, auto">
+    <GridLayout ios:leftPadding="50" ios:width="90%" android:width="100%" columns="auto, *, auto">
         <Label col="0" fontSize="25" text="&#xf0c9;" class="fas menu" (tap)="onToggleMenu()"></Label>
         <FlexboxLayout col="2">
             <Label *ngIf="notificationCount > 0" (tap)="showNotifications()" fontSize="25" text="&#xf0f3;" class="far hasNotification"></Label>

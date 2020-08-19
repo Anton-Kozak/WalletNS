@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit } from '@angular/core';
 import { RadSideDrawer, } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import { isAndroid, Page } from 'tns-core-modules/ui/page';
+import { Page, isAndroid } from 'tns-core-modules/ui/page';
 import { AuthService } from '../_services/auth.service';
 import { WalletService } from '../_services/wallet.service';
 import { CategoryData } from '../_models/categoryData';
@@ -55,14 +55,13 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.page.actionBarHidden = true;
-    if (!isAndroid) {
-      return;
+    if (isAndroid) {
+      app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+        data.cancel = true;
+        console.log('Close App');
+        exit();
+      });
     }
-    app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
-      data.cancel = true;
-      console.log('Close App');
-      exit();
-    });
 
     this.dataService.drawerState.subscribe(() => {
       if (this.drawer)
