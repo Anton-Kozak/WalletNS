@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit } from '@angular/core';
-import { RouterExtensions } from '@nativescript/angular/router';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
+import { RadSideDrawer, } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import { Page } from 'tns-core-modules/ui/page';
+import { isAndroid } from 'tns-core-modules/ui/page';
 import { AuthService } from '../_services/auth.service';
 import { WalletService } from '../_services/wallet.service';
 import { CategoryData } from '../_models/categoryData';
+import { exit } from 'nativescript-exit';
 
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { DataService } from '../_services/data.service';
+import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
 
 @Component({
   selector: 'ns-wallet-section',
@@ -20,8 +19,6 @@ import { DataService } from '../_services/data.service';
 export class WalletSectionComponent implements OnInit, AfterViewInit {
 
 
-  private _activatedUrl: string;
-  private _sideDrawerTransition: DrawerTransitionBase;
   categoryTitles: CategoryData[] = [];
   id: string;
   showCategory = false;
@@ -32,10 +29,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
   @ViewChild(RadSideDrawerComponent) drawerComponent: RadSideDrawerComponent;
   drawer: RadSideDrawer;
 
-  constructor(private router: Router,
-    private routerExtensions: RouterExtensions,
-    private page: Page,
-    private authService: AuthService,
+  constructor(private authService: AuthService,
     private walletService: WalletService,
     private dataService: DataService,
     private changeDetectionRef: ChangeDetectorRef,
@@ -56,7 +50,18 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
   ngOnInit(): void {
+
+    if (!isAndroid) {
+      return;
+    }
+    app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+      data.cancel = true;
+      console.log('Close App');
+      exit();
+    });
 
     this.dataService.drawerState.subscribe(() => {
       if (this.drawer)
@@ -64,8 +69,6 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
     })
     this.dataService.setRootVCRef(this.vcRef);
 
-    this._activatedUrl = "/wallet/home";
-    this.page.actionBarHidden = true;
     this.userName = this.authService.getToken()['unique_name'];
 
     this.id = this.authService.getToken().nameid;
@@ -80,17 +83,14 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
       this.categoryTitles = this.walletService.currentCategories;
       this.getIcons();
     }
-
-    this.router.events
-      .pipe(filter((event: any) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
   }
 
 
 
-  isComponentSelected(url: string): boolean {
-    return this._activatedUrl === url;
-  }
+  // isComponentSelected(url: string): boolean {
+  //   console.log('Activated Url' + this._activatedUrl);
+  //   return this._activatedUrl === url;
+  // }
 
   onItemTap() {
     this.dataService.toggleDrawer();

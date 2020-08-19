@@ -8,34 +8,32 @@
 
         <ScrollView row="1" class="nt-drawer__body">
             <StackLayout>
-                <!-- [ngClass]="{'selected': isComponentSelected('/wallet/home')}" -->
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [ngClass]="{'selected':isComponentSelected('/wallet/home')}" [nsRouterLink]="['/wallet/home']" (tap)="onItemTap()">
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/home']" (tap)="onItemTap()">
                     <Label col="0" text="&#xf015;" fontSize="20" marginRight="5" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Home" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [ngClass]="{'selected':isComponentSelected('/wallet/walletExpenses')}" nsRouterLink="/wallet/walletExpenses" (tap)="onItemTap()">
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [nsRouterLinkActiveOptions]="{exact: true}" [clearHistory]="true" nsRouterLink="/wallet/walletExpenses" (tap)="onItemTap()">
                     <Label col="0" text="&#xf015;" fontSize="20" marginRight="5" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Wallet Expenses" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [nsRouterLink]="['/wallet/walletStatistics']" [ngClass]="{'selected':isComponentSelected('/wallet/walletStatistics')}" (tap)="onItemTap()">
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/walletStatistics']" (tap)="onItemTap()">
                     <Label col="0" text="&#xf080;" fontSize="20" class="nt-icon far"></Label>
                     <Label col="1" text="Wallet Statistics" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [nsRouterLink]="['/wallet/userStatistics/' + id]" [ngClass]="{'selected':isComponentSelected('/wallet/userStatistics/' + id)}" (tap)="onItemTap()">
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/userStatistics/' + id]" (tap)="onItemTap()">
                     <Label col="0" text="&#xf2bd;" fontSize="20" class="nt-icon far"></Label>
                     <Label col="1" text="User Statistics" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" [nsRouterLink]="['/wallet/walletAdmin']" [ngClass]="{'selected':isComponentSelected('/wallet/walletAdmin')}" (tap)="onItemTap()">
+                <GridLayout *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/walletAdmin']" (tap)="onItemTap()">
                     <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Admin Panel" class="item-list p-r-10"></Label>
-                </GridLayout> -->
+                </GridLayout>
                 <GridLayout *ngIf="isAdminDefined" columns="auto, *, *" class="nt-drawer__list-item" (tap)="showCategory = !showCategory">
                     <Label col="0" text="&#xf200;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Category" class="item-list p-r-10"></Label>
                 </GridLayout>
                 <StackLayout *ngIf="showCategory">
-                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" [nsRouterLink]="['/wallet/categoryStatistics/' + category.id]" [ngClass]="{'selected':isComponentSelected('/wallet/categoryStatistics/' + category.id)}"
-                        (tap)="onItemTap()">
+                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" [clearHistory]="true" [nsRouterLink]="['/wallet/categoryStatistics/' + category.id]" (tap)="onItemTap()">
                         <Label col="0" [text]="category.icon" fontSize="20" class="nt-icon fas"></Label>
                         <Label col="1" [text]="category.title" class="item-list p-r-10"></Label>
                     </GridLayout>
