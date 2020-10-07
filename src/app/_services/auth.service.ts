@@ -27,7 +27,11 @@ export class AuthService {
   }
 
   login(username: string, userpass: string) {
-    return this.http.post(this.baseUrl + 'login', { username: username, password: userpass }).pipe(map((response: any) => {
+    console.log('try logging');
+    let date = new Date().toUTCString();
+    return this.http.post(this.baseUrl + 'login', { username: username, password: userpass, date: date }).pipe(map((response: any) => {
+      console.log(response);
+      
       if (response) {
         setString('username', username);
         setString('password', userpass);

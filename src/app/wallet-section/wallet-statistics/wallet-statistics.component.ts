@@ -42,8 +42,8 @@ export class WalletStatisticsComponent implements OnInit {
     } else
       this.categories = this.walletService.currentCategories;
     this.isLoading = true;
-    this.expService.getWalletStatistics().subscribe(response => {
-      //console.log(response);
+    this.expService.getWalletStatistics(new Date(Date.now()).toUTCString()).subscribe(response => {
+      console.log('resp', response);
       this.avgDailyExpenses = response['averageDailyExpense'];
       this.amountOfMoneySpent = response['amountOfMoneySpent'];
       if (response['hasExpenseData'] === true) {

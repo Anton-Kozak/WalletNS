@@ -222,26 +222,26 @@ export class ExpenseService {
     }));
   }
 
-  getWalletStatistics() {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedStatistics', { headers: this.headers });
+  getWalletStatistics(date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedStatistics/' + date, { headers: this.headers });
   }
 
 
-  getCategoryStatistics(categoryId: number) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedCategoryStatistics/' + categoryId, { headers: this.headers })
+  getCategoryStatistics(categoryId: number, date:string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedCategoryStatistics/' + categoryId + '/' + date, { headers: this.headers })
   }
 
 
-  getCategoryExpenses(categoryId: number) {
+  getCategoryExpenses(categoryId: number, date: string) {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getCategoryExpenses/' + categoryId, { headers: this.headers });
   }
 
-  getUserStatistics(id: string) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id, { headers: this.headers });
+  getUserStatistics(id: string, date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedUserStatistics/' + id + '/' + date, { headers: this.headers });
   }
 
-  getUserExpenses(id: string) {
-    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserExpenses/' + id, { headers: this.headers });
+  getUserExpenses(id: string, date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getUserExpenses/' + id + '/' + date, { headers: this.headers });
   }
 
 

@@ -70,14 +70,15 @@ export class UserStatisticsComponent implements OnInit {
 
 
     this.isLoading = true;
-    this.expService.getUserStatistics(this.id).subscribe(response => {
-      this.expService.getUserExpenses(this.id).subscribe((expensesRecieved: ExpenseForTable[]) => {
+    this.expService.getUserStatistics(this.id, new Date(Date.now()).toUTCString()).subscribe(response => {
+      console.log('response frm user', response);
+      this.expService.getUserExpenses(this.id, new Date(Date.now()).toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses = expensesRecieved;
       })
       if (response['amountOfMoneySpent'] != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];
-        this.currentMonthDataToCompare = response['barCompareExpensesWithLastMonth']['currentMonthData'];
-        this.lastMonthDataToCompare = response['barCompareExpensesWithLastMonth']['lastMonthData'];
+        this.currentMonthDataToCompare = response['monthCompareData']['currentMonthData'];
+        this.lastMonthDataToCompare = response['monthCompareData']['lastMonthData'];
         let barArr: ExpenseForBar[] = [];
         response['barExpenses'].forEach((val, i) => {
           barArr.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })

@@ -58,13 +58,11 @@ export class CategoryStatisticsComponent implements OnInit {
         this.chosenCategoryName = this.walletService.currentCategories.find(x => x.id === this.chosenCategory).title;
       }
       this.isLoading = true;
-      this.expService.getCategoryStatistics(this.chosenCategory).subscribe(data => {
+      this.expService.getCategoryStatistics(this.chosenCategory, new Date(Date.now()).toUTCString()).subscribe(data => {
         if (data['categoryExpenses'].length === 0) {
           this.showData = false;
         }
         else {
-          //console.log(data);
-          //понять почему не работает paginator
           this.expenses = data['categoryExpenses'];
           this.largestExpense = data['largestExpense'];
           this.currentMonthLargestExpense = data['currentMonthLargestExpense'];
@@ -78,12 +76,9 @@ export class CategoryStatisticsComponent implements OnInit {
           }
           this.spentThisMonth = data['spentThisMonth'];
           this.spentAll = data['spentAll'];
-          //this.topFiveUsers = data['topFiveUsers'];
           this.topFiveUsers = new ObservableArray([...data['topFiveUsers']]);
           this.lastSixMonths = new ObservableArray([...data['lastSixMonths']]).reverse();
           console.log(this.topFiveUsers);
-          //this.lastSixMonths = data['lastSixMonths'];
-
           this.showData = true;
         }
         this.isLoading = false;
