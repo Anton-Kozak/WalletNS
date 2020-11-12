@@ -78,7 +78,7 @@ export class RegistrationLoginComponent implements OnInit {
           var toast = Toast.makeText(error.error);
           toast.show();
         }
-        console.log(error.error);
+        console.log('Custom error, ', error.error);
       })
 
     }

@@ -10,6 +10,10 @@ import { WalletForPage } from '../../_models/wallet-for-page';
 import { ModalDialogService } from '@nativescript/angular/modal-dialog';
 import { DataService } from '../../_services/data.service';
 import { CreateExpenseComponent } from '../../expenses/create-expense/create-expense.component';
+import * as moment from 'moment';
+import { FormControl } from '@angular/forms';
+import { ExpenseForTable } from 'src/app/_models/expense-for-table';
+
 @Component({
   selector: 'ns-wallet-expenses',
   templateUrl: './wallet-expenses.component.html',
@@ -44,6 +48,13 @@ export class WalletExpensesComponent implements OnInit {
   notifications: Notification[] = [];
   categories: CategoryData[] = [];
   isLoading: boolean;
+  dayForDailyExpenses = new Date();
+  moment: any = moment;
+  currentSelectedDate: FormControl;
+  dailyExpenses: ExpenseForTable[] = [];
+
+
+
 
   ngOnInit(): void {
     this.expenseService.updateHeaders();
@@ -58,7 +69,7 @@ export class WalletExpensesComponent implements OnInit {
         this.checkLimit();
       });
 
-      
+
       this.checkLimit();
       this.expenseService.showAllExpenses();
       this.expenseService.firstSubject.subscribe(exp => {
@@ -137,6 +148,12 @@ export class WalletExpensesComponent implements OnInit {
           this.tenth.categoryId = this.expenseService.tenthExpenses.categoryId;
         }
       });
+      this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
+        this.dailyExpenses = expenses;
+      });
+      this.currentSelectedDate = new FormControl(this.moment(this.dayForDailyExpenses).format('LL'));
+
+
       this.isLoading = false;
     });
     this.route.data.subscribe(data => {
@@ -204,6 +221,24 @@ export class WalletExpensesComponent implements OnInit {
   onDrawerButtonTap(): void {
     const sideDrawer = <RadSideDrawer>app.getRootView();
     sideDrawer.showDrawer();
+  }
+
+
+  changeDay(direction: number) {
+    if (direction === 0)
+      this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() - 1);
+    else
+      this.dayForDailyExpenses.setDate(this.dayForDailyExpenses.getDate() + 1);
+
+    this.updateDailyExpenses();
+  }
+
+  updateDailyExpenses() {
+    this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
+      this.currentSelectedDate.patchValue(this.moment(this.dayForDailyExpenses).format('ll'));
+      this.dailyExpenses = expenses;
+    })
+
   }
 
 }

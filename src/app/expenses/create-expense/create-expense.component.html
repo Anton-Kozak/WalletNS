@@ -1,9 +1,9 @@
 <ScrollView>
     <StackLayout class="container">
-        <StackLayout>
-            <Label class="label-title" textWrap="true" [text]="'You want to add to ' + selectedCategoryName"></Label>
-        </StackLayout>
         <StackLayout [formGroup]="newExpenseForm">
+            <StackLayout>
+                <ListPicker #selectedCategory [items]="categoryTitles" textField="title" valueField="id" selectedIndex="0"></ListPicker>
+            </StackLayout>
             <StackLayout>
                 <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
                     'bg-success text-white': !newExpenseForm.get('title').errors}" text="Expense Title" class="label"></Label>

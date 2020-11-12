@@ -48,6 +48,9 @@
             </StackLayout>
         </ios>
         <android>
+            <StackLayout>
+                <Button text="Add new expense" (tap)="addCategoryExpense()"></Button>
+            </StackLayout>
             <StackLayout class="card-stats" shadow="25" elevation="15">
                 <StackLayout class="card-body">
                     <GridLayout columns="3*, 7*" rows="auto" class="card-row">
@@ -86,6 +89,31 @@
                 <FlexboxLayout class="card-footer">
                 </FlexboxLayout>
             </StackLayout>
+            <StackLayout class="card-stats" shadow="25" elevation="15">
+                <StackLayout class="card-body">
+                    <FlexboxLayout>
+                        <Button text="Prev" (tap)="changeDay(0)"></Button>
+                        <Label [text]="currentSelectedDate.value"></Label>
+                        <Button text="Next" (tap)="changeDay(1)"></Button>
+                    </FlexboxLayout>
+                    <StackLayout class="card-table">
+                        <FlexboxLayout class="row-cell-desc text-center">
+                            <Label class="user-item" text="User"></Label>
+                            <Label class="title-item" text="Title"></Label>
+                            <Label class="title-item" text="Category"></Label>
+                            <Label class="date-item" text="Date"></Label>
+                            <Label class="money-item" text="$"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of dailyExpenses">
+                            <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                            <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                            <Label class="title-item" [text]="expense.expenseCategory" textWrap="true"></Label>
+                            <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                            <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                        </FlexboxLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
         </android>
         <!-- first -->
         <StackLayout *ngIf="first.expenses !== null" class="card-stats" shadow="25">
@@ -110,7 +138,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button class="btn btn-block btn-primary" [text]="'Add to ' + first.categoryName" (tap)="addCategoryExpense(first.categoryId, first.categoryName)"></Button>
         </StackLayout>
         <!-- 2 -->
         <StackLayout *ngIf="second.expenses !== null" class="card-stats" shadow="25">
@@ -135,7 +162,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + second.categoryName" (tap)="addCategoryExpense(second.categoryId, second.categoryName)"></Button>
         </StackLayout>
         <!-- 3 -->
         <StackLayout *ngIf="third.expenses !== null" class="card-stats" shadow="25">
@@ -160,7 +186,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + third.categoryName" (tap)="addCategoryExpense(third.categoryId, third.categoryName)"></Button>
         </StackLayout>
         <!-- 4 -->
         <StackLayout *ngIf="fourth.expenses !== null" class="card-stats" shadow="25">
@@ -185,7 +210,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + fourth.categoryName" (tap)="addCategoryExpense(fourth.categoryId, fourth.categoryName)"></Button>
         </StackLayout>
 
         <!-- 5 -->
@@ -211,7 +235,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + fifth.categoryName" (tap)="addCategoryExpense(fifth.categoryId, fifth.categoryName)"></Button>
         </StackLayout>
         <!-- 6 -->
         <StackLayout *ngIf="sixth.categoryId !== 0" class="card-stats" shadow="25">
@@ -236,7 +259,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + sixth.categoryName" (tap)="addCategoryExpense(sixth.categoryId, sixth.categoryName)"></Button>
         </StackLayout>
         <!-- 7 -->
         <StackLayout *ngIf="seventh.categoryId !== 0" class="card-stats" shadow="25">
@@ -261,7 +283,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + seventh.categoryName" (tap)="addCategoryExpense(seventh.categoryId, seventh.categoryName)"></Button>
         </StackLayout>
         <!-- 8 -->
         <StackLayout *ngIf="eigth.categoryId !== 0" class="card-stats" shadow="25">
@@ -286,7 +307,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + eigth.categoryName" (tap)="addCategoryExpense(eigth.categoryId, eigth.categoryName)"></Button>
         </StackLayout>
         <!-- 9 -->
         <StackLayout *ngIf="nineth.categoryId !== 0" class="card-stats" shadow="25">
@@ -311,7 +331,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + nineth.categoryName" (tap)="addCategoryExpense(nineth.categoryId, nineth.categoryName)"></Button>
         </StackLayout>
         <!-- 10 -->
         <StackLayout *ngIf="tenth.categoryId !== 0" class="card-stats" shadow="25">
@@ -336,7 +355,6 @@
                     </FlexboxLayout>
                 </StackLayout>
             </StackLayout>
-            <Button [text]="'Add to ' + tenth.categoryName" (tap)="addCategoryExpense(tenth.categoryId, tenth.categoryName)"></Button>
         </StackLayout>
     </StackLayout>
 </ScrollView>

@@ -3,5 +3,8 @@
   "android": {
     "v8Flags": "--expose_gc",
     "markingMode": "none"
+  },
+  "dependencies": {
+    "moment": "^2.29.1"
   }
 }

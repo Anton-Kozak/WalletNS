@@ -227,7 +227,7 @@ export class ExpenseService {
   }
 
 
-  getCategoryStatistics(categoryId: number, date:string) {
+  getCategoryStatistics(categoryId: number, date: string) {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedCategoryStatistics/' + categoryId + '/' + date, { headers: this.headers })
   }
 
@@ -259,6 +259,10 @@ export class ExpenseService {
       this.expensesSubject.next(data['monthlyExpenses']);
       return data;
     }));
+  }
+
+  showDailyExpenses(date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/dailyExpenses/' + date, { headers: this.headers });
   }
 
 
