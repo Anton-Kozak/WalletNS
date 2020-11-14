@@ -11,6 +11,7 @@ import { WalletStatisticsComponent } from "./wallet-section/wallet-statistics/wa
 import { UserStatisticsComponent } from "./wallet-section/user-statistics/user-statistics.component";
 import { CategoryStatisticsComponent } from "./wallet-section/category-statistics/category-statistics.component";
 import { WalletAdminComponent } from "./admin/wallet-admin/wallet-admin.component";
+import { PreviousExpensesComponent } from "./wallet-section/previous-expenses/previous-expenses.component";
 const routes: Routes = [
     { path: '', component: RegistrationLoginComponent, canActivate: [AuthGuard] },
     { path: 'no-wallet', component: NoWalletComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
         path: 'wallet', component: WalletSectionComponent, children: [
             { path: 'home', component: HomeComponent },
             { path: 'walletExpenses', component: WalletExpensesComponent },
+            { path: 'previousExpenses', component: PreviousExpensesComponent },
             { path: 'walletStatistics', component: WalletStatisticsComponent },
             { path: 'userStatistics/:id', component: UserStatisticsComponent },
             { path: 'categoryStatistics/:id', component: CategoryStatisticsComponent },

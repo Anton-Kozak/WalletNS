@@ -159,13 +159,13 @@ export class ExpenseService {
     });
   }
 
-  getPreviousExpenses() {
-    this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses', { headers: this.headers }).subscribe((expenses: any) => {
-      if (expenses != null) {
-        this.initialExpenses = expenses;
-      }
-    });
-  }
+  // getPreviousExpenses() {
+  //   this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses', { headers: this.headers }).subscribe((expenses: any) => {
+  //     if (expenses != null) {
+  //       this.initialExpenses = expenses;
+  //     }
+  //   });
+  // }
 
   getBarExpensesData() {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/barExpenses', { headers: this.headers });
@@ -224,6 +224,10 @@ export class ExpenseService {
 
   getWalletStatistics(date: string) {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/detailedStatistics/' + date, { headers: this.headers });
+  }
+
+  getPreviousExpenses(date: string) {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/previousExpenses/' + date, { headers: this.headers });
   }
 
 

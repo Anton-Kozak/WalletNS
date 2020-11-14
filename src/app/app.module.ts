@@ -30,6 +30,7 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
 import { CheckRequestComponent } from './admin/check-request/check-request.component';
 import { CreateInviteComponent } from './admin/create-invite/create-invite.component';
 import { ModalExpenseComponent } from './expenses/modal-expense/modal-expense.component';
+import { PreviousExpensesComponent } from './wallet-section/previous-expenses/previous-expenses.component';
 
 @NgModule({
     bootstrap: [
@@ -66,7 +67,8 @@ import { ModalExpenseComponent } from './expenses/modal-expense/modal-expense.co
         HasRoleDirective,
         CheckRequestComponent,
         CreateInviteComponent,
-        ModalExpenseComponent
+        ModalExpenseComponent,
+        PreviousExpensesComponent
     ],
     providers: [],
     schemas: [

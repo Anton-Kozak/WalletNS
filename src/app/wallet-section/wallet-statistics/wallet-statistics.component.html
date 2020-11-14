@@ -103,7 +103,7 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="topFiveUsers.length >= 2" class="card-stats" shadow="25">
+        <StackLayout *ngIf="topFiveUsers.length !== 0" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -136,46 +136,46 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout class="card-stats" shadow="25">
-            <StackLayout class="card-body">
-                <StackLayout class="card-chart-text">
+        <!-- <StackLayout class="card-stats" shadow="25"> -->
+        <!-- <StackLayout class="card-body"> -->
+        <!-- <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
                         <Label text="Categories"></Label>
                     </StackLayout>
                     <StackLayout class="card-desc">
                         <Label text="Expenses for each Category"></Label>
                     </StackLayout>
-                </StackLayout>
-                <StackLayout class="card-chart">
-                    <GridLayout height="300" rows="*">
-                        <RadCartesianChart row="0" style="font-size: 12;">
-                            <CategoricalAxis tkCartesianVerticalAxis></CategoricalAxis>
-                            <LinearAxis tkCartesianHorizontalAxis></LinearAxis>
-                            <BarSeries paletteMode="Item" showLabels="true" seriesName="Bar" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
-                                <!-- <PointLabelStyle tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle> -->
-                            </BarSeries>
-                            <Palette tkCartesianPalette seriesName="Bar">
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                </StackLayout> -->
+        <StackLayout class="card-chart">
+            <GridLayout height="600" rows="*">
+                <RadCartesianChart row="0">
+                    <CategoricalAxis tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
+                    <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate"></LinearAxis>
+                    <BarSeries paletteMode="Item" showLabels="true" seriesName="Bar" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
+                        <!-- <PointLabelStyle tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle> -->
+                    </BarSeries>
+                    <Palette tkCartesianPalette seriesName="Bar">
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
 
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#e0aaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkCartesianPaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            </Palette>
-                        </RadCartesianChart>
-                    </GridLayout>
-                </StackLayout>
-            </StackLayout>
-            <FlexboxLayout class="card-footer">
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#e0aaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                    </Palette>
+                </RadCartesianChart>
+            </GridLayout>
+        </StackLayout>
+        <!-- </StackLayout> -->
+        <!-- <FlexboxLayout class="card-footer">
                 <Label class="fas footer-icon" text="&#xf885;"></Label>
                 <Label class="footer-text" text="Number of expenses"></Label>
-            </FlexboxLayout>
-        </StackLayout>
+            </FlexboxLayout> -->
+        <!-- </StackLayout> -->
 
         <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
