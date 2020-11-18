@@ -136,23 +136,13 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <!-- <StackLayout class="card-stats" shadow="25"> -->
-        <!-- <StackLayout class="card-body"> -->
-        <!-- <StackLayout class="card-chart-text">
-                    <StackLayout class="card-title">
-                        <Label text="Categories"></Label>
-                    </StackLayout>
-                    <StackLayout class="card-desc">
-                        <Label text="Expenses for each Category"></Label>
-                    </StackLayout>
-                </StackLayout> -->
         <StackLayout class="card-chart">
             <GridLayout height="600" rows="*">
                 <RadCartesianChart row="0">
-                    <CategoricalAxis tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
-                    <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate"></LinearAxis>
+                    <CategoricalAxis tkCartesianVerticalAxis labelFitMode="Rotate" labelSize="20"></CategoricalAxis>
+                    <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
                     <BarSeries paletteMode="Item" showLabels="true" seriesName="Bar" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
-                        <!-- <PointLabelStyle tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle> -->
+                        <PointLabelStyle textFormat="%.0f" tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle>
                     </BarSeries>
                     <Palette tkCartesianPalette seriesName="Bar">
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
@@ -170,42 +160,44 @@
                 </RadCartesianChart>
             </GridLayout>
         </StackLayout>
-        <!-- </StackLayout> -->
-        <!-- <FlexboxLayout class="card-footer">
-                <Label class="fas footer-icon" text="&#xf885;"></Label>
-                <Label class="footer-text" text="Number of expenses"></Label>
-            </FlexboxLayout> -->
-        <!-- </StackLayout> -->
+
 
         <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
-                <StackLayout class="card-chart-text">
-                    <StackLayout class="card-title">
-                        <Label text="Last 6 months"></Label>
-                    </StackLayout>
-                    <StackLayout class="card-desc">
-                        <Label text="Overall progress"></Label>
-                    </StackLayout>
-                </StackLayout>
                 <StackLayout class="card-chart">
-                    <GridLayout height="300" rows="*">
+                    <GridLayout height="500" rows="*">
                         <RadCartesianChart row="0" style="font-size: 12;">
-                            <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
-                            <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                            <CategoricalAxis tkCartesianHorizontalAxis labelFitMode="Rotate"></CategoricalAxis>
+                            <LinearAxis tkCartesianVerticalAxis labelFormat="%.0f"></LinearAxis>
                             <LineSeries tkCartesianSeries strokeColor="#58ecaa" [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
                             </LineSeries>
                         </RadCartesianChart>
                     </GridLayout>
                 </StackLayout>
             </StackLayout>
-            <FlexboxLayout class="card-footer">
-                <Label class="fas footer-icon" text="&#xf885;"></Label>
-                <Label class="footer-text" text="Number of expenses"></Label>
-            </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-stats" shadow="25">
-            <StackLayout class="card-body">
+        <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart">
+            <GridLayout height="500" rows="*">
+                <RadCartesianChart row="0">
+                    <CategoricalAxis tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
+                    <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
+                    <BarSeries seriesName="firstBar" strokeWidth="0.5" strokeColor="black" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                        <PointLabelStyle tkBarLabelStyle fillColor="#f0b4aa"></PointLabelStyle>
+
+                    </BarSeries>
+                    <BarSeries seriesName="secondBar" strokeWidth="0.5" strokeColor="black" fillColor="#f0b4aa" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                        <PointLabelStyle tkBarLabelStyle fillColor="#f58b75"></PointLabelStyle>
+                    </BarSeries>
+                </RadCartesianChart>
+            </GridLayout>
+        </StackLayout>
+    </StackLayout>
+
+
+    <!-- ПРИМЕР CHART В CARD -->
+
+    <!-- <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
                         <Label text="Expenses Comparison"></Label>
@@ -213,26 +205,26 @@
                     <StackLayout class="card-desc">
                         <Label text="Previous and Current Months"></Label>
                     </StackLayout>
-                </StackLayout>
-                <StackLayout class="card-chart">
-                    <GridLayout height="300" rows="*">
-                        <RadCartesianChart row="0" style="font-size: 12;">
-                            <CategoricalAxis tkCartesianVerticalAxis></CategoricalAxis>
-                            <LinearAxis tkCartesianHorizontalAxis></LinearAxis>
-                            <BarSeries strokeWidth="0.5" strokeColor="black" fillColor="#aaf0d1" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                </StackLayout> 
+                <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart">
+                    <GridLayout height="500" rows="*">
+                        <RadCartesianChart row="0">
+                            <CategoricalAxis tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
+                            <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
+                            <BarSeries seriesName="firstBar" strokeWidth="0.5" strokeColor="black" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                                 <PointLabelStyle tkBarLabelStyle fillColor="#f0b4aa"></PointLabelStyle>
+        
                             </BarSeries>
-                            <BarSeries strokeWidth="0.5" strokeColor="black" fillColor="red" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                            <BarSeries seriesName="secondBar" strokeWidth="0.5" strokeColor="black" fillColor="#f0b4aa" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                                 <PointLabelStyle tkBarLabelStyle fillColor="#f58b75"></PointLabelStyle>
                             </BarSeries>
                         </RadCartesianChart>
                     </GridLayout>
                 </StackLayout>
+                 <FlexboxLayout class="card-footer">
+                        <Label class="fas footer-icon" text="&#xf885;"></Label>
+                        <Label class="footer-text" text="Number of expenses"></Label>
+                    </FlexboxLayout>
             </StackLayout>
-            <FlexboxLayout class="card-footer">
-                <Label class="fas footer-icon" text="&#xf885;"></Label>
-                <Label class="footer-text" text="Number of expenses"></Label>
-            </FlexboxLayout>
-        </StackLayout>
-    </StackLayout>
+            </StackLayout> -->
 </ScrollView>

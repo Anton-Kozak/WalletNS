@@ -12,6 +12,7 @@ import { UserStatisticsComponent } from "./wallet-section/user-statistics/user-s
 import { CategoryStatisticsComponent } from "./wallet-section/category-statistics/category-statistics.component";
 import { WalletAdminComponent } from "./admin/wallet-admin/wallet-admin.component";
 import { PreviousExpensesComponent } from "./wallet-section/previous-expenses/previous-expenses.component";
+import { ProfileComponent } from "./wallet-section/profile/profile.component";
 const routes: Routes = [
     { path: '', component: RegistrationLoginComponent, canActivate: [AuthGuard] },
     { path: 'no-wallet', component: NoWalletComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
             { path: 'walletStatistics', component: WalletStatisticsComponent },
             { path: 'userStatistics/:id', component: UserStatisticsComponent },
             { path: 'categoryStatistics/:id', component: CategoryStatisticsComponent },
+            { path: 'profile', component: ProfileComponent },
             { path: 'walletAdmin', component: WalletAdminComponent },
         ]
     }

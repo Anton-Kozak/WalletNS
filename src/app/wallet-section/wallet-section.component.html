@@ -28,6 +28,10 @@
                     <Label col="0" text="&#xf2bd;" fontSize="20" class="nt-icon far"></Label>
                     <Label col="1" text="User Statistics" class="item-list p-r-10"></Label>
                 </GridLayout>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/profile']" (tap)="onItemTap()">
+                    <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Profile" class="item-list p-r-10"></Label>
+                </GridLayout>
                 <GridLayout *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/walletAdmin']" (tap)="onItemTap()">
                     <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Admin Panel" class="item-list p-r-10"></Label>

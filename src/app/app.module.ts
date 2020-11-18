@@ -31,6 +31,8 @@ import { CheckRequestComponent } from './admin/check-request/check-request.compo
 import { CreateInviteComponent } from './admin/create-invite/create-invite.component';
 import { ModalExpenseComponent } from './expenses/modal-expense/modal-expense.component';
 import { PreviousExpensesComponent } from './wallet-section/previous-expenses/previous-expenses.component';
+import { ProfileComponent } from './wallet-section/profile/profile.component';
+import { NewImageComponent } from './wallet-section/profile/new-image/new-image.component';
 
 @NgModule({
     bootstrap: [
@@ -68,7 +70,9 @@ import { PreviousExpensesComponent } from './wallet-section/previous-expenses/pr
         CheckRequestComponent,
         CreateInviteComponent,
         ModalExpenseComponent,
-        PreviousExpensesComponent
+        PreviousExpensesComponent,
+        ProfileComponent,
+        NewImageComponent
     ],
     providers: [],
     schemas: [

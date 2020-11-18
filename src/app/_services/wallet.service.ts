@@ -5,6 +5,7 @@ import { sitePath } from './environment';
 import { AuthService } from './auth.service';
 import { CategoryData } from '../_models/categoryData';
 import { getString } from 'tns-core-modules/application-settings';
+import { UserForProfileEdit } from '../_models/user-for-profile-edit';
 
 
 @Injectable({
@@ -38,7 +39,6 @@ export class WalletService {
   }
 
   createNewWallet(walletToCreate: Wallet) {
-
     return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/createwallet', walletToCreate, { headers: this.headers });
   }
 
@@ -53,9 +53,17 @@ export class WalletService {
     return this.http.get<CategoryData[]>(this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories', { headers: this.headers });
   }
 
+  getProfileData() {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/profile', { headers: this.headers });
+  }
+
+  updateUserProfile(editUser: UserForProfileEdit) {
+    return this.http.post(this.baseUrl + this.authService.getToken().nameid + '/updateProfile', editUser, { responseType: 'text', headers: this.headers });
+  }
+
 
   editWallet(wallet: Wallet) {
-    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/editWallet', wallet, { responseType: 'text' });
+    return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/editWallet', wallet, { responseType: 'text', headers: this.headers });
   }
 
 

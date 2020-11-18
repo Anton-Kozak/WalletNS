@@ -1,0 +1,14 @@
+.avatar {
+    width: 124;
+    height: 124;
+    border: 1px solid #000279;
+    position: relative;
+    border-radius: 100;
+}
+
+.invalid-feedback {
+    display: block;
+    color: red;
+    font-size: 13;
+    text-align: center;
+}
