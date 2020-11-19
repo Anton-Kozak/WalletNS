@@ -1,16 +1,14 @@
 .nt-drawer__content {
-    background-color: #e3ffe8;
+    background-color: #2b2b2b;
+    border-right-width: 0.3;
+    border-right-color: var(--yellow);
 }
 
 .nt-drawer__header {
-    background: linear-gradient(to bottom, #005807, #499776);
+    background: #2b2b2b;
     border-bottom-width: 0.3;
-    border-bottom-color: #ffffff;
+    border-bottom-color: #ffb204;
     margin-bottom: 10;
-}
-
-.nt-drawer__list-item.selected {
-    color: red;
 }
 
 .item-list {
@@ -18,22 +16,20 @@
     text-transform: uppercase;
 }
 
-.nt-drawer__list-item .sub {
-    margin-left: 10;
-}
-
 .nt-drawer__list-item {
     font-size: 15;
-    color: #66615b;
+    color: var(--sidebar-item);
     margin-bottom: 15;
 }
 
-.selected {
+.active {
     font-weight: bold;
-    color: #00681a;
-    background-color: #c2ffcd;
-    border-bottom-width: 0.3;
-    border-top-width: 0.3;
-    border-top-color: #00681a;
-    border-bottom-color: #00681a;
+    color: var(--yellow);
 }
+
+// .inactive {
+//     font-size: 15;
+//     color: var(--sidebar-item);
+//     margin-bottom: 15;
+//     margin-left: 10;
+// }

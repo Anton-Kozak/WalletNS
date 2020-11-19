@@ -7,17 +7,17 @@
         </StackLayout>
 
         <ScrollView row="1" class="nt-drawer__body">
-            <StackLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/home']" (tap)="onItemTap()">
-                    <Label col="0" text="&#xf015;" fontSize="20" marginRight="5" fontSize="20" class="nt-icon fas"></Label>
+            <StackLayout #stack>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/home']" (tap)="onItemTap(0)">
+                    <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Home" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [nsRouterLinkActiveOptions]="{exact: true}" [clearHistory]="true" nsRouterLink="/wallet/walletExpenses" (tap)="onItemTap()">
-                    <Label col="0" text="&#xf015;" fontSize="20" marginRight="5" fontSize="20" class="nt-icon fas"></Label>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [nsRouterLinkActiveOptions]="{exact: true}" [clearHistory]="true" nsRouterLink="/wallet/walletExpenses" (tap)="onItemTap(1)">
+                    <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Wallet Expenses" class="item-list p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [nsRouterLinkActiveOptions]="{exact: true}" [clearHistory]="true" nsRouterLink="/wallet/previousExpenses" (tap)="onItemTap()">
-                    <Label col="0" text="&#xf015;" fontSize="20" marginRight="5" fontSize="20" class="nt-icon fas"></Label>
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" [nsRouterLinkActiveOptions]="{exact: true}" [clearHistory]="true" nsRouterLink="/wallet/previousExpenses" (tap)="onItemTap(2)">
+                    <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Previous Expenses" class="item-list p-r-10"></Label>
                 </GridLayout>
                 <GridLayout columns="auto, *" class="nt-drawer__list-item" [clearHistory]="true" [nsRouterLink]="['/wallet/walletStatistics']" (tap)="onItemTap()">

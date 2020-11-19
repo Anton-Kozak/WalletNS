@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit, ElementRef } from '@angular/core';
 import { RadSideDrawer, } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { Page, isAndroid } from 'tns-core-modules/ui/page';
@@ -10,6 +10,7 @@ import { exit } from 'nativescript-exit';
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { DataService } from '../_services/data.service';
 import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
+import { GridLayout, StackLayout } from 'tns-core-modules';
 
 @Component({
   selector: 'ns-wallet-section',
@@ -28,6 +29,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
 
   @ViewChild(RadSideDrawerComponent) drawerComponent: RadSideDrawerComponent;
   drawer: RadSideDrawer;
+  @ViewChild('stack') stack: ElementRef;
 
   constructor(private authService: AuthService,
     private walletService: WalletService,
@@ -48,12 +50,17 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.drawer = this.drawerComponent.sideDrawer;
     this.changeDetectionRef.detectChanges();
+    this.prevItem = 0;
+    let st: StackLayout = this.stack.nativeElement;
+    let gr: GridLayout = <GridLayout>st.getChildAt(0);
+    gr.className = 'nt-drawer__list-item active';
   }
 
 
 
 
   ngOnInit(): void {
+
     this.page.actionBarHidden = true;
     if (isAndroid) {
       app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
@@ -91,8 +98,15 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
   //   console.log('Activated Url' + this._activatedUrl);
   //   return this._activatedUrl === url;
   // }
-
-  onItemTap() {
+  prevItem: number;
+  onItemTap(id: number) {
+    let st: StackLayout = this.stack.nativeElement;
+    if (this.prevItem !== null)
+      (<GridLayout>st.getChildAt(this.prevItem)).className = 'nt-drawer__list-item';
+    let gr: GridLayout = <GridLayout>st.getChildAt(id);
+    gr.className = 'nt-drawer__list-item active';
+    console.log(gr.id);
+    this.prevItem = id;
     this.dataService.toggleDrawer();
   }
 

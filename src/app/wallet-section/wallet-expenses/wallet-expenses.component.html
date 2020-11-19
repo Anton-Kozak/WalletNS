@@ -2,20 +2,17 @@
 <ScrollView>
     <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
     <StackLayout class="background" *ngIf="!isLoading">
-        <!-- <StackLayout>
-            <Button class="test btn btn-primary btn-block" text="Add expense" (tap)="addExpense()"></Button>
-        </StackLayout> -->
         <ios>
             <StackLayout>
                 <StackLayout class="card-stats" shadow="25">
                     <StackLayout class="card-body">
                         <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                             <StackLayout col="0" row="0" class="card-icon">
-                                <Label class="fas icon-text" color="#007bff" ios:text="&#xf290;" text="&#xf555;"></Label>
+                                <Label class="fas icon-text" ios:text="&#xf290;" text="&#xf555;"></Label>
                             </StackLayout>
                             <StackLayout col="1" row="0" class="card-text">
                                 <StackLayout class="card-title">
-                                    <Label textWrap="true" color="#007bff" text="Wallet Title"></Label>
+                                    <Label textWrap="true" color="#e4d8c9" text="Wallet Title"></Label>
                                 </StackLayout>
                                 <StackLayout class="card-desc">
                                     <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
@@ -34,7 +31,7 @@
                             </StackLayout>
                             <StackLayout col="1" row="0" class="card-text">
                                 <StackLayout class="card-title">
-                                    <Label textWrap="true" color="#a38721" text="Wallet Limit"></Label>
+                                    <Label textWrap="true" color="#e4d8c9" text="Wallet Limit"></Label>
                                 </StackLayout>
                                 <StackLayout class="card-desc">
                                     <Label textWrap="true" fontSize="18" [text]="'$' + walletLimit"></Label>
@@ -59,7 +56,7 @@
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label textWrap="true" color="#007bff" text="Wallet Title"></Label>
+                                <Label textWrap="true" fontSize="16" color="#e4d8c9" text="Wallet Title"></Label>
                             </StackLayout>
                             <StackLayout class="card-desc">
                                 <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
@@ -78,7 +75,7 @@
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label textWrap="true" color="#a38721" text="Wallet Limit"></Label>
+                                <Label textWrap="true" fontSize="15" color="#e4d8c9" text="Wallet Limit"></Label>
                             </StackLayout>
                             <StackLayout class="card-desc">
                                 <Label textWrap="true" fontSize="18" [text]="'$' + walletLimit"></Label>
@@ -120,7 +117,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="first.categoryName + ' Expenses'"></Label>
+                        <Label [text]="first.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -144,7 +141,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="second.categoryName + ' Expenses'"></Label>
+                        <Label [text]="second.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -168,7 +165,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="third.categoryName + ' Expenses'"></Label>
+                        <Label [text]="third.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -192,7 +189,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="fourth.categoryName + ' Expenses'"></Label>
+                        <Label [text]="fourth.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -217,7 +214,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="fifth.categoryName + ' Expenses'"></Label>
+                        <Label [text]="fifth.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -241,7 +238,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="sixth.categoryName + ' Expenses'"></Label>
+                        <Label [text]="sixth.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -265,7 +262,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="seventh.categoryName + ' Expenses'"></Label>
+                        <Label [text]="seventh.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -289,7 +286,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="eigth.categoryName + ' Expenses'"></Label>
+                        <Label [text]="eigth.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -313,7 +310,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="nineth.categoryName + ' Expenses'"></Label>
+                        <Label [text]="nineth.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">
@@ -337,7 +334,7 @@
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title text-center">
-                        <Label color="black" [text]="tenth.categoryName + ' Expenses'"></Label>
+                        <Label [text]="tenth.categoryName + ' Expenses'"></Label>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout class="card-table">

@@ -1,14 +1,13 @@
 .menu,
 .logout {
-    color: #004411;
+    color: #ffb204;
 }
 
 ActionBar {
-    background-color: #499776;
+    background-color: #1f1f1f;
 }
 
-
-.flex-bar{
+.flex-bar {
     /* flex-direction: column; */
     justify-content: space-between;
     /* align-items: stretch; */
