@@ -100,3 +100,25 @@ ChartAxisLabel {
     color: #0984ff;
     margin: 12;
 }
+
+.users {
+    color: var(--yellow);
+    font-size: 15;
+    margin-left: 5;
+}
+
+.user-flex {
+    margin-bottom: 3;
+}
+
+.user-label {
+    height: auto;
+    width: 20;
+    border-color: var(--yellow);
+    border-width: 1;
+}
+
+.title-label {
+    color: var(--yellow);
+    font-size: 35;
+}

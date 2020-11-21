@@ -5,9 +5,10 @@ import * as moment from 'moment';
 import { ExpensesWithCategories } from '../../_models/expensesWithCategories';
 import { CategoryData } from '../../_models/categoryData';
 import { TopUsersStat } from '../../_models/top-users-stat';
-import { ExpenseList } from '../../_models/expense-list';
 import { ExpenseForBar } from 'src/app/_models/barExpense';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
+
+
 @Component({
   selector: 'ns-previous-expenses',
   templateUrl: './previous-expenses.component.html',
@@ -17,7 +18,7 @@ export class PreviousExpensesComponent implements OnInit {
 
   constructor(private expenseService: ExpenseService, private walletService: WalletService) { }
 
-  colors: string[] = ['#aaf0d1', '#f0b4aa', '#f0d6aa', '#beaaf0', '#aacaf0'];
+  colors: string[] = ['#aaf0d1', '#f0b4aa', '#f0d6aa', '#beaaf0', '#aacaf0', '#e0aaf0', '#f0e8aa', '#c4f0a2', '#a2e7f0', '#f0a2c4'];
 
 
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -40,8 +41,8 @@ export class PreviousExpensesComponent implements OnInit {
   year: string;
   date: Date;
   ngOnInit(): void {
+    //console.log('col', MyColors[0]);
     this.isLoading = true;
-
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth() - 1);
     this.year = moment(this.date).format('YYYY');

@@ -26,8 +26,11 @@ The following CSS rule changes the font size of all Buttons that have the
 
 .ns-root {
     --yellow: #ffb204;
-    --card-background: #273442;
+    --card-background: #2c2c2c;
+    /* #2c2c2c; */
+    /*#273442;*/
     --sidebar-item: #e4d8c9;
+    --card-visual-data: #2c2c2c;
 }
 
 Button.-primary {
@@ -37,7 +40,8 @@ Button.-primary {
 .background {
     /* background: linear-gradient(to bottom, #c7f0de, #c9e8f1); */
     background-color: #424242;
-    border-width: 0.5;
+    border-top-width: 1;
+    border-bottom-width: 1;
     border-color: var(--yellow);
 }
 

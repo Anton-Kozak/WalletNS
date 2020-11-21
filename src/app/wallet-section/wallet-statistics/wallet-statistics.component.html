@@ -1,7 +1,7 @@
 <ns-action-bar></ns-action-bar>
 <ScrollView>
     <StackLayout class="background" height="auto" [visibility]="!isLoading ? 'visible' : 'collapse'">
-        <StackLayout data-aos="fade-zoom-in" data-aos-duration="600" data-aos-delay="500" class="card-stats" shadow="25">
+        <!-- <StackLayout data-aos="fade-zoom-in" data-aos-duration="600" data-aos-delay="500" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -17,7 +17,7 @@
             </StackLayout>
             <FlexboxLayout class="card-footer">
             </FlexboxLayout>
-        </StackLayout>
+        </StackLayout> -->
         <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <GridLayout columns="3*, 7*" rows="auto" class="card-row">
@@ -103,7 +103,7 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <StackLayout *ngIf="topFiveUsers.length !== 0" class="card-stats" shadow="25">
+        <!-- <StackLayout *ngIf="topFiveUsers.length !== 0" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -134,18 +134,19 @@
                 <Label class="fas footer-icon" text="&#xf885;"></Label>
                 <Label class="footer-text" text="Number of expenses"></Label>
             </FlexboxLayout>
-        </StackLayout>
+        </StackLayout> -->
 
         <StackLayout class="card-chart">
             <GridLayout height="600" rows="*">
                 <RadCartesianChart row="0">
-                    <CategoricalAxis tkCartesianVerticalAxis labelFitMode="Rotate" labelSize="20"></CategoricalAxis>
-                    <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
+                    <CategoricalAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelSize="20"></CategoricalAxis>
+                    <LinearAxis tkCartesianVerticalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
                     <BarSeries paletteMode="Item" showLabels="true" seriesName="Bar" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
-                        <PointLabelStyle textFormat="%.0f" tkBarLabelStyle fillColor="#58ecaa"></PointLabelStyle>
+                        <PointLabelStyle textFormat="%.0f" tkBarLabelStyle fillColor="#ffb204"></PointLabelStyle>
                     </BarSeries>
                     <Palette tkCartesianPalette seriesName="Bar">
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#242424" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <!-- <PaletteEntry tkCartesianPaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
@@ -155,13 +156,13 @@
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry> -->
                     </Palette>
                 </RadCartesianChart>
             </GridLayout>
         </StackLayout>
 
-
+        <!-- 
         <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart">
@@ -180,18 +181,17 @@
         <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart">
             <GridLayout height="500" rows="*">
                 <RadCartesianChart row="0">
-                    <CategoricalAxis tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
-                    <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
+                    <CategoricalAxis labelTextColor="#ffb204" tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
+                    <LinearAxis labelTextColor="#ffb204" tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
                     <BarSeries seriesName="firstBar" strokeWidth="0.5" strokeColor="black" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                         <PointLabelStyle tkBarLabelStyle fillColor="#f0b4aa"></PointLabelStyle>
-
                     </BarSeries>
                     <BarSeries seriesName="secondBar" strokeWidth="0.5" strokeColor="black" fillColor="#f0b4aa" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                         <PointLabelStyle tkBarLabelStyle fillColor="#f58b75"></PointLabelStyle>
                     </BarSeries>
                 </RadCartesianChart>
             </GridLayout>
-        </StackLayout>
+        </StackLayout> -->
     </StackLayout>
 
 

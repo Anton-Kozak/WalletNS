@@ -9,17 +9,24 @@
         </FlexboxLayout>
         <StackLayout>
             <StackLayout *ngIf="topFiveUsers !== null" class="card-chart">
-                <GridLayout height="300" rows="*">
-                    <RadPieChart allowAnimation="true" row="0">
+                <GridLayout height="500" rows="*, 2*">
+                    <StackLayout row="0">
+                        <FlexboxLayout class="user-flex" *ngFor="let user of topFiveUsers; let i = index">
+                            <Label class="user-label" [backgroundColor]="colors[i]"></Label>
+                            <Label [text]="user.userName" class="users"></Label>
+                        </FlexboxLayout>
+                        <Label class="title-label" text="Top Five Users"></Label>
+                    </StackLayout>
+                    <RadPieChart allowAnimation="true" row="1">
                         <DonutSeries seriesName="pieUsers" showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="sum" legendLabel="userName"></DonutSeries>
-                        <RadLegendView tkPieLegend position="floating" width="110" title="Users" enableSelection="true">
-                        </RadLegendView>
+                        <!-- <RadLegendView tkPieLegend position="floating" titleColor="#ffb204" width="110" titleSize="14" title="Top 5 Users" enableSelection="true">
+                        </RadLegendView> -->
                         <Palette tkPiePalette seriesName="pieUsers">
-                            <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="3" strokeColor="#5cedad"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="3" strokeColor="#ed614a"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="3" strokeColor="#e3aa49"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="3" strokeColor="#784fe0"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="3" strokeColor="#5597e6"></PaletteEntry>
                         </Palette>
                         <!-- разобраться как делать выделение нужным ццветмом -->
                         <Palette tkPiePalette seriesName="pieUsers" seriesState="Selected">
@@ -31,13 +38,20 @@
                 </GridLayout>
             </StackLayout>
             <StackLayout *ngIf="barExpenses !== null" class="card-chart">
-                <GridLayout height="650" rows="*">
-                    <RadPieChart allowAnimation="true" row="0">
-                        <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.05" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category">
-                            <PointLabelStyle tkDonutLabelStyle ios:fillColor="white" ios:strokeColor="black" textSize="15" margin="45"></PointLabelStyle>
+                <GridLayout height="750" rows="auto, *">
+                    <StackLayout class="outer-flex" row="0">
+                        <FlexboxLayout class="user-flex" *ngFor="let cat of categories; let i = index">
+                            <Label class="user-label" [backgroundColor]="colors[i]"></Label>
+                            <Label [text]="cat.title" class="users"></Label>
+                        </FlexboxLayout>
+                        <Label class="title-label" text="Top Five Users"></Label>
+                    </StackLayout>
+                    <RadPieChart allowAnimation="true" row="1">
+                        <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category">
+                            <!-- <PointLabelStyle tkDonutLabelStyle ios:fillColor="white" ios:strokeColor="black" textSize="15" margin="45"></PointLabelStyle> -->
                         </DonutSeries>
-                        <RadLegendView tkPieLegend position="Top" titleSize="14" title="Users" enableSelection="true">
-                        </RadLegendView>
+                        <!-- <RadLegendView tkPieLegend position="Top" titleSize="14" title="Select Month!!! Expenses" enableSelection="true">
+                        </RadLegendView> -->
                         <Palette tkPiePalette seriesName="Pie">
                             <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
@@ -50,7 +64,7 @@
                             <PaletteEntry tkPiePaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                         </Palette>
-                        <Palette tkPiePalette seriesName="Pie" seriesState="Selected">
+                        <!-- <Palette tkPiePalette seriesName="Pie" seriesState="Selected">
                             <PaletteEntry tkPiePaletteEntry fillColor="#7df0bd" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#ed8c7b" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#edc37b" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
@@ -61,7 +75,7 @@
                             <PaletteEntry tkPiePaletteEntry fillColor="#a4eb6e" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#67dbeb" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#eb71a6" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        </Palette>
+                        </Palette> -->
                     </RadPieChart>
                 </GridLayout>
             </StackLayout>
