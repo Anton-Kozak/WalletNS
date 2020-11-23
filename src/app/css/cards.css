@@ -86,7 +86,7 @@
     margin-top: 20;
     /* border-radius: 8; */
     /* width: 90%; */
-    /* background-color: var(--card-visual-data); */
+    background-color: var(--card-visual-data);
     border-width: 0.3;
     border-top-color: var(--yellow);
     border-bottom-color: var(--yellow);

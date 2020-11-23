@@ -120,11 +120,11 @@
                             <RadLegendView tkPieLegend position="floating" title="Users" width="110" enableSelection="true">
                             </RadLegendView>
                             <Palette tkPiePalette seriesName="Pie">
-                                <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                                <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                             </Palette>
                         </RadPieChart>
                     </GridLayout>
@@ -145,53 +145,48 @@
                         <PointLabelStyle textFormat="%.0f" tkBarLabelStyle fillColor="#ffb204"></PointLabelStyle>
                     </BarSeries>
                     <Palette tkCartesianPalette seriesName="Bar">
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#242424" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <!-- <PaletteEntry tkCartesianPaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#aacaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <!-- <PaletteEntry tkCartesianPaletteEntry fillColor="#ffe5a3" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry> -->
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFD470" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFC94D" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f5d76e" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#BA8200" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f2ca27" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
 
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#e0aaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry> -->
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#F5D76E" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFDF94" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFDA82" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f27927" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f2a127" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                     </Palette>
                 </RadCartesianChart>
             </GridLayout>
         </StackLayout>
 
-        <!-- 
-        <StackLayout class="card-stats" shadow="25">
-            <StackLayout class="card-body">
-                <StackLayout class="card-chart">
-                    <GridLayout height="500" rows="*">
-                        <RadCartesianChart row="0" style="font-size: 12;">
-                            <CategoricalAxis tkCartesianHorizontalAxis labelFitMode="Rotate"></CategoricalAxis>
-                            <LinearAxis tkCartesianVerticalAxis labelFormat="%.0f"></LinearAxis>
-                            <LineSeries tkCartesianSeries strokeColor="#58ecaa" [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
-                            </LineSeries>
-                        </RadCartesianChart>
-                    </GridLayout>
-                </StackLayout>
-            </StackLayout>
+        <StackLayout class="card-chart">
+            <GridLayout height="500" rows="*">
+                <RadCartesianChart row="0" style="font-size: 12;">
+                    <CategoricalAxis tkCartesianHorizontalAxis lineColor="#ffb204" ticksColor="#825B00" labelFitMode="Rotate"></CategoricalAxis>
+                    <LinearAxis tkCartesianVerticalAxis lineColor="#ffb204" ticksColor="#825B00" labelFormat="%.0f"></LinearAxis>
+                    <LineSeries tkCartesianSeries strokeColor="#ffb204" [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
+                    </LineSeries>
+                </RadCartesianChart>
+            </GridLayout>
         </StackLayout>
 
-        <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart">
+        <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart m-b-20">
             <GridLayout height="500" rows="*">
                 <RadCartesianChart row="0">
                     <CategoricalAxis labelTextColor="#ffb204" tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
                     <LinearAxis labelTextColor="#ffb204" tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
-                    <BarSeries seriesName="firstBar" strokeWidth="0.5" strokeColor="black" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                    <BarSeries seriesName="firstBar" strokeWidth="3" strokeColor="#ffb204" fillColor="#130D00" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                         <PointLabelStyle tkBarLabelStyle fillColor="#f0b4aa"></PointLabelStyle>
                     </BarSeries>
-                    <BarSeries seriesName="secondBar" strokeWidth="0.5" strokeColor="black" fillColor="#f0b4aa" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                    <BarSeries seriesName="secondBar" strokeWidth="3" strokeColor="#ffb204" fillColor="#FFDF94" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                         <PointLabelStyle tkBarLabelStyle fillColor="#f58b75"></PointLabelStyle>
                     </BarSeries>
                 </RadCartesianChart>
             </GridLayout>
-        </StackLayout> -->
+        </StackLayout>
     </StackLayout>
 
 
@@ -211,11 +206,11 @@
                         <RadCartesianChart row="0">
                             <CategoricalAxis tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
                             <LinearAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
-                            <BarSeries seriesName="firstBar" strokeWidth="0.5" strokeColor="black" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                            <BarSeries seriesName="firstBar" strokeWidth="3" strokeColor="#ffb204" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                                 <PointLabelStyle tkBarLabelStyle fillColor="#f0b4aa"></PointLabelStyle>
         
                             </BarSeries>
-                            <BarSeries seriesName="secondBar" strokeWidth="0.5" strokeColor="black" fillColor="#f0b4aa" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                            <BarSeries seriesName="secondBar" strokeWidth="3" strokeColor="#ffb204" fillColor="#f0b4aa" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                                 <PointLabelStyle tkBarLabelStyle fillColor="#f58b75"></PointLabelStyle>
                             </BarSeries>
                         </RadCartesianChart>
