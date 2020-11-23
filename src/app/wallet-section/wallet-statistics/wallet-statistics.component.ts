@@ -18,6 +18,7 @@ export class WalletStatisticsComponent implements OnInit {
     private router: Router,
     private walletService: WalletService) { }
 
+  userColors: string[] = ['#EAA219', '#D77D13', '#C4590C', '#B03406', '#9D1000'];
 
   isLoading: boolean;
   avgDailyExpenses: number;
@@ -72,9 +73,11 @@ export class WalletStatisticsComponent implements OnInit {
           monthArr.push({ expenseSum: val['expenseSum'], month: val['month'] })
         });
         this.lastSixMonths = new ObservableArray([...monthArr]).reverse();
+        //this.topFiveUsers = response['topFiveUsers'];
         response['topFiveUsers'].forEach((val, i) => {
           this.topFiveUsers.push({ Amount: val['sum'], userName: val['userName'] })
         });
+        console.log('5', this.topFiveUsers);
         let barArr: ExpenseForBar[] = [];
         response['barExpenses'].forEach((val, i) => {
           barArr.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })

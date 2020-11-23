@@ -19,6 +19,7 @@ export class PreviousExpensesComponent implements OnInit {
   constructor(private expenseService: ExpenseService, private walletService: WalletService) { }
 
   colors: string[] = ['#F4B41C', '#EAA219', '#E19016', '#D77D13', '#CD6B10', '#C4590C', '#BA4709', '#B03406', '#A72203', '#9D1000'];
+  userColors: string[] = ['#EAA219', '#D77D13', '#C4590C', '#B03406', '#9D1000'];
 
 
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -81,8 +82,6 @@ export class PreviousExpensesComponent implements OnInit {
         barArr.push({ Amount: expenses['previousExpensesBars'][i]['categoryExpenses'], Category: this.categories[i].title })
       }
       this.barExpenses = new ObservableArray([...barArr]);
-      console.log('5', expenses['topFiveUsers']);
-      // console.log('exp', expenses['previousExpensesBars']);
       this.topFiveUsers = expenses['topFiveUsers'];
       if (this.topFiveUsers.length > 0) {
         if (expenses['previousMonthExpenses'][0]['expenses'].length > 0) {

@@ -104,7 +104,7 @@
         </StackLayout>
 
         <StackLayout *ngIf="topFiveUsers.length !== 0" class="card-chart">
-            <GridLayout height="300" rows="*">
+            <!-- <GridLayout height="300" rows="*">
                 <RadPieChart allowAnimation="true" row="0">
                     <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="Amount" legendLabel="userName"></DonutSeries>
                     <RadLegendView tkPieLegend position="floating" title="Users" width="110" enableSelection="true">
@@ -115,6 +115,33 @@
                         <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                         <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                         <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                    </Palette>
+                </RadPieChart>
+            </GridLayout> -->
+            <GridLayout height="500" rows="*, 2*">
+                <StackLayout row="0">
+                    <FlexboxLayout class="user-flex" *ngFor="let user of topFiveUsers; let i = index">
+                        <Label class="user-label" [backgroundColor]="userColors[i]"></Label>
+                        <Label [text]="user.userName" class="users"></Label>
+                    </FlexboxLayout>
+                    <Label class="title-label" text="Top Five Users"></Label>
+                </StackLayout>
+                <RadPieChart allowAnimation="true" row="1">
+                    <DonutSeries seriesName="pieUsers" showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="Amount" legendLabel="userName">
+                        <PointLabelStyle tkDonutLabelStyle strokeColor="black" textColor="white"></PointLabelStyle>
+                    </DonutSeries>
+                    <Palette tkPiePalette seriesName="pieUsers">
+                        <PaletteEntry tkPiePaletteEntry fillColor="#EAA219" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#D77D13" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#C4590C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#B03406" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#9D1000" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                    </Palette>
+                    <!-- разобраться как делать выделение нужным ццветмом -->
+                    <Palette tkPiePalette seriesName="pieUsers" seriesState="Selected">
+                        <PaletteEntry tkPiePaletteEntry fillColor="#7df0bd" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#ed8c7b" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#edc37b" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                     </Palette>
                 </RadPieChart>
             </GridLayout>
