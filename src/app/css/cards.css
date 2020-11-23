@@ -35,9 +35,9 @@
     font-weight: bold;
 }
 
-.card-desc {
-    font-size: 23;
-    color: var(--yellow);
+.card-description {
+    font-size: 15;
+    color: var(--card-description);
 }
 
 .card-footer {

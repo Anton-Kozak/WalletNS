@@ -26,6 +26,7 @@ The following CSS rule changes the font size of all Buttons that have the
 
 .ns-root {
     --yellow: #ffb204;
+    --card-description: #e4d8c9;
     --card-background: #2c2c2c;
     /* #2c2c2c; */
     /*#273442;*/

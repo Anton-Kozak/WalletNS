@@ -28,7 +28,7 @@
                         <StackLayout class="card-title">
                             <Label textWarp="true" color="#28a745" text="Most Used Category"></Label>
                         </StackLayout>
-                        <StackLayout class="card-desc">
+                        <StackLayout class="card-description">
                             <Label [text]="mostUsedCategory"></Label>
                         </StackLayout>
                     </StackLayout>
@@ -49,7 +49,7 @@
                         <StackLayout class="card-title">
                             <Label textWarp="true" color="#6c757d" text="Most Spent Category"></Label>
                         </StackLayout>
-                        <StackLayout class="card-desc">
+                        <StackLayout class="card-description">
                             <Label [text]="mostSpentCategory"></Label>
                         </StackLayout>
                     </StackLayout>
@@ -70,7 +70,7 @@
                         <StackLayout class="card-title">
                             <Label fontSize="17" color="#a38721" textWarp="true" text="Average Daily Expenses"></Label>
                         </StackLayout>
-                        <StackLayout class="card-desc">
+                        <StackLayout class="card-description">
                             <Label [text]="avgDailyExpenses"></Label>
                         </StackLayout>
                     </StackLayout>
@@ -91,7 +91,7 @@
                         <StackLayout class="card-title">
                             <Label color="#007bff" text="Total Spent"></Label>
                         </StackLayout>
-                        <StackLayout class="card-desc">
+                        <StackLayout class="card-description">
                             <Label [text]="amountOfMoneySpent"></Label>
                         </StackLayout>
                     </StackLayout>
@@ -104,29 +104,19 @@
         </StackLayout>
 
         <StackLayout *ngIf="topFiveUsers.length !== 0" class="card-chart">
-            <!-- <GridLayout height="300" rows="*">
-                <RadPieChart allowAnimation="true" row="0">
-                    <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="Amount" legendLabel="userName"></DonutSeries>
-                    <RadLegendView tkPieLegend position="floating" title="Users" width="110" enableSelection="true">
-                    </RadLegendView>
-                    <Palette tkPiePalette seriesName="Pie">
-                        <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                    </Palette>
-                </RadPieChart>
-            </GridLayout> -->
-            <GridLayout height="500" rows="*, 2*">
-                <StackLayout row="0">
+            <GridLayout height="500" rows="auto, auto, *">
+                <StackLayout class="outer-flex underline" row="0">
+                    <Label class="card-title" text="Wallet Users Expenses"></Label>
+                    <Label class="card-description" text="With Most Expenses"></Label>
+                </StackLayout>
+                <StackLayout row="1" class="m-l-10">
                     <FlexboxLayout class="user-flex" *ngFor="let user of topFiveUsers; let i = index">
                         <Label class="user-label" [backgroundColor]="userColors[i]"></Label>
                         <Label [text]="user.userName" class="users"></Label>
                     </FlexboxLayout>
                     <Label class="title-label" text="Top Five Users"></Label>
                 </StackLayout>
-                <RadPieChart allowAnimation="true" row="1">
+                <RadPieChart allowAnimation="true" row="2">
                     <DonutSeries seriesName="pieUsers" showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="Amount" legendLabel="userName">
                         <PointLabelStyle tkDonutLabelStyle strokeColor="black" textColor="white"></PointLabelStyle>
                     </DonutSeries>
@@ -149,10 +139,14 @@
 
 
         <StackLayout class="card-chart">
-            <GridLayout height="600" rows="*">
-                <RadCartesianChart row="0">
-                    <CategoricalAxis tkCartesianHorizontalAxis labelFitMode="Rotate" labelSize="20"></CategoricalAxis>
-                    <LinearAxis tkCartesianVerticalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
+            <GridLayout height="600" rows="auto, *">
+                <StackLayout class="outer-flex underline" row="0">
+                    <Label class="card-title" text="Expenses Statistics"></Label>
+                    <Label class="card-description" text="Expenses For Each Category"></Label>
+                </StackLayout>
+                <RadCartesianChart row="1">
+                    <CategoricalAxis tkCartesianHorizontalAxis lineColor="#ffb204" labelFitMode="Rotate" labelSize="20"></CategoricalAxis>
+                    <LinearAxis tkCartesianVerticalAxis lineColor="#ffb204" labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
                     <BarSeries paletteMode="Item" showLabels="true" seriesName="Bar" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
                         <PointLabelStyle textFormat="%.0f" tkBarLabelStyle fillColor="#ffb204"></PointLabelStyle>
                     </BarSeries>
@@ -162,7 +156,6 @@
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#F39916" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#F38C13" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#CB7510" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#C0650C" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#B65509" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
                         <PaletteEntry tkCartesianPaletteEntry fillColor="#AC4606" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
@@ -175,8 +168,12 @@
         </StackLayout>
 
         <StackLayout class="card-chart">
-            <GridLayout height="500" rows="*">
-                <RadCartesianChart row="0" style="font-size: 12;">
+            <GridLayout height="600" rows="auto, *">
+                <StackLayout class="outer-flex underline" row="0">
+                    <Label class="card-title" text="Last Six Months"></Label>
+                    <Label class="card-description" text="Line Comparison"></Label>
+                </StackLayout>
+                <RadCartesianChart row="1">
                     <CategoricalAxis tkCartesianHorizontalAxis lineColor="#ffb204" ticksColor="#825B00" labelFitMode="Rotate"></CategoricalAxis>
                     <LinearAxis tkCartesianVerticalAxis lineColor="#ffb204" ticksColor="#825B00" labelFormat="%.0f"></LinearAxis>
                     <LineSeries tkCartesianSeries strokeColor="#ffb204" [items]="lastSixMonths" categoryProperty="month" valueProperty="expenseSum">
@@ -186,14 +183,28 @@
         </StackLayout>
 
         <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart m-b-20">
-            <GridLayout height="500" rows="*">
-                <RadCartesianChart row="0">
-                    <CategoricalAxis labelTextColor="#ffb204" tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
-                    <LinearAxis labelTextColor="#ffb204" tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
-                    <BarSeries seriesName="firstBar" strokeWidth="3" strokeColor="#ffb204" fillColor="#130D00" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+            <GridLayout height="600" rows="auto, auto *">
+                <StackLayout class="outer-flex underline" row="0">
+                    <Label class="card-title" text="Expenses Comparsion"></Label>
+                    <Label class="card-description" text="Previous and Current Months"></Label>
+                </StackLayout>
+                <StackLayout class="m-t-20 m-l-15" row="1">
+                    <FlexboxLayout>
+                        <Label class="user-label" backgroundColor="#F4B41C"></Label>
+                        <Label text="Current Replace Name!!!" class="users"></Label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="m-t-5">
+                        <Label class="user-label" backgroundColor="#972600"></Label>
+                        <Label text="Previous Replace Name!!!" class="users"></Label>
+                    </FlexboxLayout>
+                </StackLayout>
+                <RadCartesianChart row="2">
+                    <CategoricalAxis labelTextColor="#ffb204" lineColor="#ffb204" tkCartesianVerticalAxis labelSize="20"></CategoricalAxis>
+                    <LinearAxis labelTextColor="#ffb204" lineColor="#ffb204" tkCartesianHorizontalAxis labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
+                    <BarSeries seriesName="firstBar" strokeWidth="1" strokeColor="#ffb204" fillColor="#F4B41C" tkCartesianSeries [items]="currentMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                         <PointLabelStyle tkBarLabelStyle fillColor="#f0b4aa"></PointLabelStyle>
                     </BarSeries>
-                    <BarSeries seriesName="secondBar" strokeWidth="3" strokeColor="#ffb204" fillColor="#FFDF94" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
+                    <BarSeries seriesName="secondBar" strokeWidth="1" strokeColor="#ffb204" fillColor="#972600" tkCartesianSeries [items]="lastMonthDataToCompare" categoryProperty="Category" valueProperty="Amount">
                         <PointLabelStyle tkBarLabelStyle fillColor="#f58b75"></PointLabelStyle>
                     </BarSeries>
                 </RadCartesianChart>
@@ -208,7 +219,7 @@
                     <StackLayout class="card-title">
                         <Label text="Expenses Comparison"></Label>
                     </StackLayout>
-                    <StackLayout class="card-desc">
+                    <StackLayout class="card-description">
                         <Label text="Previous and Current Months"></Label>
                     </StackLayout>
                 </StackLayout> 
