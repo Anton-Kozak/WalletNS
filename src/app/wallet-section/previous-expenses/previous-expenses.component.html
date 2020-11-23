@@ -22,11 +22,11 @@
                         <!-- <RadLegendView tkPieLegend position="floating" titleColor="#ffb204" width="110" titleSize="14" title="Top 5 Users" enableSelection="true">
                         </RadLegendView> -->
                         <Palette tkPiePalette seriesName="pieUsers">
-                            <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="3" strokeColor="#5cedad"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="3" strokeColor="#ed614a"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="3" strokeColor="#e3aa49"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="3" strokeColor="#784fe0"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="3" strokeColor="#5597e6"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F4B41C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F4A719" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F39916" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F38C13" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#CB7510" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                         </Palette>
                         <!-- разобраться как делать выделение нужным ццветмом -->
                         <Palette tkPiePalette seriesName="pieUsers" seriesState="Selected">
@@ -48,12 +48,13 @@
                     </StackLayout>
                     <RadPieChart allowAnimation="true" row="1">
                         <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="barExpenses" valueProperty="Amount" legendLabel="Category">
-                            <!-- <PointLabelStyle tkDonutLabelStyle ios:fillColor="white" ios:strokeColor="black" textSize="15" margin="45"></PointLabelStyle> -->
+                            <PointLabelStyle tkDonutLabelStyle strokeColor="black" textColor="white"></PointLabelStyle>
                         </DonutSeries>
                         <!-- <RadLegendView tkPieLegend position="Top" titleSize="14" title="Select Month!!! Expenses" enableSelection="true">
                         </RadLegendView> -->
                         <Palette tkPiePalette seriesName="Pie">
-                            <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                            <!-- custom mine -->
+                            <!-- <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
@@ -62,7 +63,21 @@
                             <PaletteEntry tkPiePaletteEntry fillColor="#f0e8aa" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#c4f0a2" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#a2e7f0" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#f0a2c4" strokeWidth="0.5" strokeColor="black"></PaletteEntry> -->
+
+                            <!-- new gradient -->
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F4B41C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F4A719" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F39916" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#F38C13" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#CB7510" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+
+                            <PaletteEntry tkPiePaletteEntry fillColor="#C4590C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#BA4709" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#B03406" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#A72203" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#9D1000" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+
                         </Palette>
                         <!-- <Palette tkPiePalette seriesName="Pie" seriesState="Selected">
                             <PaletteEntry tkPiePaletteEntry fillColor="#7df0bd" strokeWidth="0.5" strokeColor="black"></PaletteEntry>

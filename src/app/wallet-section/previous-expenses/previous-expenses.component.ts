@@ -18,7 +18,7 @@ export class PreviousExpensesComponent implements OnInit {
 
   constructor(private expenseService: ExpenseService, private walletService: WalletService) { }
 
-  colors: string[] = ['#aaf0d1', '#f0b4aa', '#f0d6aa', '#beaaf0', '#aacaf0', '#e0aaf0', '#f0e8aa', '#c4f0a2', '#a2e7f0', '#f0a2c4'];
+  colors: string[] = ['#F4B41C', '#EAA219', '#E19016', '#D77D13', '#CD6B10', '#C4590C', '#BA4709', '#B03406', '#A72203', '#9D1000'];
 
 
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };

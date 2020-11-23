@@ -1,7 +1,7 @@
 <ns-action-bar></ns-action-bar>
 <ScrollView>
     <StackLayout class="background" height="auto" [visibility]="!isLoading ? 'visible' : 'collapse'">
-        <!-- <StackLayout data-aos="fade-zoom-in" data-aos-duration="600" data-aos-delay="500" class="card-stats" shadow="25">
+        <StackLayout data-aos="fade-zoom-in" data-aos-duration="600" data-aos-delay="500" class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <StackLayout class="card-chart-text">
                     <StackLayout class="card-title">
@@ -9,7 +9,7 @@
                     </StackLayout>
                 </StackLayout>
                 <GridLayout columns="1*, 7*, 1*, 1*" rows="50" *ngFor="let member of walletMembers" class="members">
-                    <Label col="1" fontSize="18" [text]="member.username" class="text-capitalize"></Label>
+                    <Label col="1" color="#ffb204" fontSize="18" [text]="member.username" class="text-capitalize"></Label>
                     <FlexboxLayout col="2" class="user-icon">
                         <Label (tap)="getUserStatistics(member.id)" text="&#xf007;" fontSize="18" class="fas"></Label>
                     </FlexboxLayout>
@@ -17,7 +17,7 @@
             </StackLayout>
             <FlexboxLayout class="card-footer">
             </FlexboxLayout>
-        </StackLayout> -->
+        </StackLayout>
         <StackLayout class="card-stats" shadow="25">
             <StackLayout class="card-body">
                 <GridLayout columns="3*, 7*" rows="auto" class="card-row">
@@ -103,38 +103,23 @@
             </FlexboxLayout>
         </StackLayout>
 
-        <!-- <StackLayout *ngIf="topFiveUsers.length !== 0" class="card-stats" shadow="25">
-            <StackLayout class="card-body">
-                <StackLayout class="card-chart-text">
-                    <StackLayout class="card-title">
-                        <Label text="Top 5 Users"></Label>
-                    </StackLayout>
-                    <StackLayout class="card-desc">
-                        <Label text="Users with most Expenses"></Label>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout class="card-chart">
-                    <GridLayout height="300" rows="*">
-                        <RadPieChart allowAnimation="true" row="0">
-                            <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="Amount" legendLabel="userName"></DonutSeries>
-                            <RadLegendView tkPieLegend position="floating" title="Users" width="110" enableSelection="true">
-                            </RadLegendView>
-                            <Palette tkPiePalette seriesName="Pie">
-                                <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                                <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                            </Palette>
-                        </RadPieChart>
-                    </GridLayout>
-                </StackLayout>
-            </StackLayout>
-            <FlexboxLayout class="card-footer">
-                <Label class="fas footer-icon" text="&#xf885;"></Label>
-                <Label class="footer-text" text="Number of expenses"></Label>
-            </FlexboxLayout>
-        </StackLayout> -->
+        <StackLayout *ngIf="topFiveUsers.length !== 0" class="card-chart">
+            <GridLayout height="300" rows="*">
+                <RadPieChart allowAnimation="true" row="0">
+                    <DonutSeries seriesName="Pie" showLabels="true" tkPieSeries selectionMode="Notset" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="Amount" legendLabel="userName"></DonutSeries>
+                    <RadLegendView tkPieLegend position="floating" title="Users" width="110" enableSelection="true">
+                    </RadLegendView>
+                    <Palette tkPiePalette seriesName="Pie">
+                        <PaletteEntry tkPiePaletteEntry fillColor="#aaf0d1" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#f0b4aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#f0d6aa" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#beaaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkPiePaletteEntry fillColor="#aacaf0" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                    </Palette>
+                </RadPieChart>
+            </GridLayout>
+        </StackLayout>
+
 
         <StackLayout class="card-chart">
             <GridLayout height="600" rows="*">
@@ -145,18 +130,18 @@
                         <PointLabelStyle textFormat="%.0f" tkBarLabelStyle fillColor="#ffb204"></PointLabelStyle>
                     </BarSeries>
                     <Palette tkCartesianPalette seriesName="Bar">
-                        <!-- <PaletteEntry tkCartesianPaletteEntry fillColor="#ffe5a3" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry> -->
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFD470" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFC94D" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f5d76e" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#BA8200" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f2ca27" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#F4B41C" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#F4A719" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#F39916" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#F38C13" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#CB7510" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
 
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#F5D76E" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFDF94" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#FFDA82" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f27927" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
-                        <PaletteEntry tkCartesianPaletteEntry fillColor="#f2a127" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#C0650C" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#B65509" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#AC4606" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#A13603" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                        <PaletteEntry tkCartesianPaletteEntry fillColor="#972600" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+
                     </Palette>
                 </RadCartesianChart>
             </GridLayout>
@@ -188,7 +173,6 @@
             </GridLayout>
         </StackLayout>
     </StackLayout>
-
 
     <!-- ПРИМЕР CHART В CARD -->
 
