@@ -7,6 +7,7 @@ import { CategoryData } from '../../_models/categoryData';
 import { TopUsersStat } from '../../_models/top-users-stat';
 import { ExpenseForBar } from 'src/app/_models/barExpense';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
+import { RadPieChart } from 'nativescript-ui-chart';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class PreviousExpensesComponent implements OnInit {
 
   constructor(private expenseService: ExpenseService, private walletService: WalletService) { }
 
-  colors: string[] = ['#F4B41C', '#EAA219', '#E19016', '#D77D13', '#CD6B10', '#C4590C', '#BA4709', '#B03406', '#A72203', '#9D1000'];
+  colors: string[] = ['#F4B41C', '#F39916', '#CB7510', '#BA4709', '#9D1000', '#730C00', '#490700', '#2D0400', '#1E0300', 'black'];
   userColors: string[] = ['#EAA219', '#D77D13', '#C4590C', '#B03406', '#9D1000'];
 
 
@@ -67,9 +68,11 @@ export class PreviousExpensesComponent implements OnInit {
     // this.translateService.onLangChange.subscribe(lang => {
     //   this.setTitle(lang['lang']);
     // });
+  }
 
 
-
+  pointSelected(args) {
+    console.log('selected?', <RadPieChart>args.object.palettesProperty);
   }
 
 

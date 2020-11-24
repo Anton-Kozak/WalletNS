@@ -47,7 +47,7 @@
     margin-right: 15;
     margin-bottom: 5;
     border-top-width: 0.3;
-    border-color: #9a9a9a;
+    border-color: var(--yellow);
 }
 
 .footer-text {

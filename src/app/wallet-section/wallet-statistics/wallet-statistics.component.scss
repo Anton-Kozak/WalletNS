@@ -31,18 +31,15 @@
 }
 
 .user-icon {
-    // padding: 8;
-    // padding-right: 9;
     height: 35;
     width: 35;
-    background-color: white;
-    //text-align: center;
+    background-color: #1b1b1b;
     justify-content: center;
     align-items: center;
     border-radius: 5;
-    color: #28a745;
-    border-width: 1;
-    border-color: #28a745;
+    color: var(--yellow);
+    border-width: 0.5;
+    border-color: var(--yellow);
 }
 
 .members {
