@@ -71,7 +71,7 @@ export class UserStatisticsComponent implements OnInit {
 
     this.isLoading = true;
     this.expService.getUserStatistics(this.id, new Date(Date.now()).toUTCString()).subscribe(response => {
-      console.log('response frm user', response);
+      //console.log('response frm user', response);
       this.expService.getUserExpenses(this.id, new Date(Date.now()).toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses = expensesRecieved;
       })
@@ -90,7 +90,7 @@ export class UserStatisticsComponent implements OnInit {
         this.amountOfMoneySpent = response['amountOfMoneySpent'];
       }
       this.isLoading = false;
-      console.log('l', this.tableBody.length);
+      //console.log('l', this.tableBody.length);
     })
 
   }
@@ -108,7 +108,7 @@ export class UserStatisticsComponent implements OnInit {
         context: expense
       }).then((result: { status: string, expense: ExpenseForTable }) => {
         if (result.status === 'edit') {
-          console.log('edit');
+          //console.log('edit');
           this.expenses[rowIndex].expenseTitle = result.expense['expenseTitle'];
           this.expenses[rowIndex].expenseDescription = result.expense['expenseDescription'];
           this.expenses[rowIndex].moneySpent = result.expense['moneySpent'];

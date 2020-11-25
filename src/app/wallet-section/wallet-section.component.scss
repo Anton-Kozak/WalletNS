@@ -27,6 +27,23 @@
     color: var(--yellow);
 }
 
+.menu,
+.logout {
+    color: #ffb204;
+}
+
+ActionBar {
+    background-color: #1f1f1f;
+}
+
+.flex-bar {
+    /* flex-direction: column; */
+    justify-content: space-between;
+    /* align-items: stretch; */
+    border-width: 1;
+    border-color: red;
+}
+
 // .inactive {
 //     font-size: 15;
 //     color: var(--sidebar-item);

@@ -8,7 +8,7 @@
 
         <ScrollView row="1" class="nt-drawer__body">
             <StackLayout #stack>
-                <GridLayout id="home" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('home')">
+                <GridLayout id="home" columns="auto, *" class="nt-drawer__list-item" [nsRouterLinkActiveOptions]="{exact: true}" [nsRouterLink]="['/wallet/home']" [clearHistory]="true">
                     <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Home" class="item-list "></Label>
                 </GridLayout>
@@ -21,19 +21,19 @@
                     <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Previous Expenses" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="walletStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap(3, 'walletStatistics')">
+                <GridLayout id="walletStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletStatistics')">
                     <Label col="0" text="&#xf080;" fontSize="20" class="nt-icon far"></Label>
                     <Label col="1" text="Wallet Statistics" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="userStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap(4, 'userStatistics/' + id)">
+                <GridLayout id="userStatistics" columns="auto, *" class="nt-drawer__list-item" [nsRouterLink]="['/wallet/userStatistics', id]">
                     <Label col="0" text="&#xf2bd;" fontSize="20" class="nt-icon far"></Label>
                     <Label col="1" text="User Statistics" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="profile" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap(5, 'profile')">
+                <GridLayout id="profile" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('profile')">
                     <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Profile" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="walletAdmin" *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap(6, 'walletAdmin')">
+                <GridLayout id="walletAdmin" *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletAdmin')">
                     <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Admin Panel" class="item-list "></Label>
                 </GridLayout>
@@ -42,7 +42,7 @@
                     <Label col="1" text="Category" class="item-list "></Label>
                 </GridLayout>
                 <StackLayout *ngIf="showCategory">
-                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" (tap)="onItemTap(7, 'categoryStatistics/' + category.id)">
+                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" (tap)="onItemTap('categoryStatistics','categoryStatistics/' + category.id)">
                         <Label col="0" [text]="category.icon" fontSize="20" class="nt-icon fas"></Label>
                         <Label col="1" [text]="category.title" class="item-list "></Label>
                     </GridLayout>

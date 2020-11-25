@@ -71,17 +71,13 @@ export class PreviousExpensesComponent implements OnInit {
   }
 
 
-  pointSelected(args) {
-    console.log('selected?', <RadPieChart>args.object.palettesProperty);
-  }
-
 
   getData(date: Date) {
     this.expenseService.getPreviousExpenses(date.toUTCString()).subscribe((expenses: ExpensesWithCategories[]) => {
       this.isLoading = true;
       let barArr: ExpenseForBar[] = [];
       for (let i = 0; i < expenses['previousExpensesBars'].length; i++) {
-        console.log(expenses['previousExpensesBars'][i]);
+        //console.log(expenses['previousExpensesBars'][i]);
         barArr.push({ Amount: expenses['previousExpensesBars'][i]['categoryExpenses'], Category: this.categories[i].title })
       }
       this.barExpenses = new ObservableArray([...barArr]);

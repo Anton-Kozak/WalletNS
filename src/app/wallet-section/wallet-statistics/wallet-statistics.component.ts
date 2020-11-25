@@ -44,7 +44,7 @@ export class WalletStatisticsComponent implements OnInit {
       this.categories = this.walletService.currentCategories;
     this.isLoading = true;
     this.expService.getWalletStatistics(new Date(Date.now()).toUTCString()).subscribe(response => {
-      console.log('resp', response['barExpenses']);
+      //console.log('resp', response['barExpenses']);
       this.avgDailyExpenses = response['averageDailyExpense'];
       this.amountOfMoneySpent = response['amountOfMoneySpent'];
       if (response['hasExpenseData'] === true) {
@@ -77,7 +77,7 @@ export class WalletStatisticsComponent implements OnInit {
         response['topFiveUsers'].forEach((val, i) => {
           this.topFiveUsers.push({ Amount: val['sum'], userName: val['userName'] })
         });
-        console.log('5', this.topFiveUsers);
+        //console.log('5', this.topFiveUsers);
         let barArr: ExpenseForBar[] = [];
         response['barExpenses'].forEach((val, i) => {
           barArr.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })

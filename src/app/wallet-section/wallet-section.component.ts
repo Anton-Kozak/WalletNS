@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
 import { RadSideDrawer, } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { Page, isAndroid } from 'tns-core-modules/ui/page';
@@ -19,7 +19,7 @@ import { RouterExtensions } from '@nativescript/angular';
   templateUrl: './wallet-section.component.html',
   styleUrls: ['./wallet-section.component.scss']
 })
-export class WalletSectionComponent implements OnInit, AfterViewInit {
+export class WalletSectionComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 
@@ -40,7 +40,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
     private dataService: DataService,
     private changeDetectionRef: ChangeDetectorRef,
     private page: Page,
-    private vcRef: ViewContainerRef, private routerExtensions: RouterExtensions) {
+    private vcRef: ViewContainerRef, private router: RouterExtensions) {
     // Use the component constructor to inject services.
     if (this.authService.roleMatch(['Admin'])) {
       this.isAdmin = true;
@@ -50,6 +50,11 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
     }
     this.isAdminDefined = true;
   }
+  ngOnDestroy(): void {
+    console.log('sidedrawer destroyed');
+  }
+
+  
 
   ngAfterViewInit(): void {
     this.drawer = this.drawerComponent.sideDrawer;
@@ -64,6 +69,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+    console.log('element with sidebar initiated');
     this.page.actionBarHidden = true;
     if (isAndroid) {
       app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
@@ -95,13 +101,18 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
   }
 
   prevItem: number;
-  onItemTap(path: string) {
-    this.routerExtensions.navigate(['/wallet/' + path], { clearHistory: true });
-    console.log('current route:', this.routerExtensions.router.url.replace('/wallet/', ''));
-    let replace = this.routerExtensions.router.url.replace('/wallet/', '');
+  onItemTap(path: string, addPath?: string) {
+    if (addPath === undefined)
+      this.router.navigate(['/wallet/' + path], { clearHistory: true });
+    else
+      this.router.navigate(['/wallet/' + path, addPath], { clearHistory: true });
+    console.log('current route:', this.router.router.url.replace('/wallet/', ''));
+    let replace = this.router.router.url.replace('/wallet/', '');
+    let replace2 = replace.replace(/(\/.*)/, '');
+    console.log('replace', replace);
     let st: StackLayout = this.stack.nativeElement;
     //сделать прев не активным
-    (<GridLayout>st.getViewById(replace)).className = 'nt-drawer__list-item'; //getChildAt(this.prevItem)).className = 'nt-drawer__list-item';
+    (<GridLayout>st.getViewById(replace2)).className = 'nt-drawer__list-item'; //getChildAt(this.prevItem)).className = 'nt-drawer__list-item';
     (<GridLayout>st.getViewById(path)).className = 'nt-drawer__list-item active';
     // let st: StackLayout = this.stack.nativeElement;
     // if (this.prevItem !== null)
@@ -206,6 +217,20 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
           this.categoryTitles[i].icon = String.fromCharCode(0xf042);
       }
     }
+  }
+
+
+  logout() {
+    this.authService.logout();
+  }
+
+
+  onToggleMenu(){
+    this.dataService.toggleDrawer()
+  }
+
+  back() {
+    this.router.backToPreviousPage();
   }
 
 }
