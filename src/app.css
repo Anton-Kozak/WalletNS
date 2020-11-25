@@ -46,6 +46,15 @@ Button.-primary {
     border-color: var(--yellow);
 }
 
+.yellow-button {
+    border-radius: 10;
+    border-color: var(--yellow);
+    border-width: 2;
+    background-color: #424242;
+    color: var(--yellow);
+    font-size: 20;
+}
+
 .fa {
     font-family: 'FontAwesome', 'Font-Awesome';
 }

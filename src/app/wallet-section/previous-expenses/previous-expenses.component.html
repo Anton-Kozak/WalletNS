@@ -1,14 +1,13 @@
-0.3
 <ns-action-bar></ns-action-bar>
 <ScrollView>
-    <StackLayout *ngIf="!isLoading" class="background">
+    <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'" class="background">
         <FlexboxLayout>
-            <Button text="Prev" (tap)="previousMonth()"></Button>
+            <Button class="yellow-button" text="Prev" (tap)="previousMonth()"></Button>
             <Label text="{{monthName}}, {{year}}"></Label>
-            <Button text="Next" (tap)="next()"></Button>
+            <Button class="yellow-button" text="Next" (tap)="next()"></Button>
         </FlexboxLayout>
         <StackLayout>
-            <StackLayout *ngIf="topFiveUsers !== null" class="card-chart">
+            <StackLayout class="card-chart">
                 <GridLayout height="500" rows="*, 2*">
                     <StackLayout row="0">
                         <FlexboxLayout class="user-flex" *ngFor="let user of topFiveUsers; let i = index">
@@ -37,7 +36,7 @@
                     </RadPieChart>
                 </GridLayout>
             </StackLayout>
-            <StackLayout *ngIf="barExpenses !== null" class="card-chart">
+            <!-- <StackLayout *ngIf="barExpenses !== null" class="card-chart">
                 <GridLayout height="750" rows="auto, *">
                     <StackLayout class="outer-flex" row="0">
                         <FlexboxLayout class="user-flex" *ngFor="let cat of categories; let i = index">
@@ -51,19 +50,6 @@
                             <PointLabelStyle tkDonutLabelStyle strokeColor="black" textColor="white"></PointLabelStyle>
                         </DonutSeries>
                         <Palette tkPiePalette seriesName="categoriesDonut" seriesState="Normal">
-                            <!-- old gradient -->
-                            <!-- <PaletteEntry tkPiePaletteEntry fillColor="#F4B41C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#F4A719" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#F39916" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#F38C13" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#CB7510" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#C4590C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#BA4709" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#B03406" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#A72203" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#9D1000" strokeWidth="1" strokeColor="#680A00"></PaletteEntry> -->
-
-                            <!-- new gradient -->
                             <PaletteEntry tkPiePaletteEntry fillColor="#F4B41C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#F39916" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#CB7510" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
@@ -74,10 +60,37 @@
                             <PaletteEntry tkPiePaletteEntry fillColor="#2D0400" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#1E0300" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="black" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
-
-
                         </Palette>
                     </RadPieChart>
+                </GridLayout>
+            </StackLayout> -->
+
+            <StackLayout class="card-chart">
+                <GridLayout height="600" rows="auto, *">
+                    <StackLayout class="outer-flex underline" row="0">
+                        <Label class="card-title" text="Expenses Statistics"></Label>
+                        <Label class="card-description" text="Expenses For Each Category"></Label>
+                    </StackLayout>
+                    <RadCartesianChart row="1">
+                        <CategoricalAxis tkCartesianHorizontalAxis lineColor="#ffb204" labelFitMode="Rotate" labelSize="20"></CategoricalAxis>
+                        <LinearAxis tkCartesianVerticalAxis lineColor="#ffb204" labelFitMode="Rotate" labelFormat="%.0f"></LinearAxis>
+                        <BarSeries paletteMode="Item" showLabels="true" seriesName="Bar" tkCartesianSeries [items]="barExpenses" categoryProperty="Category" valueProperty="Amount">
+                            <PointLabelStyle textFormat="%.0f" tkBarLabelStyle fillColor="#ffb204"></PointLabelStyle>
+                        </BarSeries>
+                        <Palette tkCartesianPalette seriesName="Bar">
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#F4B41C" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#F4A719" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#F39916" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#F38C13" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#CB7510" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#C0650C" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#B65509" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#AC4606" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#A13603" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+                            <PaletteEntry tkCartesianPaletteEntry fillColor="#972600" strokeWidth="3" strokeColor="#ffb204"></PaletteEntry>
+
+                        </Palette>
+                    </RadCartesianChart>
                 </GridLayout>
             </StackLayout>
             <!-- first -->
@@ -85,7 +98,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="first.categoryName + ' Expenses'"></Label>
+                            <Label [text]="first.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -109,7 +122,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="second.categoryName + ' Expenses'"></Label>
+                            <Label [text]="second.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -133,7 +146,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="third.categoryName + ' Expenses'"></Label>
+                            <Label [text]="third.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -157,7 +170,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="fourth.categoryName + ' Expenses'"></Label>
+                            <Label [text]="fourth.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -182,7 +195,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="fifth.categoryName + ' Expenses'"></Label>
+                            <Label [text]="fifth.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -206,7 +219,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="sixth.categoryName + ' Expenses'"></Label>
+                            <Label [text]="sixth.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -230,7 +243,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="seventh.categoryName + ' Expenses'"></Label>
+                            <Label [text]="seventh.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -254,7 +267,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="eigth.categoryName + ' Expenses'"></Label>
+                            <Label [text]="eigth.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -278,7 +291,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="nineth.categoryName + ' Expenses'"></Label>
+                            <Label [text]="nineth.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -302,7 +315,7 @@
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
-                            <Label color="black" [text]="tenth.categoryName + ' Expenses'"></Label>
+                            <Label [text]="tenth.categoryName + ' Expenses'"></Label>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
@@ -323,4 +336,5 @@
             </StackLayout>
         </StackLayout>
     </StackLayout>
+    <!-- loading spinner -->
 </ScrollView>

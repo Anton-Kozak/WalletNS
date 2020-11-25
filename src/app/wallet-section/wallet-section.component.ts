@@ -11,6 +11,8 @@ import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-
 import { DataService } from '../_services/data.service';
 import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
 import { GridLayout, StackLayout } from 'tns-core-modules';
+import { RouterExtensions } from '@nativescript/angular';
+
 
 @Component({
   selector: 'ns-wallet-section',
@@ -18,6 +20,8 @@ import { GridLayout, StackLayout } from 'tns-core-modules';
   styleUrls: ['./wallet-section.component.scss']
 })
 export class WalletSectionComponent implements OnInit, AfterViewInit {
+
+
 
 
   categoryTitles: CategoryData[] = [];
@@ -36,7 +40,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
     private dataService: DataService,
     private changeDetectionRef: ChangeDetectorRef,
     private page: Page,
-    private vcRef: ViewContainerRef) {
+    private vcRef: ViewContainerRef, private routerExtensions: RouterExtensions) {
     // Use the component constructor to inject services.
     if (this.authService.roleMatch(['Admin'])) {
       this.isAdmin = true;
@@ -60,7 +64,6 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-
     this.page.actionBarHidden = true;
     if (isAndroid) {
       app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
@@ -69,7 +72,6 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
         exit();
       });
     }
-
     this.dataService.drawerState.subscribe(() => {
       if (this.drawer)
         this.drawer.toggleDrawerState();
@@ -92,21 +94,23 @@ export class WalletSectionComponent implements OnInit, AfterViewInit {
     }
   }
 
-
-
-  // isComponentSelected(url: string): boolean {
-  //   console.log('Activated Url' + this._activatedUrl);
-  //   return this._activatedUrl === url;
-  // }
   prevItem: number;
-  onItemTap(id: number) {
+  onItemTap(path: string) {
+    this.routerExtensions.navigate(['/wallet/' + path], { clearHistory: true });
+    console.log('current route:', this.routerExtensions.router.url.replace('/wallet/', ''));
+    let replace = this.routerExtensions.router.url.replace('/wallet/', '');
     let st: StackLayout = this.stack.nativeElement;
-    if (this.prevItem !== null)
-      (<GridLayout>st.getChildAt(this.prevItem)).className = 'nt-drawer__list-item';
-    let gr: GridLayout = <GridLayout>st.getChildAt(id);
-    gr.className = 'nt-drawer__list-item active';
-    console.log(gr.id);
-    this.prevItem = id;
+    //сделать прев не активным
+    (<GridLayout>st.getViewById(replace)).className = 'nt-drawer__list-item'; //getChildAt(this.prevItem)).className = 'nt-drawer__list-item';
+    (<GridLayout>st.getViewById(path)).className = 'nt-drawer__list-item active';
+    // let st: StackLayout = this.stack.nativeElement;
+    // if (this.prevItem !== null)
+    //   (<GridLayout>st.getChildAt(this.prevItem)).className = 'nt-drawer__list-item';
+    // let gr: GridLayout = <GridLayout>st.getChildAt(id);
+    // gr.className = 'nt-drawer__list-item active';
+    // console.log(gr.id);
+    // this.prevItem = id;
+
     this.dataService.toggleDrawer();
   }
 
