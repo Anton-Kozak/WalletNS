@@ -1,2 +1,56 @@
 <!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
-<page-router-outlet></page-router-outlet>
+<!-- <page-router-outlet></page-router-outlet> -->
+<RadSideDrawer>
+    <GridLayout tkDrawerContent rows="auto, *" class="nt-drawer__content">
+        <StackLayout row="0" class="nt-drawer__header" backgroundColor="#2b2b2b">
+            <Image class="nt-drawer__header-image fas t-36" src="res://xcoin"></Image>
+            <Label class="nt-drawer__header-brand" color="white" text="Welcome"></Label>
+            <Label class="nt-drawer__header-footnote text-capitalize" *ngIf="userName !== '' " [text]="userName"></Label>
+        </StackLayout>
+        <ScrollView row="1" class="nt-drawer__body">
+            <StackLayout #stack>
+                <GridLayout id="home" columns="auto, *" class="nt-drawer__list-item" [nsRouterLinkActiveOptions]="{exact: true}" [nsRouterLink]="['/home']" [clearHistory]="true">
+                    <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Home" class="item-list "></Label>
+                </GridLayout>
+                <GridLayout id="walletExpenses" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletExpenses')">
+                    <!-- [nsRouterLinkActiveOptions]="{exact: true}" nsRouterLink="/wallet/walletExpenses" [clearHistory]="true"  -->
+                    <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Wallet Expenses" class="item-list "></Label>
+                </GridLayout>
+                <GridLayout id="previousExpenses" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('previousExpenses')">
+                    <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Previous Expenses" class="item-list "></Label>
+                </GridLayout>
+                <GridLayout id="walletStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletStatistics')">
+                    <Label col="0" text="&#xf080;" fontSize="20" class="nt-icon far"></Label>
+                    <Label col="1" text="Wallet Statistics" class="item-list "></Label>
+                </GridLayout>
+                <GridLayout id="userStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('userStatistics', 'userStatistics/' + id )">
+                    <Label col="0" text="&#xf2bd;" fontSize="20" class="nt-icon far"></Label>
+                    <Label col="1" text="User Statistics" class="item-list "></Label>
+                </GridLayout>
+                <GridLayout id="profile" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('profile')">
+                    <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Profile" class="item-list "></Label>
+                </GridLayout>
+                <!-- <GridLayout id="walletAdmin" *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletAdmin')">
+                    <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Admin Panel" class="item-list "></Label>
+                </GridLayout>
+                <GridLayout *ngIf="isAdminDefined" columns="auto, *, *" class="nt-drawer__list-item" (tap)="showCategory = !showCategory">
+                    <Label col="0" text="&#xf200;" fontSize="20" class="nt-icon fas"></Label>
+                    <Label col="1" text="Category" class="item-list "></Label>
+                </GridLayout>
+                <StackLayout *ngIf="showCategory">
+                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" (tap)="onItemTap('categoryStatistics','categoryStatistics/' + category.id)">
+                        <Label col="0" [text]="category.icon" fontSize="20" class="nt-icon fas"></Label>
+                        <Label col="1" [text]="category.title" class="item-list "></Label>
+                    </GridLayout>
+                </StackLayout> -->
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+    <page-router-outlet tkMainContent>
+    </page-router-outlet>
+</RadSideDrawer>

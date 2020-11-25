@@ -66,7 +66,7 @@ export class RegistrationLoginComponent implements OnInit {
         if (this.hasWallet()) {
           console.log('Has wallet');
           // go to wallet
-          this.router.navigate(['/wallet/home']);
+          this.router.navigate(['/home']);
         }
         else {
           console.log('need to create wallet');

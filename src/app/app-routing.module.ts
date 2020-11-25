@@ -14,21 +14,19 @@ import { WalletAdminComponent } from "./admin/wallet-admin/wallet-admin.componen
 import { PreviousExpensesComponent } from "./wallet-section/previous-expenses/previous-expenses.component";
 import { ProfileComponent } from "./wallet-section/profile/profile.component";
 const routes: Routes = [
-    { path: '', component: RegistrationLoginComponent, canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'registration', pathMatch: 'full' },
+    { path: 'registration', component: RegistrationLoginComponent, canActivate: [AuthGuard] },
     { path: 'no-wallet', component: NoWalletComponent },
-    {
-        path: 'wallet', component: WalletSectionComponent, children: [
-            { path: 'home', component: HomeComponent },
-            { path: 'walletExpenses', component: WalletExpensesComponent },
-            { path: 'previousExpenses', component: PreviousExpensesComponent },
-            { path: 'walletStatistics', component: WalletStatisticsComponent },
-            { path: 'userStatistics/:id', component: UserStatisticsComponent },
-            { path: 'categoryStatistics/:id', component: CategoryStatisticsComponent },
-            { path: 'profile', component: ProfileComponent },
-            { path: 'walletAdmin', component: WalletAdminComponent },
-        ]
-    }
+    { path: 'home', component: HomeComponent },
+    { path: 'walletExpenses', component: WalletExpensesComponent },
+    { path: 'previousExpenses', component: PreviousExpensesComponent },
+    { path: 'walletStatistics', component: WalletStatisticsComponent },
+    { path: 'userStatistics/:id', component: UserStatisticsComponent },
+    { path: 'categoryStatistics/:id', component: CategoryStatisticsComponent },
+    { path: 'profile', component: ProfileComponent },
+    { path: 'walletAdmin', component: WalletAdminComponent },
 ]
+
 
 @NgModule({
     imports: [NativeScriptRouterModule.forRoot(routes)],
