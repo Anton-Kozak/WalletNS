@@ -2,13 +2,13 @@
 <ScrollView>
     <StackLayout class="background">
         <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'">
-            <FlexboxLayout>
+            <FlexboxLayout class="anim">
                 <Button class="yellow-button" text="Prev" (tap)="previousMonth()"></Button>
                 <Label text="{{monthName}}, {{year}}"></Label>
                 <Button class="yellow-button" text="Next" (tap)="next()"></Button>
             </FlexboxLayout>
             <StackLayout>
-                <StackLayout class="card-chart">
+                <StackLayout class="card-chart anim-delay">
                     <GridLayout height="500" rows="*, 2*">
                         <StackLayout row="0">
                             <FlexboxLayout class="user-flex" *ngFor="let user of topFiveUsers; let i = index">
