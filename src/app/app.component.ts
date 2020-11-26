@@ -97,20 +97,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
     prevItem: number;
     onItemTap(path: string, addPath?: string) {
-        console.log('id', this.id);
         if (addPath === undefined)
             this.router.navigate(['/' + path], { clearHistory: true });
         else
             this.router.navigate(['/' + addPath], { clearHistory: true });
-        console.log('current route:', this.router.router.url.replace('/wallet/', ''));
+        // console.log('current route:', this.router.router.url.replace('/wallet/', ''));
         let replace = this.router.router.url.replace('/', '');
         let replace2 = replace.replace(/(\/.*)/, '');
-        console.log('replace', replace);
+        // console.log('replace', replace);
         let st: StackLayout = this.stack.nativeElement;
         //сделать прев не активным
         (<GridLayout>st.getViewById(replace2)).className = 'nt-drawer__list-item'; 
         (<GridLayout>st.getViewById(path)).className = 'nt-drawer__list-item active';
-
         this.dataService.toggleDrawer();
     }
 

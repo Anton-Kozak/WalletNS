@@ -127,24 +127,100 @@
 
 Label {
     text-align: center;
-  }
-  
-  .ex1, .ex2 {
+}
+
+.ex1,
+.ex2 {
     background-color: white;
-  }
-  
-  .ex3, .ex4 {
+}
+
+.ex3,
+.ex4 {
     color: white;
-  }
-  
-  .ex3 {
+}
+
+.ex3 {
     background-color: #006968;
     border-radius: 15;
-  }
-  
-  .ex4 {
+}
+
+.ex4 {
     background-color: #ff1744;
     border-radius: 50%;
     width: 80;
     height: 80;
-  }
+}
+
+.loader-wrapper {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100;
+}
+
+.loader {
+    width: 20;
+    height: 20;
+    font-size: 10;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader .face {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+    animation: animate 3s linear infinite;
+}
+
+.loader .face:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    color: red;
+    border-color: yellow;
+    border-width: 1;
+    --deg: -45deg;
+    animation-direction: normal;
+}
+
+.loader .face:nth-child(2) {
+    width: 70%;
+    height: 70%;
+    color: green;
+    border-color: blue;
+    border-width: 1;
+    --deg: -135deg;
+    animation-direction: reverse;
+}
+
+.loader .face .circle {
+    position: absolute;
+    width: 50%;
+    height: 10;
+    top: 50%;
+    left: 50%;
+    background-color: transparent;
+    transform: rotate(var(--deg));
+    transform-origin: left;
+}
+
+.loader .face .circle::before {
+    position: absolute;
+    top: -10;
+    right: -10;
+    content: '';
+    width: 5;
+    height: 5;
+    background-color: currentColor;
+    border-radius: 50%;
+}
+
+@keyframes animate {
+    to {
+        transform: rotate(1turn);
+    }
+}

@@ -7,7 +7,6 @@ import { CategoryData } from '../../_models/categoryData';
 import { TopUsersStat } from '../../_models/top-users-stat';
 import { ExpenseForBar } from 'src/app/_models/barExpense';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
-import { RadPieChart } from 'nativescript-ui-chart';
 
 
 @Component({
@@ -68,6 +67,7 @@ export class PreviousExpensesComponent implements OnInit {
     // this.translateService.onLangChange.subscribe(lang => {
     //   this.setTitle(lang['lang']);
     // });
+
   }
 
 

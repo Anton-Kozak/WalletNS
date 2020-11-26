@@ -33,12 +33,12 @@ export class ActionBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.sideDrawer = <RadSideDrawer>app.getRootView();
-    this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
-      if (notifications != null) {
-        this.notifications = notifications;
-        this.notificationCount = notifications.length;
-      }
-    })
+    // this.noteService.getNotifications().subscribe((notifications: Notification[]) => {
+    //   if (notifications != null) {
+    //     this.notifications = notifications;
+    //     this.notificationCount = notifications.length;
+    //   }
+    // })
 
   }
 
