@@ -55,10 +55,18 @@ Button.-primary {
 .yellow-button {
     border-radius: 10;
     border-color: var(--yellow);
-    border-width: 2;
-    background-color: #424242;
+    border-width: 0.7;
+    background-color: #303030;
     color: var(--yellow);
     font-size: 20;
+}
+
+.button-anim {
+    animation-name: button-glow;
+    animation-duration: 15;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
 .fa {
@@ -164,5 +172,23 @@ Button.-primary {
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes button-glow {
+    0% {
+        background-color: #303030;
+    }
+    65% {
+        background-color: #303030;
+    }
+    68% {
+        background-color: #585858;
+    }
+    70% {
+        background-color: #303030;
+    }
+    100% {
+        background-color: #303030;
     }
 }

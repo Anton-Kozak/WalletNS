@@ -46,7 +46,7 @@
             </ios>
             <android>
                 <StackLayout>
-                    <Button class="yellow-button" text="Add new expense" (tap)="addCategoryExpense()"></Button>
+                    <Button shadow="25" elevation="15" class="yellow-button button-anim" text="Add new expense" (tap)="addCategoryExpense()"></Button>
                 </StackLayout>
                 <StackLayout class="card-stats anim" shadow="25" elevation="15">
                     <StackLayout class="card-body">
@@ -88,7 +88,7 @@
                 </StackLayout>
                 <StackLayout class="card-stats anim-delay-second" shadow="25" elevation="15">
                     <StackLayout class="card-body">
-                        <FlexboxLayout class="date-selection anim">
+                        <FlexboxLayout *ngIf="currentSelectedDate.value !== undefined" class="date-selection anim">
                             <Button class="yellow-button" text="Prev" (tap)="changeDay(0)"></Button>
                             <Label class="date-value" [text]="currentSelectedDate.value"></Label>
                             <Button class="yellow-button" text="Next" (tap)="changeDay(1)"></Button>

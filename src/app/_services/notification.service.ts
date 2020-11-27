@@ -24,7 +24,7 @@ export class NotificationService {
   }
 
   baseUrl: string = sitePath + 'notification/';
-  value: boolean;
+  //value: boolean;
   getNotifications() {
     return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getNotifications', { headers: this.headers });
   }

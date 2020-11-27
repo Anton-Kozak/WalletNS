@@ -4,6 +4,8 @@
     width: 95%;
     background-color: var(--card-background);
     font-family: "Montserrat", "Montserrat-Regular";
+    border-color: var(--yellow);
+    border-width: 0.3;
 }
 
 .card-body {
