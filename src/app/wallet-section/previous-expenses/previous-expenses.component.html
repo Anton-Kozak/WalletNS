@@ -2,9 +2,9 @@
 <ScrollView>
     <StackLayout class="background">
         <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'">
-            <FlexboxLayout class="anim">
+            <FlexboxLayout class="date-selection anim">
                 <Button class="yellow-button" text="Prev" (tap)="previousMonth()"></Button>
-                <Label text="{{monthName}}, {{year}}"></Label>
+                <Label class="date-value" text="{{monthName}}, {{year}}"></Label>
                 <Button class="yellow-button" text="Next" (tap)="next()"></Button>
             </FlexboxLayout>
             <StackLayout>
@@ -66,7 +66,7 @@
                 </GridLayout>
             </StackLayout> -->
 
-                <StackLayout class="card-chart">
+                <StackLayout class="card-chart anim-delay-second">
                     <GridLayout height="600" rows="auto, *">
                         <StackLayout class="outer-flex underline" row="0">
                             <Label class="card-title" text="Expenses Statistics"></Label>
@@ -95,7 +95,7 @@
                     </GridLayout>
                 </StackLayout>
                 <!-- first -->
-                <StackLayout *ngIf="first.expenses !== null" class="card-stats" shadow="25">
+                <StackLayout *ngIf="first.expenses !== null" class="card-stats anim-delay-third" shadow="25">
                     <StackLayout class="card-body">
                         <StackLayout class="card-chart-text">
                             <StackLayout class="card-title text-center">
@@ -119,7 +119,7 @@
                     </StackLayout>
                 </StackLayout>
                 <!-- 2 -->
-                <StackLayout *ngIf="second.expenses !== null" class="card-stats" shadow="25">
+                <StackLayout *ngIf="second.expenses !== null" class="card-stats anim-delay-fourth" shadow="25">
                     <StackLayout class="card-body">
                         <StackLayout class="card-chart-text">
                             <StackLayout class="card-title text-center">

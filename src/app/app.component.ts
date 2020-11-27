@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     isAdmin = false;
     isAdminDefined = false;
     userName: string = '';
+    showWalletItems = false;
 
     @ViewChild(RadSideDrawerComponent) drawerComponent: RadSideDrawerComponent;
     drawer: RadSideDrawer;
@@ -63,6 +64,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     ngOnInit(): void {
+        this.authService.isLoggedIn.subscribe((value: boolean) => {
+            this.showWalletItems = value;
+            console.log('value of showwalletites', this.showWalletItems)
+        })
+        console.log('current route:', this.router.router.url);
         console.log('element with sidebar initiated');
         console.log('id', this.id);
         if (isAndroid) {
@@ -81,7 +87,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.userName = this.authService.getToken()['unique_name'];
 
         this.id = this.authService.getToken().nameid;
-        
+
         if (this.walletService.currentCategories.length === 0) {
             this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
                 this.walletService.currentCategories = data;
@@ -107,7 +113,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         // console.log('replace', replace);
         let st: StackLayout = this.stack.nativeElement;
         //сделать прев не активным
-        (<GridLayout>st.getViewById(replace2)).className = 'nt-drawer__list-item'; 
+        (<GridLayout>st.getViewById(replace2)).className = 'nt-drawer__list-item';
         (<GridLayout>st.getViewById(path)).className = 'nt-drawer__list-item active';
         this.dataService.toggleDrawer();
     }

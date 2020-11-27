@@ -10,6 +10,7 @@ import {
   remove
 } from 'tns-core-modules/application-settings';
 import * as jwt_decode from "jwt-decode";
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,8 @@ export class AuthService {
   decodedToken: any;
   baseUrl: string = sitePath + 'auth/';
 
-  // isLoggedIn = new BehaviorSubject<boolean>(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
+
+  isLoggedIn = new BehaviorSubject<boolean>(false);
   //hasWallet = new BehaviorSubject<boolean>(this.checkUserWallet());
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -29,14 +31,15 @@ export class AuthService {
   login(username: string, userpass: string) {
     console.log('try logging');
     let date = new Date().toUTCString();
-    console.log(username, userpass, date);
+    //console.log(username, userpass, date);
     //return this.http.post(this.baseUrl + 'login', { username: username, password: userpass, date: date });
     return this.http.post(this.baseUrl + 'login', { username: username, password: userpass, date: date }).pipe(map((response: any) => {
-      console.log(response);
+      //console.log(response);
       if (response) {
         setString('username', username);
         setString('password', userpass);
         setString('token', response['token']);
+        this.isLoggedIn.next(true);
         // console.log('Decoded token: ', this.getToken());
         // console.log('Raw token', response['token']);
       }
@@ -49,6 +52,7 @@ export class AuthService {
     remove('password');
     remove('token');
     //2console.log('Decoded token: ', this.getToken());
+    this.isLoggedIn.next(false);
     this.router.navigate(['']);
   }
 

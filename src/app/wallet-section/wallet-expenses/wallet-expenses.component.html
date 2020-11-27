@@ -46,9 +46,9 @@
             </ios>
             <android>
                 <StackLayout>
-                    <Button text="Add new expense" (tap)="addCategoryExpense()"></Button>
+                    <Button class="yellow-button" text="Add new expense" (tap)="addCategoryExpense()"></Button>
                 </StackLayout>
-                <StackLayout class="card-stats" shadow="25" elevation="15">
+                <StackLayout class="card-stats anim" shadow="25" elevation="15">
                     <StackLayout class="card-body">
                         <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                             <StackLayout col="0" row="0" class="card-icon">
@@ -56,7 +56,7 @@
                             </StackLayout>
                             <StackLayout col="1" row="0" class="card-text">
                                 <StackLayout class="card-title">
-                                    <Label textWrap="true" fontSize="16" color="#e4d8c9" text="Wallet Title"></Label>
+                                    <Label textWrap="true" fontSize="16" text="Wallet Title"></Label>
                                 </StackLayout>
                                 <StackLayout class="card-desc">
                                     <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
@@ -67,7 +67,7 @@
                     <FlexboxLayout class="card-footer">
                     </FlexboxLayout>
                 </StackLayout>
-                <StackLayout class="card-stats" shadow="25" elevation="15">
+                <StackLayout class="card-stats anim-delay" shadow="25" elevation="15">
                     <StackLayout class="card-body">
                         <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                             <StackLayout col="0" row="0" class="card-icon">
@@ -75,9 +75,9 @@
                             </StackLayout>
                             <StackLayout col="1" row="0" class="card-text">
                                 <StackLayout class="card-title">
-                                    <Label textWrap="true" fontSize="15" color="#e4d8c9" text="Wallet Limit"></Label>
+                                    <Label textWrap="true" fontSize="15" text="Wallet Limit"></Label>
                                 </StackLayout>
-                                <StackLayout class="card-desc">
+                                <StackLayout class="card-description">
                                     <Label textWrap="true" fontSize="18" [text]="'$' + walletLimit"></Label>
                                 </StackLayout>
                             </StackLayout>
@@ -86,12 +86,12 @@
                     <FlexboxLayout class="card-footer">
                     </FlexboxLayout>
                 </StackLayout>
-                <StackLayout class="card-stats" shadow="25" elevation="15">
+                <StackLayout class="card-stats anim-delay-second" shadow="25" elevation="15">
                     <StackLayout class="card-body">
-                        <FlexboxLayout>
-                            <Button text="Prev" (tap)="changeDay(0)"></Button>
-                            <Label [text]="currentSelectedDate.value"></Label>
-                            <Button text="Next" (tap)="changeDay(1)"></Button>
+                        <FlexboxLayout class="date-selection anim">
+                            <Button class="yellow-button" text="Prev" (tap)="changeDay(0)"></Button>
+                            <Label class="date-value" [text]="currentSelectedDate.value"></Label>
+                            <Button class="yellow-button" text="Next" (tap)="changeDay(1)"></Button>
                         </FlexboxLayout>
                         <StackLayout class="card-table">
                             <FlexboxLayout class="row-cell-desc text-center">
@@ -113,7 +113,7 @@
                 </StackLayout>
             </android>
             <!-- first -->
-            <StackLayout *ngIf="first.expenses !== null" class="card-stats" shadow="25">
+            <StackLayout *ngIf="first.expenses !== null" class="card-stats anim-delay-third" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -137,7 +137,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 2 -->
-            <StackLayout *ngIf="second.expenses !== null" class="card-stats" shadow="25">
+            <StackLayout *ngIf="second.expenses !== null" class="card-stats anim-delay-fourth" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -161,7 +161,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 3 -->
-            <StackLayout *ngIf="third.expenses !== null" class="card-stats" shadow="25">
+            <StackLayout *ngIf="third.expenses !== null" class="card-stats anim-delay-fourth" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">

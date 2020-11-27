@@ -7,14 +7,19 @@
             <Label class="nt-drawer__header-brand" color="white" text="Welcome"></Label>
             <Label class="nt-drawer__header-footnote text-capitalize" *ngIf="userName !== '' " [text]="userName"></Label>
         </StackLayout>
-        <ScrollView row="1" class="nt-drawer__body">
+        <ScrollView row="1" class="nt-drawer__body" [visibility]="!showWalletItems ? 'visible' : 'collapse'">
+            <GridLayout id="home" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('registration')">
+                <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
+                <Label col="1" text="Registration" class="item-list "></Label>
+            </GridLayout>
+        </ScrollView>
+        <ScrollView [visibility]="showWalletItems ? 'visible' : 'collapse'" row="1" class="nt-drawer__body">
             <StackLayout #stack>
                 <GridLayout id="home" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('home')">
                     <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Home" class="item-list "></Label>
                 </GridLayout>
                 <GridLayout id="walletExpenses" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletExpenses')">
-                    <!-- [nsRouterLinkActiveOptions]="{exact: true}" nsRouterLink="/wallet/walletExpenses" [clearHistory]="true"  -->
                     <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Wallet Expenses" class="item-list "></Label>
                 </GridLayout>
