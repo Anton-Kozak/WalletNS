@@ -1,4 +1,4 @@
-<ns-action-bar></ns-action-bar>
+<ns-action-bar [pageTitle]="'Wallet Expenses'"></ns-action-bar>
 <ScrollView>
     <StackLayout class="background">
         <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'">
@@ -58,7 +58,7 @@
                                 <StackLayout class="card-title">
                                     <Label textWrap="true" fontSize="16" text="Wallet Title"></Label>
                                 </StackLayout>
-                                <StackLayout class="card-desc">
+                                <StackLayout class="card-description">
                                     <Label textWrap="true" fontSize="18" [text]="walletTitle"></Label>
                                 </StackLayout>
                             </StackLayout>
@@ -86,13 +86,14 @@
                     <FlexboxLayout class="card-footer">
                     </FlexboxLayout>
                 </StackLayout>
-                <StackLayout class="card-stats anim-delay-second" shadow="25" elevation="15">
+
+                <StackLayout *ngIf="currentSelectedDate !== null" class="card-stats anim-delay-second" shadow="25" elevation="15">
+                    <FlexboxLayout class="date-selection anim">
+                        <Button class="dark-button" text="Prev" (tap)="changeDay(0)"></Button>
+                        <Label class="date-value" [text]="currentSelectedDate"></Label>
+                        <Button class="dark-button" text="Next" (tap)="changeDay(1)"></Button>
+                    </FlexboxLayout>
                     <StackLayout class="card-body">
-                        <FlexboxLayout *ngIf="currentSelectedDate.value !== undefined" class="date-selection anim">
-                            <Button class="yellow-button" text="Prev" (tap)="changeDay(0)"></Button>
-                            <Label class="date-value" [text]="currentSelectedDate.value"></Label>
-                            <Button class="yellow-button" text="Next" (tap)="changeDay(1)"></Button>
-                        </FlexboxLayout>
                         <StackLayout class="card-table">
                             <FlexboxLayout class="row-cell-desc text-center">
                                 <Label class="user-item" text="User"></Label>

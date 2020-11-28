@@ -54,7 +54,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit, OnDestroy 
     console.log('sidedrawer destroyed');
   }
 
-  
+
 
   ngAfterViewInit(): void {
     this.drawer = this.drawerComponent.sideDrawer;
@@ -87,6 +87,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit, OnDestroy 
     this.userName = this.authService.getToken()['unique_name'];
 
     this.id = this.authService.getToken().nameid;
+    console.log('id', this.id);
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
         this.walletService.currentCategories = data;
@@ -102,6 +103,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit, OnDestroy 
 
   prevItem: number;
   onItemTap(path: string, addPath?: string) {
+    console.log('token:', this.authService.getToken())
     if (addPath === undefined)
       this.router.navigate(['/wallet/' + path], { clearHistory: true });
     else
@@ -225,7 +227,7 @@ export class WalletSectionComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
 
-  onToggleMenu(){
+  onToggleMenu() {
     this.dataService.toggleDrawer()
   }
 

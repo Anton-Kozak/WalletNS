@@ -257,9 +257,9 @@ export class ExpenseService {
     return this.http.put(this.baseUrl + this.authService.getToken().nameid + '/expenseEdit/' + expenseToEdit.id, expenseToEdit, { headers: this.headers })
   }
 
-  getWalletData(userId: string) {
+  getWalletData() {
     //console.log(this.headers);
-    return this.http.get(this.baseUrl + userId + '/getNameAndLimit', { headers: this.headers }).pipe(map(data => {
+    return this.http.get(this.baseUrl + this.authService.getToken().nameid + '/getNameAndLimit', { headers: this.headers }).pipe(map(data => {
       this.expensesSubject.next(data['monthlyExpenses']);
       return data;
     }));

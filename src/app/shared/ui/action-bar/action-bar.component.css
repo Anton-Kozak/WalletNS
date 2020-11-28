@@ -1,6 +1,6 @@
 .menu,
 .logout {
-    color: #ffb204;
+    color: var(--yellow);
 }
 
 ActionBar {
@@ -13,4 +13,9 @@ ActionBar {
     /* align-items: stretch; */
     border-width: 1;
     border-color: red;
+}
+
+.page-title {
+    font-size: 20;
+    color: var(--yellow);
 }

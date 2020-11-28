@@ -11,7 +11,6 @@ import { ModalDialogService } from '@nativescript/angular/modal-dialog';
 import { DataService } from '../../_services/data.service';
 import { CreateExpenseComponent } from '../../expenses/create-expense/create-expense.component';
 import * as moment from 'moment';
-import { FormControl } from '@angular/forms';
 import { ExpenseForTable } from 'src/app/_models/expense-for-table';
 
 @Component({
@@ -43,14 +42,14 @@ export class WalletExpensesComponent implements OnInit {
   walletLimit: number;
   walletExpenses: number;
   type: string;
-  private id;
+  //private id;
   expensesToShow: number;
   notifications: Notification[] = [];
   categories: CategoryData[] = [];
   isLoading: boolean;
   dayForDailyExpenses = new Date();
   moment: any = moment;
-  currentSelectedDate: FormControl;
+  currentSelectedDate: string;
   dailyExpenses: ExpenseForTable[] = [];
 
 
@@ -58,9 +57,10 @@ export class WalletExpensesComponent implements OnInit {
 
   ngOnInit(): void {
     this.expenseService.updateHeaders();
-    this.id = this.authService.getToken().nameid;
+    //this.id = this.authService.getToken().nameid;
     this.isLoading = true;
-    this.expenseService.getWalletData(this.id).subscribe((walletData: WalletForPage) => {
+    //console.log('id', this.id);
+    this.expenseService.getWalletData().subscribe((walletData: WalletForPage) => {
       this.walletTitle = walletData['title'];
       this.walletLimit = walletData['monthlyLimit'];
       this.expenseService.expensesSubject.subscribe(expData => {
@@ -68,6 +68,9 @@ export class WalletExpensesComponent implements OnInit {
         this.expensesToShow = expData;
         this.checkLimit();
       });
+
+      this.currentSelectedDate = this.moment(this.dayForDailyExpenses).format('LL');
+      console.log('date', this.currentSelectedDate);
 
 
       this.checkLimit();
@@ -151,9 +154,6 @@ export class WalletExpensesComponent implements OnInit {
       this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
         this.dailyExpenses = expenses;
       });
-      this.currentSelectedDate = new FormControl(this.moment(this.dayForDailyExpenses).format('LL'));
-
-
       this.isLoading = false;
     });
     this.route.data.subscribe(data => {
@@ -235,7 +235,7 @@ export class WalletExpensesComponent implements OnInit {
 
   updateDailyExpenses() {
     this.expenseService.showDailyExpenses(this.dayForDailyExpenses.toUTCString()).subscribe((expenses: ExpenseForTable[]) => {
-      this.currentSelectedDate.patchValue(this.moment(this.dayForDailyExpenses).format('ll'));
+      this.currentSelectedDate = this.moment(this.dayForDailyExpenses).format('LL');
       this.dailyExpenses = expenses;
     })
 

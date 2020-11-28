@@ -21,6 +21,7 @@ export class ActionBarComponent implements OnInit {
 
 
   @Input() showBackButton = true;
+  @Input() pageTitle: string = "";
 
 
   sideDrawer: any;
@@ -69,7 +70,7 @@ export class ActionBarComponent implements OnInit {
     return this.router.canGoBack() && this.showBackButton;
   }
 
-  onToggleMenu(){
+  onToggleMenu() {
     this.dataService.toggleDrawer()
   }
 

@@ -28,6 +28,7 @@ The following CSS rule changes the font size of all Buttons that have the
     --yellow: #ffb204;
     --card-description: #e4d8c9;
     --card-background: #2c2c2c;
+    --darker-background: #303030;
     /* #2c2c2c; */
     /*#273442;*/
     --sidebar-item: #e4d8c9;
@@ -56,8 +57,17 @@ Button.-primary {
     border-radius: 10;
     border-color: var(--yellow);
     border-width: 0.7;
-    background-color: #303030;
+    background-color: var(--darker-background);
     color: var(--yellow);
+    font-size: 20;
+}
+
+.dark-button {
+    border-radius: 10;
+    border-color: var(--darker-background);
+    border-width: 0.7;
+    background-color: var(--yellow);
+    color: var(--darker-background);
     font-size: 20;
 }
 

@@ -4,6 +4,7 @@
     </ios>
     <GridLayout ios:leftPadding="50" ios:width="90%" android:width="100%" columns="auto, *, auto">
         <Label col="0" fontSize="25" text="&#xf0c9;" class="fas menu" (tap)="onToggleMenu()"></Label>
+        <Label col="1" class="page-title" [text]="pageTitle"></Label>
         <FlexboxLayout col="2">
             <Label *ngIf="notificationCount > 0" (tap)="showNotifications()" fontSize="25" text="&#xf0f3;" class="far hasNotification"></Label>
             <Label (tap)="logout()" fontSize="25" class="fas logout" android:text="&#xf2f5;" ios:text="&#xf057;"></Label>
