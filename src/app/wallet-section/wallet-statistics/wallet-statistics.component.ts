@@ -39,12 +39,14 @@ export class WalletStatisticsComponent implements OnInit {
       this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
         this.walletService.currentCategories = data;
         this.categories = this.walletService.currentCategories;
-      });
+      },
+        error => {
+          console.log(error);
+        });
     } else
       this.categories = this.walletService.currentCategories;
     this.isLoading = true;
     this.expService.getWalletStatistics(new Date(Date.now()).toUTCString()).subscribe(response => {
-      //console.log('resp', response['barExpenses']);
       this.avgDailyExpenses = response['averageDailyExpense'];
       this.amountOfMoneySpent = response['amountOfMoneySpent'];
       if (response['hasExpenseData'] === true) {
@@ -74,10 +76,10 @@ export class WalletStatisticsComponent implements OnInit {
         });
         this.lastSixMonths = new ObservableArray([...monthArr]).reverse();
         //this.topFiveUsers = response['topFiveUsers'];
+        //TODO: разобраться с интерфейсами чтобы не делать эти махинации с созданием ещё одних массивов
         response['topFiveUsers'].forEach((val, i) => {
           this.topFiveUsers.push({ Amount: val['sum'], userName: val['userName'] })
         });
-        //console.log('5', this.topFiveUsers);
         let barArr: ExpenseForBar[] = [];
         response['barExpenses'].forEach((val, i) => {
           barArr.push({ Amount: val['categoryExpenses'], Category: this.categories[i].title })
@@ -94,8 +96,6 @@ export class WalletStatisticsComponent implements OnInit {
   }
 
   getUserStatistics(id: string) {
-    //console.log(id);
-
-    this.router.navigate(['/wallet/userStatistics', id]);
+    this.router.navigate(['/userStatistics', id]);
   }
 }

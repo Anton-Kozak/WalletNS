@@ -104,7 +104,7 @@
                 </FlexboxLayout>
             </StackLayout>
 
-            <StackLayout *ngIf="topFiveUsers.length > 0" class="card-chart">
+            <StackLayout *ngIf="topFiveUsers.length > 0" class="card-chart m-b-20">
                 <GridLayout height="500" rows="auto, auto, *">
                     <StackLayout class="outer-flex underline" row="0">
                         <Label class="card-title" text="Wallet Users Expenses"></Label>
@@ -183,7 +183,7 @@
                 </GridLayout>
             </StackLayout>
 
-            <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart m-b-20">
+            <StackLayout [visibility]="hasPreviousMonths ? 'visible' : 'collapse'" class="card-chart">
                 <GridLayout height="600" rows="auto, auto *">
                     <StackLayout class="outer-flex underline" row="0">
                         <Label class="card-title" text="Expenses Comparsion"></Label>

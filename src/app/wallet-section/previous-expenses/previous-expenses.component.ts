@@ -34,7 +34,7 @@ export class PreviousExpensesComponent implements OnInit {
   tenth: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   isLoading: boolean = true;
   topFiveUsers: TopUsersStat[];
-  barExpenses = null;//ExpenseList[];
+  barExpenses = null;
   categories: CategoryData[] = [];
   walletCurrency: string = 'USD';
   monthNumber = 1;
@@ -42,7 +42,7 @@ export class PreviousExpensesComponent implements OnInit {
   year: string;
   date: Date;
   ngOnInit(): void {
-    //console.log('col', MyColors[0]);
+    this.expenseService.updateHeaders();
     this.isLoading = true;
     this.date = new Date(Date.now());
     this.date.setMonth(this.date.getMonth() - 1);

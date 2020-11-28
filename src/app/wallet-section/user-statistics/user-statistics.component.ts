@@ -60,6 +60,7 @@ export class UserStatisticsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     if (userId === this.id)
       this.isThisUser = true;
+    console.log('id', this.id);
     if (this.walletService.currentCategories.length === 0) {
       this.walletService.getWalletsCategories().subscribe((categories: CategoryData[]) => {
         this.walletService.currentCategories = categories;

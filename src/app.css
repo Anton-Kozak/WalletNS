@@ -142,7 +142,7 @@ Button.-primary {
 
 .anim-delay {
     animation-name: slide-in-left;
-    animation-delay: 0.5;
+    animation-delay: 0.2;
     animation-duration: 0.7;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
@@ -151,8 +151,8 @@ Button.-primary {
 
 .anim-delay-second {
     animation-name: slide-in-left;
-    animation-delay: 1;
-    animation-duration: 0.5;
+    animation-delay: 0.4;
+    animation-duration: 0.7;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
     opacity: 0;
@@ -160,8 +160,8 @@ Button.-primary {
 
 .anim-delay-third {
     animation-name: slide-in-left;
-    animation-delay: 1.5;
-    animation-duration: 0.5;
+    animation-delay: 0.6;
+    animation-duration: 0.7;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
     opacity: 0;
@@ -169,8 +169,8 @@ Button.-primary {
 
 .anim-delay-fourth {
     animation-name: slide-in-left;
-    animation-delay: 2;
-    animation-duration: 0.5;
+    animation-delay: 1;
+    animation-duration: 0.7;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
     opacity: 0;

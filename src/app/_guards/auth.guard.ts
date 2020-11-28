@@ -31,6 +31,7 @@ export class AuthGuard implements CanActivate {
         if (hasKey("username") && hasKey('password')) {
           this.authService.login(getString("username"), getString('password')).subscribe(() => {
             this.navigation(token);
+            console.log('token after auto login', token.exp)
           });
         }
         return true;

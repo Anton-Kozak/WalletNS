@@ -2,15 +2,15 @@
 <ScrollView>
     <StackLayout class="background">
         <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'">
-            <StackLayout class="card-stats" shadow="25">
+            <StackLayout class="card-stats anim-delay" shadow="25">
                 <StackLayout class="card-body">
                     <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                         <StackLayout col="0" row="0" class="card-icon">
-                            <Label class="far icon-text" color="#28a745" text="&#xf080;"></Label>
+                            <Label class="far icon-text" color="#972600" text="&#xf080;"></Label>
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label textWarp="true" text="Most Used Category"></Label>
+                                <Label color="#972600" textWarp="true" text="Most Used Category"></Label>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="mostUsedCategory"></Label>
@@ -19,19 +19,19 @@
                     </GridLayout>
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
-                    <Label class="fas footer-icon" color="#28a745" text="&#xf885;"></Label>
+                    <Label class="fas footer-icon" color="#972600" text="&#xf885;"></Label>
                     <Label class="footer-text" text="Number of expenses"></Label>
                 </FlexboxLayout>
             </StackLayout>
-            <StackLayout class="card-stats" shadow="25">
+            <StackLayout class="card-stats anim-delay-second" shadow="25">
                 <StackLayout class="card-body">
                     <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                         <StackLayout col="0" row="0" class="card-icon">
-                            <Label class="fas icon-text" color="#6c757d" text="&#xf161;"></Label>
+                            <Label class="fas icon-text" color="#B65509" text="&#xf161;"></Label>
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label textWarp="true" text="Most Spent Category"></Label>
+                                <Label color="#B65509" textWarp="true" text="Most Spent Category"></Label>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="mostSpentCategory"></Label>
@@ -40,19 +40,19 @@
                     </GridLayout>
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
-                    <Label class="fas footer-icon" color="#6c757d" text="&#xf885;"></Label>
+                    <Label class="fas footer-icon" color="#B65509" text="&#xf885;"></Label>
                     <Label class="footer-text" text="Category with the largest expenses"></Label>
                 </FlexboxLayout>
             </StackLayout>
-            <StackLayout class="card-stats" shadow="25">
+            <StackLayout class="card-stats anim-delay-third" shadow="25">
                 <StackLayout class="card-body">
                     <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                         <StackLayout col="0" row="0" class="card-icon">
-                            <Label class="fas icon-text" color="#ffc107" text="&#xf51e;"></Label>
+                            <Label class="fas icon-text" color="#F38C13" text="&#xf51e;"></Label>
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label fontSize="17" textWarp="true" text="Average Daily Expenses"></Label>
+                                <Label fontSize="17" color="#F38C13" textWarp="true" text="Average Daily Expenses"></Label>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="avgDailyExpenses"></Label>
@@ -61,19 +61,19 @@
                     </GridLayout>
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
-                    <Label class="fas footer-icon" color="#ffc107" text="&#xf885;"></Label>
+                    <Label class="fas footer-icon" color="#F38C13" text="&#xf885;"></Label>
                     <Label class="footer-text" text="Average per 1 day"></Label>
                 </FlexboxLayout>
             </StackLayout>
-            <StackLayout class="card-stats" shadow="25">
+            <StackLayout class="card-stats anim-delay-fourth" shadow="25">
                 <StackLayout class="card-body">
                     <GridLayout columns="3*, 7*" rows="auto" class="card-row">
                         <StackLayout col="0" row="0" class="card-icon">
-                            <Label class="fas icon-text" color="#007bff" text="&#xf688;"></Label>
+                            <Label class="fas icon-text" color="#ebcf8f" text="&#xf688;"></Label>
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label text="Total Spent" color="#007bff"></Label>
+                                <Label text="Total Spent" color="#ebcf8f"></Label>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="amountOfMoneySpent"></Label>
@@ -82,12 +82,12 @@
                     </GridLayout>
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
-                    <Label class="fas footer-icon" color="#007bff" text="&#xf885;"></Label>
+                    <Label class="fas footer-icon" color="#ebcf8f" text="&#xf885;"></Label>
                     <Label class="footer-text" text="Total sum"></Label>
                 </FlexboxLayout>
             </StackLayout>
 
-            <StackLayout [visibility]="barExpenses !== null ? 'visible' : 'collapse'" class="card-chart">
+            <StackLayout [visibility]="barExpenses !== null ? 'visible' : 'collapse'" class="card-chart anim-delay-fourth">
                 <GridLayout height="600" rows="auto, *">
                     <StackLayout class="underline" row="0">
                         <Label class="card-title" text="Expenses Statistics"></Label>
@@ -118,9 +118,7 @@
                     <Label class="footer-text" text="Some text here just for testing"></Label>
                 </FlexboxLayout>
             </StackLayout>
-
-
-            <StackLayout [visibility]="lastSixMonths !== null ? 'visible' : 'collapse'" class="card-chart">
+            <StackLayout [visibility]="lastSixMonths !== null ? 'visible' : 'collapse'" class="card-chart anim-delay-fourth">
                 <GridLayout height="600" rows="auto, *">
                     <StackLayout class="outer-flex underline" row="0">
                         <Label class="card-title" text="Last Six Months"></Label>
@@ -138,10 +136,7 @@
                     <Label class="footer-text" text="Just text for testing"></Label>
                 </FlexboxLayout>
             </StackLayout>
-
-
-
-            <StackLayout *ngIf="expenses !== null" class="card-stats" shadow="25">
+            <StackLayout *ngIf="expenses !== null" class="card-stats m-b-20" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
