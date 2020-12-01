@@ -47,12 +47,12 @@ export class AuthGuard implements CanActivate {
     if (token.hasWallet === 'true') {
       console.log('go to wallet section');
       this.authService.isLoggedIn.next(true);
-      this.router.navigate(['/home']);
+      this.router.navigate(['wallet/home']);
     }
     else {
       console.log('go to wallet creation section');
       this.authService.isLoggedIn.next(false);
-      this.router.navigate(['/no-wallet']);
+      this.router.navigate(['wallet/no-wallet']);
     }
     return false;
   }

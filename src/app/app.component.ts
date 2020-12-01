@@ -104,11 +104,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     prevItem: number;
     onItemTap(path: string, addPath?: string) {
         if (addPath === undefined)
-            this.router.navigate(['/' + path], { clearHistory: true });
+            this.router.navigate(['/wallet/' + path], { clearHistory: true });
         else
-            this.router.navigate(['/' + addPath], { clearHistory: true });
+            this.router.navigate(['/wallet/' + addPath], { clearHistory: true });
         // console.log('current route:', this.router.router.url.replace('/wallet/', ''));
-        let replace = this.router.router.url.replace('/', '');
+        let replace = this.router.router.url.replace('/wallet/', '');
         let replace2 = replace.replace(/(\/.*)/, '');
         // console.log('replace', replace);
         let st: StackLayout = this.stack.nativeElement;

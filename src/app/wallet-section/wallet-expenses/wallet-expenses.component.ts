@@ -56,6 +56,7 @@ export class WalletExpensesComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log('wallet expenses started');
     this.expenseService.updateHeaders();
     //this.id = this.authService.getToken().nameid;
     this.isLoading = true;
@@ -155,6 +156,7 @@ export class WalletExpensesComponent implements OnInit {
         this.dailyExpenses = expenses;
       });
       this.isLoading = false;
+      console.log('isloading:', this.isLoading);
     });
     this.route.data.subscribe(data => {
       this.categories = data['categories'];

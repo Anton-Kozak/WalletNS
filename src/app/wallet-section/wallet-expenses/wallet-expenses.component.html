@@ -88,6 +88,7 @@
                 </StackLayout>
 
                 <StackLayout *ngIf="currentSelectedDate !== null" class="card-stats anim-delay-second" shadow="25" elevation="15">
+                    <Label class="card-title underline text-center m-t-10" text="Daily Expenses"></Label>
                     <FlexboxLayout class="date-selection anim">
                         <Button class="dark-button" text="Prev" (tap)="changeDay(0)"></Button>
                         <Label class="date-value" [text]="currentSelectedDate"></Label>
@@ -95,17 +96,17 @@
                     </FlexboxLayout>
                     <StackLayout class="card-body">
                         <StackLayout class="card-table">
-                            <FlexboxLayout class="row-cell-desc text-center">
+                            <FlexboxLayout class="row-cell-desc daily text-center">
                                 <Label class="user-item" text="User"></Label>
                                 <Label class="title-item" text="Title"></Label>
-                                <Label class="title-item" text="Category"></Label>
+                                <Label class="category-item" text="Category"></Label>
                                 <Label class="date-item" text="Date"></Label>
                                 <Label class="money-item" text="$"></Label>
                             </FlexboxLayout>
-                            <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of dailyExpenses">
+                            <FlexboxLayout class="row-cell-data daily text-center" *ngFor="let expense of dailyExpenses">
                                 <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
                                 <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                                <Label class="title-item" [text]="expense.expenseCategory" textWrap="true"></Label>
+                                <Label class="category-item" [text]="expense.expenseCategory" textWrap="true"></Label>
                                 <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
                                 <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
                             </FlexboxLayout>

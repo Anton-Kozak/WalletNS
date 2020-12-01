@@ -9,15 +9,18 @@
             </FlexboxLayout>
             <StackLayout>
                 <StackLayout class="card-chart anim-delay">
-                    <GridLayout height="500" rows="*, 2*">
-                        <StackLayout row="0">
-                            <FlexboxLayout class="user-flex" *ngFor="let user of topFiveUsers; let i = index">
-                                <Label class="user-label" [backgroundColor]="userColors[i]"></Label>
-                                <Label [text]="user.userName" class="users"></Label>
+                    <GridLayout height="500" rows="auto, 2*">
+                        <StackLayout row="0" class="m-r-20 test underline">
+                            <Label class="title-label text-center m-b-20" text="Top Five Users"></Label>
+                            <!-- TODO: проверить когда много пользователей с длинными именами -->
+                            <FlexboxLayout flexWrap="wrap" justifyContent="space-around">
+                                <FlexboxLayout class="user-flex m-r-10" *ngFor="let user of topFiveUsers; let i = index">
+                                    <Label class="user-label" [backgroundColor]="userColors[i]"></Label>
+                                    <Label [text]="user.userName" class="users"></Label>
+                                </FlexboxLayout>
                             </FlexboxLayout>
-                            <Label class="title-label" text="Top Five Users"></Label>
                         </StackLayout>
-                        <RadPieChart allowAnimation="true" row="1">
+                        <RadPieChart row="1">
                             <DonutSeries seriesName="pieUsers" showLabels="true" tkPieSeries selectionMode="DataPoint" expandRadius="0.4" innerRadiusFactor="0.7" outerRadiusFactor="0.7" [items]="topFiveUsers" valueProperty="sum" legendLabel="userName">
                                 <PointLabelStyle tkDonutLabelStyle strokeColor="black" textColor="white"></PointLabelStyle>
                             </DonutSeries>

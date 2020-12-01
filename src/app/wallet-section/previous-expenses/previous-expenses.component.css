@@ -28,7 +28,7 @@ ChartAxisLabel {
 }
 
 .users {
-    color: var(--yellow);
+    color: white;
     font-size: 15;
     margin-left: 5;
 }
@@ -59,3 +59,9 @@ ChartAxisLabel {
     align-items: center;
     margin-top: 10;
 }
+
+
+/* .test {
+    border-width: 1;
+    border-color: red;
+} */

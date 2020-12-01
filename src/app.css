@@ -130,6 +130,14 @@ Button.-primary {
     color: var(--yellow);
 }
 
+.underline {
+    border-bottom-width: 0.3;
+    border-color: var(--yellow);
+    margin-right: 10;
+    margin-left: 10;
+    padding-bottom: 15;
+}
+
 
 /* animations */
 
