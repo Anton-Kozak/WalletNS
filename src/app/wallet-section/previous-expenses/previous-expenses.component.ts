@@ -48,14 +48,8 @@ export class PreviousExpensesComponent implements OnInit {
     this.date.setMonth(this.date.getMonth() - 1);
     this.year = moment(this.date).format('YYYY');
     this.monthName = moment(this.date).format('MMMM');
-    if (this.walletService.currentCategories.length === 0) {
-      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-        this.walletService.currentCategories = data;
-        this.categories = this.walletService.currentCategories;
-      });
-    } else {
-      this.categories = this.walletService.currentCategories;
-    }
+    this.categories = this.walletService.currentCategories;
+
     // this.walletService.getCurrentWallet().subscribe(wallet=>{
     //   this.walletCurrency = wallet['currency'];
     // })
@@ -76,7 +70,7 @@ export class PreviousExpensesComponent implements OnInit {
     this.expenseService.getPreviousExpenses(date.toUTCString()).subscribe((expenses: ExpensesWithCategories[]) => {
       this.isLoading = true;
       let barArr: ExpenseForBar[] = [];
-      console.log('get data prev expenses, categofris from prev exp: ', this.categories);
+      //console.log('get data prev expenses, categofris from prev exp: ', this.categories);
       for (let i = 0; i < expenses['previousExpensesBars'].length; i++) {
         //console.log(expenses['previousExpensesBars'][i]);
         barArr.push({ Amount: expenses['previousExpensesBars'][i]['categoryExpenses'], Category: this.categories[i].title })

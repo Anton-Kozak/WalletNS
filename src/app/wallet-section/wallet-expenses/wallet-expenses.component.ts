@@ -77,6 +77,7 @@ export class WalletExpensesComponent implements OnInit {
       this.checkLimit();
       this.expenseService.showAllExpenses();
       this.expenseService.firstSubject.subscribe(exp => {
+        console.log('exp', exp);
         if (exp != null) {
           this.first.expenses = exp;
           this.first.categoryName = this.expenseService.firstExpenses.categoryName;

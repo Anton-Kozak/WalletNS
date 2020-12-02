@@ -21,6 +21,7 @@ export class WalletStatisticsComponent implements OnInit {
   userColors: string[] = ['#EAA219', '#D77D13', '#C4590C', '#B03406', '#9D1000'];
 
   isLoading: boolean;
+  hasExpenseData = false;
   avgDailyExpenses: number;
   mostSpentCategory: string;
   mostUsedCategory: string;
@@ -35,15 +36,16 @@ export class WalletStatisticsComponent implements OnInit {
   hasPreviousMonths: boolean;
   ngOnInit(): void {
     this.expService.updateHeaders();
-    if (this.walletService.currentCategories.length === 0) {
-      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-        this.walletService.currentCategories = data;
-        this.categories = this.walletService.currentCategories;
-      },
-        error => {
-          console.log(error);
-        });
-    } else
+    // if (this.walletService.currentCategories.length === 0) {
+    //   this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+    //     this.walletService.currentCategories = data;
+    //     this.categories = this.walletService.currentCategories;
+    //   },
+    //     error => {
+    //       console.log(error);
+    //     });
+    // } 
+    // else
       this.categories = this.walletService.currentCategories;
     this.isLoading = true;
     this.expService.getWalletStatistics(new Date(Date.now()).toUTCString()).subscribe(response => {
@@ -77,7 +79,7 @@ export class WalletStatisticsComponent implements OnInit {
         this.lastSixMonths = new ObservableArray([...monthArr]).reverse();
         //this.topFiveUsers = response['topFiveUsers'];
         //TODO: разобраться с интерфейсами чтобы не делать эти махинации с созданием ещё одних массивов
-        response['topFiveUsers'].forEach((val, i) => {
+        response['topFiveUsers'].forEach((val) => {
           this.topFiveUsers.push({ Amount: val['sum'], userName: val['userName'] })
         });
         let barArr: ExpenseForBar[] = [];
@@ -87,7 +89,7 @@ export class WalletStatisticsComponent implements OnInit {
         this.barExpenses = new ObservableArray([...barArr]);
         this.mostUsedCategory = response['mostUsedCategory'];
         this.mostSpentCategory = response['mostSpentCategory'];
-
+        this.hasExpenseData = true;
       }
       this.walletMembers = response['walletUsers'];
       this.isLoading = false;

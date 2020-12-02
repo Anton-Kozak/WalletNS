@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         })
         console.log('current route:', this.router.router.url);
         console.log('element with sidebar initiated');
-        console.log('id', this.id);
+
         if (isAndroid) {
             app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
                 data.cancel = true;
@@ -87,18 +87,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.userName = this.authService.getToken()['unique_name'];
 
         this.id = this.authService.getToken().nameid;
-
-        if (this.walletService.currentCategories.length === 0) {
-            this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-                this.walletService.currentCategories = data;
-                this.categoryTitles = this.walletService.currentCategories;
-                this.getIcons();
-            });
-        }
-        else {
+        console.log('id', this.id);
+        this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+            console.log('categories for first start of app: ', data);
+            this.walletService.currentCategories = data;
             this.categoryTitles = this.walletService.currentCategories;
             this.getIcons();
-        }
+        });
+        // else {
+        //     this.categoryTitles = this.walletService.currentCategories;
+        //     console.log('categories exist:', this.categoryTitles, 'existing categories in wallet service: ', this.walletService.currentCategories);
+        //     this.getIcons();
+        // }
     }
 
     prevItem: number;

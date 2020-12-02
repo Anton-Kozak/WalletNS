@@ -115,7 +115,7 @@
                 </StackLayout>
             </android>
             <!-- first -->
-            <StackLayout *ngIf="first.expenses !== null" class="card-stats anim-delay-third" shadow="25">
+            <StackLayout *ngIf="first.expenses.length > 0" class="card-stats anim-delay-third" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -139,7 +139,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 2 -->
-            <StackLayout *ngIf="second.expenses !== null" class="card-stats anim-delay-fourth" shadow="25">
+            <StackLayout *ngIf="second.expenses.length > 0" class="card-stats anim-delay-fourth" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -163,7 +163,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 3 -->
-            <StackLayout *ngIf="third.expenses !== null" class="card-stats anim-delay-fourth" shadow="25">
+            <StackLayout *ngIf="third.expenses.length > 0" class="card-stats anim-delay-fourth" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -187,7 +187,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 4 -->
-            <StackLayout *ngIf="fourth.expenses !== null" class="card-stats" shadow="25">
+            <StackLayout *ngIf="fourth.expenses.length > 0" class="card-stats" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -210,9 +210,8 @@
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
-
             <!-- 5 -->
-            <StackLayout *ngIf="fifth.expenses !== null" class="card-stats" shadow="25">
+            <StackLayout *ngIf="fifth.expenses.length > 0" class="card-stats" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -236,7 +235,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 6 -->
-            <StackLayout *ngIf="sixth.categoryId !== 0" class="card-stats" shadow="25">
+            <StackLayout *ngIf="sixth.categoryId !== 0 && sixth.expenses.length > 0" class="card-stats" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -260,7 +259,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 7 -->
-            <StackLayout *ngIf="seventh.categoryId !== 0" class="card-stats" shadow="25">
+            <StackLayout *ngIf="seventh.categoryId !== 0 && seventh.expenses.length > 0" class="card-stats" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -284,7 +283,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 8 -->
-            <StackLayout *ngIf="eigth.categoryId !== 0" class="card-stats" shadow="25">
+            <StackLayout *ngIf="eigth.categoryId !== 0 && eigth.expenses.length > 0" class="card-stats" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -308,7 +307,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 9 -->
-            <StackLayout *ngIf="nineth.categoryId !== 0" class="card-stats" shadow="25">
+            <StackLayout *ngIf="nineth.categoryId !== 0 && nineth.expenses.length > 0" class="card-stats" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">
@@ -332,7 +331,7 @@
                 </StackLayout>
             </StackLayout>
             <!-- 10 -->
-            <StackLayout *ngIf="tenth.categoryId !== 0" class="card-stats" shadow="25">
+            <StackLayout *ngIf="tenth.categoryId !== 0 && tenth.expenses.length > 0" class="card-stats" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
                         <StackLayout class="card-title text-center">

@@ -1,7 +1,7 @@
 <ns-action-bar [pageTitle]="'User Statistics'"></ns-action-bar>
 <ScrollView>
     <StackLayout class="background">
-        <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'">
+        <StackLayout [visibility]="!isLoading && amountOfMoneySpent > 0 ? 'visible' : 'collapse'">
             <StackLayout class="card-stats anim-delay" shadow="25">
                 <StackLayout class="card-body">
                     <GridLayout columns="3*, 7*" rows="auto" class="card-row">
@@ -161,6 +161,9 @@
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
+        </StackLayout>
+        <StackLayout class="card-stats text-center p-20" [visibility]="!isLoading && amountOfMoneySpent === 0 ? 'visible' : 'collapse'">
+            <Label class="card-title" text="This user has not spent this month!"></Label>
         </StackLayout>
         <FlexboxLayout [visibility]="isLoading ? 'visible' : 'collapse'" class="spinner">
             <ActivityIndicator [busy]="isLoading" color="#ffb204" width="100" height="100"></ActivityIndicator>

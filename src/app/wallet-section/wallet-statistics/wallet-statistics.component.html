@@ -1,7 +1,7 @@
 <ns-action-bar [pageTitle]="'Wallet Statistics'"></ns-action-bar>
 <ScrollView>
     <StackLayout class="background">
-        <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'">
+        <StackLayout [visibility]="!isLoading && hasExpenseData ? 'visible' : 'collapse'">
             <StackLayout class="card-stats anim-delay" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
@@ -104,7 +104,7 @@
                 </FlexboxLayout>
             </StackLayout>
 
-            <StackLayout *ngIf="topFiveUsers.length > 0" class="card-chart m-b-20">
+            <StackLayout *ngIf="topFiveUsers.length > 1" class="card-chart m-b-20">
                 <GridLayout height="500" rows="auto, auto, *">
                     <StackLayout class="outer-flex underline" row="0">
                         <Label class="card-title" text="Wallet Users Expenses"></Label>
@@ -122,22 +122,26 @@
                             <PointLabelStyle tkDonutLabelStyle strokeColor="black" textColor="white"></PointLabelStyle>
                         </DonutSeries>
                         <Palette tkPiePalette seriesName="pieUsers">
-                            <PaletteEntry tkPiePaletteEntry fillColor="#EAA219" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
+                            <PaletteEntry tkPiePaletteEntry fillColor="#EAA219" strokeWidth="1" strokeColor="#EAA219"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#D77D13" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#C4590C" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#B03406" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                             <PaletteEntry tkPiePaletteEntry fillColor="#9D1000" strokeWidth="1" strokeColor="#680A00"></PaletteEntry>
                         </Palette>
-                        <!-- разобраться как делать выделение нужным ццветмом -->
-                        <Palette tkPiePalette seriesName="pieUsers" seriesState="Selected">
-                            <PaletteEntry tkPiePaletteEntry fillColor="#7df0bd" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#ed8c7b" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                            <PaletteEntry tkPiePaletteEntry fillColor="#edc37b" strokeWidth="0.5" strokeColor="black"></PaletteEntry>
-                        </Palette>
                     </RadPieChart>
                 </GridLayout>
             </StackLayout>
 
+            <StackLayout *ngIf="topFiveUsers.length === 1" class="card-chart m-b-20">
+                <StackLayout class="outer-flex underline" row="0">
+                    <Label class="card-title" text="Wallet Users Expenses"></Label>
+                    <Label class="card-description" text="With Most Expenses"></Label>
+                </StackLayout>
+                <StackLayout class="m-20 text-center">
+                    <Label class="card-description" [text]="topFiveUsers[0].userName + ' has spent ' + topFiveUsers[0].Amount"></Label>
+                    <Label class="card-description" textWrap="true" text="This user is the only one who has spent this month"></Label>
+                </StackLayout>
+            </StackLayout>
 
             <StackLayout [visibility]="barExpenses !== null ? 'visible' : 'collapse'" class="card-chart">
                 <GridLayout height="600" rows="auto, *">
@@ -211,6 +215,9 @@
                     </RadCartesianChart>
                 </GridLayout>
             </StackLayout>
+        </StackLayout>
+        <StackLayout class="card-stats text-center p-20" [visibility]="!isLoading && !hasExpenseData ? 'visible' : 'collapse'">
+            <Label class="card-title" text="There are no expenses this month!"></Label>
         </StackLayout>
         <FlexboxLayout [visibility]="isLoading ? 'visible' : 'collapse'" class="spinner">
             <ActivityIndicator [busy]="isLoading" color="#ffb204" width="100" height="100"></ActivityIndicator>

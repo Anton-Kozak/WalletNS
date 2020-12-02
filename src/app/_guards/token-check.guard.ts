@@ -31,8 +31,8 @@ export class TokenCheckGuard implements CanActivateChild {
         if (hasKey("username") && hasKey('password')) {
           //если пароль есть, то идем на автологин
           this.authService.login(getString("username"), getString('password')).subscribe(() => {
-            this.navigation(token);
             console.log('token after auto login', token.exp);
+            this.router.navigate(['wallet/' + childRoute.url]);
             return true;
           });
         }

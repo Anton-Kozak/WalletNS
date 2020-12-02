@@ -77,7 +77,8 @@ export class UserStatisticsComponent implements OnInit {
       this.expService.getUserExpenses(this.id, new Date(Date.now()).toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses = expensesRecieved;
       })
-      if (response['amountOfMoneySpent'] != 0) {
+      this.amountOfMoneySpent = response['amountOfMoneySpent'];
+      if (this.amountOfMoneySpent != 0) {
         this.avgDailyExpenses = response['averageDailyExpense'];
         this.currentMonthDataToCompare = response['monthCompareData']['currentMonthData'];
         this.lastMonthDataToCompare = response['monthCompareData']['lastMonthData'];
@@ -89,7 +90,6 @@ export class UserStatisticsComponent implements OnInit {
         this.lastSixMonths = response['lastSixMonths'].reverse();
         this.mostUsedCategory = response['mostUsedCategory'];
         this.mostSpentCategory = response['mostSpentCategory'];
-        this.amountOfMoneySpent = response['amountOfMoneySpent'];
       }
       this.isLoading = false;
       //console.log('l', this.tableBody.length);
