@@ -64,13 +64,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     ngOnInit(): void {
+        this.walletService.currentCategories.subscribe(categories => {
+            this.categoryTitles = categories;
+        })
         this.authService.isLoggedIn.subscribe((value: boolean) => {
             this.showWalletItems = value;
             console.log('value of showwalletites', this.showWalletItems)
         })
-        console.log('current route:', this.router.router.url);
-        console.log('element with sidebar initiated');
-
         if (isAndroid) {
             app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
                 data.cancel = true;
@@ -87,18 +87,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.userName = this.authService.getToken()['unique_name'];
 
         this.id = this.authService.getToken().nameid;
-        console.log('id', this.id);
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
             console.log('categories for first start of app: ', data);
-            this.walletService.currentCategories = data;
-            this.categoryTitles = this.walletService.currentCategories;
+            this.walletService.currentCategories.next(data);
             this.getIcons();
         });
-        // else {
-        //     this.categoryTitles = this.walletService.currentCategories;
-        //     console.log('categories exist:', this.categoryTitles, 'existing categories in wallet service: ', this.walletService.currentCategories);
-        //     this.getIcons();
-        // }
     }
 
     prevItem: number;

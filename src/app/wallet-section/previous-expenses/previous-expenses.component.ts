@@ -48,8 +48,9 @@ export class PreviousExpensesComponent implements OnInit {
     this.date.setMonth(this.date.getMonth() - 1);
     this.year = moment(this.date).format('YYYY');
     this.monthName = moment(this.date).format('MMMM');
-    this.categories = this.walletService.currentCategories;
-
+    this.walletService.currentCategories.subscribe(value => {
+      this.categories = value;
+    });
     // this.walletService.getCurrentWallet().subscribe(wallet=>{
     //   this.walletCurrency = wallet['currency'];
     // })

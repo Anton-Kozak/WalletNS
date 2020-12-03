@@ -29,17 +29,9 @@ export class CreateExpenseComponent implements OnInit {
       'category': new FormControl('', [Validators.required]),
       'money': new FormControl('', Validators.required)
     })
-    if (this.walletService.currentCategories.length === 0) {
-      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-        this.walletService.currentCategories = data;
-        this.categoryTitles = this.walletService.currentCategories;
-        console.log('titles', this.categoryTitles);
-      });
-    }
-    else {
-      this.categoryTitles = this.walletService.currentCategories;
-      console.log('titles', this.categoryTitles);
-    }
+    this.walletService.currentCategories.subscribe(value => {
+      this.categoryTitles = value;
+    });
   }
 
   createExpense() {

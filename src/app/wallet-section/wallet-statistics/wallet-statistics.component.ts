@@ -36,7 +36,9 @@ export class WalletStatisticsComponent implements OnInit {
   hasPreviousMonths: boolean;
   ngOnInit(): void {
     this.expService.updateHeaders();
-    this.categories = this.walletService.currentCategories;
+    this.walletService.currentCategories.subscribe(value => {
+      this.categories = value;
+    });
     this.isLoading = true;
     this.expService.getWalletStatistics(new Date(Date.now()).toUTCString()).subscribe(response => {
       this.avgDailyExpenses = response['averageDailyExpense'];

@@ -4,7 +4,8 @@
 
 .label {
     text-align: center;
-    font-size: 23;
+    font-size: 17;
+    margin-top: 5;
 }
 
 .label-title {
@@ -29,7 +30,7 @@ Label {
     font-size: 20;
 }
 
-.picker {
+.section {
     border-top-color: #ffb204;
     border-top-width: 0.3;
     border-bottom-color: #ffb204;
@@ -37,4 +38,13 @@ Label {
     color: #ffb204;
     background-color: #303030;
     width: 100%;
+}
+
+.picker {
+    width: 60%;
+}
+
+.main {
+    margin-top: 20;
+    margin-bottom: 20;
 }

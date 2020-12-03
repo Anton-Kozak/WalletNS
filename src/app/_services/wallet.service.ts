@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { CategoryData } from '../_models/categoryData';
 import { getString } from 'tns-core-modules/application-settings';
 import { UserForProfileEdit } from '../_models/user-for-profile-edit';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -21,7 +22,7 @@ export class WalletService {
 
   currentWallet: Wallet;
 
-  currentCategories: CategoryData[] = [];
+  currentCategories = new BehaviorSubject<CategoryData[]>([]);
 
   headers = new HttpHeaders({
     "Authorization": "Bearer " + getString('token')

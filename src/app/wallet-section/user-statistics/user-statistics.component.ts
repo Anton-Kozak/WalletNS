@@ -61,13 +61,9 @@ export class UserStatisticsComponent implements OnInit {
     if (userId === this.id)
       this.isThisUser = true;
     console.log('id', this.id);
-    if (this.walletService.currentCategories.length === 0) {
-      this.walletService.getWalletsCategories().subscribe((categories: CategoryData[]) => {
-        this.walletService.currentCategories = categories;
-        this.categories = this.walletService.currentCategories;
-      });
-    } else
-      this.categories = this.walletService.currentCategories;
+    this.walletService.currentCategories.subscribe(value => {
+      this.categories = value;
+    });
 
 
     this.isLoading = true;

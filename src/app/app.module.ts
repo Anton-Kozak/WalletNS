@@ -16,7 +16,6 @@ import { AppComponent } from "./app.component";
 import { CreateWalletComponent } from './initial-pages/create-wallet/create-wallet.component';
 import { CheckInvitesComponent } from './initial-pages/check-invites/check-invites.component';
 import { CreateRequestComponent } from './initial-pages/create-request/create-request.component';
-import { WalletSectionComponent } from './wallet-section/wallet-section.component';
 import { HomeComponent } from './wallet-section/home/home.component';
 import { WalletExpensesComponent } from './wallet-section/wallet-expenses/wallet-expenses.component';
 import { NoWalletComponent } from './initial-pages/no-wallet/no-wallet.component';
@@ -57,7 +56,6 @@ import { NewImageComponent } from './wallet-section/profile/new-image/new-image.
         CreateWalletComponent,
         CheckInvitesComponent,
         CreateRequestComponent,
-        WalletSectionComponent,
         HomeComponent,
         WalletExpensesComponent,
         NoWalletComponent,

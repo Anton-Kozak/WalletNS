@@ -6,6 +6,8 @@ import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-cor
 import { isAndroid } from "tns-core-modules/platform";
 import { exit } from 'nativescript-exit';
 import { Router } from '@angular/router';
+import { WalletService } from '../../_services/wallet.service';
+import { CategoryData } from '../../_models/categoryData';
 @Component({
   selector: 'ns-home',
   templateUrl: './home.component.html',
@@ -14,8 +16,12 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   members: { name: string, roles: string[] }[] = [];
-  constructor(private router: Router) { }
+  constructor(private router: Router, private walletService: WalletService) { }
   ngOnInit(): void {
+    if (this.walletService.currentCategories.value !== null)
+      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+        this.walletService.currentCategories.next(data);
+      });
 
     if (!isAndroid) {
       return;

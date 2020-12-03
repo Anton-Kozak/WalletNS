@@ -1,47 +1,37 @@
 <ScrollView>
-    <StackLayout class="outer background">
+    <StackLayout class="outer background" *ngIf="categoryTitles !== null">
         <StackLayout [formGroup]="newExpenseForm">
-            <Label fontSize="25" class="text-center" text="Select category of your expense"></Label>
-            <ListPicker class="picker" #selectedCategory [items]="categoryTitles" textField="title" valueField="id" selectedIndex="0"></ListPicker>
-            <StackLayout>
-                <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
+            <StackLayout class="section">
+                <Label fontSize="25" class="text-center" text="Select category of your expense"></Label>
+                <ListPicker class="picker" #selectedCategory [items]="categoryTitles" textField="title" valueField="id" selectedIndex="0"></ListPicker>
+            </StackLayout>
+            <StackLayout class="section main">
+                <StackLayout>
+                    <Label text="Limit" [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
                     'bg-success text-white': !newExpenseForm.get('title').errors}" text="Expense Title" class="label"></Label>
-                <TextField [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
-                    'is-valid': !newExpenseForm.get('title').errors}" type="number" formControlName="title" class="form-control"></TextField>
-            </StackLayout>
-            <StackLayout *ngIf="newExpenseForm.get('title').hasError('required') && newExpenseForm.get('title').touched" class="invalid-feedback">
-                <Label text="Title is required"></Label>
-            </StackLayout>
-            <StackLayout *ngIf="newExpenseForm.get('title').hasError('minlength') && newExpenseForm.get('title').touched" class="invalid-feedback">
-                <Label text=" Title should be at least 4 characters required"></Label>
-            </StackLayout>
-            <StackLayout *ngIf="newExpenseForm.get('title').hasError('maxlength') && newExpenseForm.get('title').touched" class="invalid-feedback">
-                <Label text="Title should be no longer than 16 characters"></Label>
-            </StackLayout>
-
-            <StackLayout>
-                <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
+                    <TextField [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
+                    'is-valid': !newExpenseForm.get('title').errors}" type="number" formControlName="title"></TextField>
+                    <Label *ngIf="newExpenseForm.get('title').hasError('required') && newExpenseForm.get('title').touched" class="invalid-feedback" text="Title is required"></Label>
+                    <Label *ngIf="newExpenseForm.get('title').hasError('minlength') && newExpenseForm.get('title').touched" class="invalid-feedback" text=" Title should be at least 4 characters required"></Label>
+                    <Label *ngIf="newExpenseForm.get('title').hasError('maxlength') && newExpenseForm.get('title').touched" class="invalid-feedback" text="Title should be no longer than 16 characters"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label text="Limit" [ngClass]="{'invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
                     'bg-success text-white': !newExpenseForm.get('desc').errors}" text="Expense Description" class="label"></Label>
-                <TextField [ngClass]="{'invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
-                    'is-valid': !newExpenseForm.get('desc').errors}" formControlName="desc" class="form-control"></TextField>
+                    <TextField [ngClass]="{'invalid': newExpenseForm.get('desc').errors && newExpenseForm.get('desc').touched,
+                    'is-valid': !newExpenseForm.get('desc').errors}" formControlName="desc"></TextField>
+                    <Label *ngIf="newExpenseForm.get('desc').hasError('minlength') && newExpenseForm.get('desc').touched" class="invalid-feedback" text="Description should be at least 4 characters required"></Label>
+                    <Label *ngIf="newExpenseForm.get('desc').hasError('maxlength') && newExpenseForm.get('desc').touched" class="invalid-feedback" text="Description should be no longer than 20 characters"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label text="Limit" [ngClass]="{'invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
+                    'bg-success text-white': !newExpenseForm.get('money').errors}" text="Money" class="label"></Label>
+                    <TextField [ngClass]="{'invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
+                    'is-valid': !newExpenseForm.get('money').errors}" type="number" formControlName="money"></TextField>
+                    <Label *ngIf="newExpenseForm.get('money').hasError('required') && newExpenseForm.get('money').touched" class="invalid-feedback" text="Money required"></Label>
+                </StackLayout>
             </StackLayout>
-            <StackLayout *ngIf="newExpenseForm.get('desc').hasError('minlength') && newExpenseForm.get('desc').touched" class="invalid-feedback">
-                <Label text="Description should be at least 4 characters required"></Label>
-            </StackLayout>
-            <StackLayout *ngIf="newExpenseForm.get('desc').hasError('maxlength') && newExpenseForm.get('desc').touched" class="invalid-feedback">
-                <Label text="Description should be no longer than 20 characters"></Label>
-            </StackLayout>
-
-            <StackLayout>
-                <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
-                    'bg-success text-white': !newExpenseForm.get('money').errors}" text="$" class="label"></Label>
-                <TextField [ngClass]="{'invalid': newExpenseForm.get('money').errors && newExpenseForm.get('money').touched,
-                    'is-valid': !newExpenseForm.get('money').errors}" type="number" formControlName="money" class="form-control"></TextField>
-            </StackLayout>
-            <StackLayout *ngIf="newExpenseForm.get('money').hasError('required') && newExpenseForm.get('money').touched" class="invalid-feedback">
-                <Label text="Money required"></Label>
-            </StackLayout>
-            <Button (tap)="createExpense()" class="yellow-button" [ngClass]="{'-outline-success': newExpenseForm.valid}" text="Add expense"></Button>
+            <Button (tap)="createExpense()" class="yellow-button" isEnabled="{{newExpenseForm.valid}}" text="Add expense"></Button>
         </StackLayout>
         <Button text="Back" (tap)="back()" class="yellow-button"></Button>
     </StackLayout>

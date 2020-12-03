@@ -10,18 +10,19 @@
         <StackLayout *ngIf="userForEdit !== null" class="profile">
             <StackLayout [formGroup]="editProfileForm">
                 <StackLayout>
-                    <Label text="Company" class="input-group-text" [ngClass]="{'text-danger': editProfileForm.get('company').errors && editProfileForm.get('company').touched,
+                    <Label text="Company" [ngClass]="{'text-danger': editProfileForm.get('company').errors && editProfileForm.get('company').touched,
                     'text-success': !editProfileForm.get('company').errors}"></Label>
                     <TextField [ngClass]="{'invalid': editProfileForm.get('company').errors && editProfileForm.get('company').touched,
-                        'is-valid': !editProfileForm.get('company').errors}" formControlName="company" class="form-control"></TextField>
+                        'is-valid': !editProfileForm.get('company').errors}" formControlName="company"></TextField>
                     <Label *ngIf="editProfileForm.get('company').hasError('minlength') && editProfileForm.get('company').touched" class="invalid-feedback" text="Company should be at least 2 characters required"></Label>
                     <Label *ngIf="editProfileForm.get('company').hasError('maxlength') && editProfileForm.get('company').touched" class="invalid-feedback" text="Company should be no longer than 32 characters"></Label>
                 </StackLayout>
+
                 <StackLayout>
-                    <Label text="Username" class="input-group-text" [ngClass]="{'text-danger': editProfileForm.get('username').errors && editProfileForm.get('username').touched,
+                    <Label text="Username" [ngClass]="{'text-danger': editProfileForm.get('username').errors && editProfileForm.get('username').touched,
                     'text-success': !editProfileForm.get('username').errors}"></Label>
                     <TextField [ngClass]="{'invalid': editProfileForm.get('username').errors && editProfileForm.get('username').touched,
-                        'is-valid': !editProfileForm.get('username').errors}" formControlName="username" class="form-control"></TextField>
+                        'is-valid': !editProfileForm.get('username').errors}" formControlName="username"></TextField>
                     <Label *ngIf="editProfileForm.get('username').hasError('required') && editProfileForm.get('username').touched" class="invalid-feedback" text="Title is required"></Label>
                     <Label *ngIf="editProfileForm.get('username').hasError('maxlength') && editProfileForm.get('username').touched" class="invalid-feedback" text="Username should be no longer than 16 characters"></Label>
                 </StackLayout>
@@ -30,7 +31,7 @@
                     <Label text="Email" class="input-group-text" [ngClass]="{'text-danger': editProfileForm.get('email').errors && editProfileForm.get('email').touched,
                     'text-success': !editProfileForm.get('email').errors}"></Label>
                     <TextField [ngClass]="{'invalid': editProfileForm.get('email').errors && editProfileForm.get('email').touched,
-                        'is-valid': !editProfileForm.get('email').errors}" formControlName="email" class="form-control"></TextField>
+                        'is-valid': !editProfileForm.get('email').errors}" formControlName="email"></TextField>
                     <Label *ngIf="editProfileForm.get('email').hasError('required') && editProfileForm.get('email').touched" class="invalid-feedback" text="Email is required"></Label>
                     <Label *ngIf="editProfileForm.get('email').hasError('maxlength') && editProfileForm.get('email').touched" class="invalid-feedback" text="Email should be no longer than 32 characters"></Label>
                 </StackLayout>
