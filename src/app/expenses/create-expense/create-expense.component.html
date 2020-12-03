@@ -1,9 +1,8 @@
 <ScrollView>
-    <StackLayout class="container">
+    <StackLayout class="outer background">
         <StackLayout [formGroup]="newExpenseForm">
-            <StackLayout>
-                <ListPicker #selectedCategory [items]="categoryTitles" textField="title" valueField="id" selectedIndex="0"></ListPicker>
-            </StackLayout>
+            <Label fontSize="25" class="text-center" text="Select category of your expense"></Label>
+            <ListPicker class="picker" #selectedCategory [items]="categoryTitles" textField="title" valueField="id" selectedIndex="0"></ListPicker>
             <StackLayout>
                 <Label text="Limit" class="input-group-text" [ngClass]="{'invalid': newExpenseForm.get('title').errors && newExpenseForm.get('title').touched,
                     'bg-success text-white': !newExpenseForm.get('title').errors}" text="Expense Title" class="label"></Label>
@@ -42,13 +41,8 @@
             <StackLayout *ngIf="newExpenseForm.get('money').hasError('required') && newExpenseForm.get('money').touched" class="invalid-feedback">
                 <Label text="Money required"></Label>
             </StackLayout>
-
-            <StackLayout class="form-group">
-                <Button (tap)="createExpense()" class="btn -outline -rounded-sm btn-block" [ngClass]="{'-outline-success': newExpenseForm.valid}" text="Add expense"></Button>
-            </StackLayout>
+            <Button (tap)="createExpense()" class="yellow-button" [ngClass]="{'-outline-success': newExpenseForm.valid}" text="Add expense"></Button>
         </StackLayout>
-        <StackLayout class="form-group">
-            <button text="Back" (tap)="back()" class="btn btn-outline-warning"></button>
-        </StackLayout>
+        <Button text="Back" (tap)="back()" class="yellow-button"></Button>
     </StackLayout>
 </ScrollView>
