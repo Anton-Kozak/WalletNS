@@ -5,6 +5,8 @@
 
 ActionBar {
     background-color: #1f1f1f;
+    border-bottom-color: var(--yellow);
+    border-bottom-width: 0.3;
 }
 
 .flex-bar {

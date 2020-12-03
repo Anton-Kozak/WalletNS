@@ -15,27 +15,27 @@
         </ScrollView>
         <ScrollView [visibility]="showWalletItems ? 'visible' : 'collapse'" row="1" class="nt-drawer__body">
             <StackLayout #stack>
-                <GridLayout id="home" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('home')">
+                <GridLayout id="home" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('/wallet/home')">
                     <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Home" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="walletExpenses" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletExpenses')">
+                <GridLayout id="walletExpenses" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('/wallet/walletExpenses')">
                     <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Wallet Expenses" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="previousExpenses" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('previousExpenses')">
+                <GridLayout id="previousExpenses" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('/wallet/previousExpenses')">
                     <Label col="0" text="&#xf015;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Previous Expenses" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="walletStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletStatistics')">
+                <GridLayout id="walletStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('/wallet/walletStatistics')">
                     <Label col="0" text="&#xf080;" fontSize="20" class="nt-icon far"></Label>
                     <Label col="1" text="Wallet Statistics" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="userStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('userStatistics', 'userStatistics/' + id )">
+                <GridLayout id="userStatistics" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('/wallet/userStatistics', '/wallet/userStatistics/' + id )">
                     <Label col="0" text="&#xf2bd;" fontSize="20" class="nt-icon far"></Label>
                     <Label col="1" text="User Statistics" class="item-list "></Label>
                 </GridLayout>
-                <GridLayout id="profile" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('profile')">
+                <GridLayout id="profile" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('/wallet/profile')">
                     <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Profile" class="item-list "></Label>
                 </GridLayout>

@@ -36,17 +36,7 @@ export class WalletStatisticsComponent implements OnInit {
   hasPreviousMonths: boolean;
   ngOnInit(): void {
     this.expService.updateHeaders();
-    // if (this.walletService.currentCategories.length === 0) {
-    //   this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-    //     this.walletService.currentCategories = data;
-    //     this.categories = this.walletService.currentCategories;
-    //   },
-    //     error => {
-    //       console.log(error);
-    //     });
-    // } 
-    // else
-      this.categories = this.walletService.currentCategories;
+    this.categories = this.walletService.currentCategories;
     this.isLoading = true;
     this.expService.getWalletStatistics(new Date(Date.now()).toUTCString()).subscribe(response => {
       this.avgDailyExpenses = response['averageDailyExpense'];

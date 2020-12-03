@@ -1,11 +1,11 @@
 <ns-action-bar></ns-action-bar>
 <ScrollView>
-    <StackLayout *ngIf="!isLoading" class="outer">
+    <StackLayout *ngIf="!isLoading" class="outer background">
         <StackLayout *ngIf="profileData" class="details">
             <Image class="avatar border-gray" src="{{ photo === null ? imagePath : photo.url}}" alt="..."></Image>
-            <Label text="{{profileData.editUser.firstName}} {{profileData.editUser.lastName}}"></Label>
-            <Label text="Joined {{getFormat(profileData.dateJoined)}}"></Label>
-            <Button (tap)="onImageChange()" text="Change photo"></Button>
+            <Label color="#B65509" fontSize="35" (tap)="onImageChange()" text="&#xf083;" class="fa"></Label>
+            <Label class="name" text="{{profileData.editUser.firstName}} {{profileData.editUser.lastName}}"></Label>
+            <Label class="joined" text="Joined {{getFormat(profileData.dateJoined)}}"></Label>
         </StackLayout>
         <StackLayout *ngIf="userForEdit !== null" class="profile">
             <StackLayout [formGroup]="editProfileForm">
@@ -83,7 +83,7 @@
                     <Label *ngIf="editProfileForm.get('country').hasError('minlength') && editProfileForm.get('country').touched" class="invalid-feedback" text="Country should be at least 2 characters required"></Label>
                     <Label *ngIf="editProfileForm.get('country').hasError('maxlength') && editProfileForm.get('country').touched" class="invalid-feedback" text="Country should be no longer than 32 characters"></Label>
                 </StackLayout>
-                <Button (tap)="editProfile()" [isEnabled]="!editProfileForm.invalid" [ngClass]="{'btn-success text-white': editProfileForm.valid, 'btn-danger text-white disabled': editProfileForm.invalid}" text="Edit"></Button>
+                <Button class="yellow-button" (tap)="editProfile()" [isEnabled]="!editProfileForm.invalid" [ngClass]="{'btn-success text-white': editProfileForm.valid, 'btn-danger text-white disabled': editProfileForm.invalid}" text="Edit"></Button>
             </StackLayout>
         </StackLayout>
         <StackLayout class="members">

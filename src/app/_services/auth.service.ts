@@ -53,7 +53,7 @@ export class AuthService {
     remove('token');
     //2console.log('Decoded token: ', this.getToken());
     this.isLoggedIn.next(false);
-    this.router.navigate(['']);
+    this.router.navigate(['registration']);
   }
 
   getToken() {

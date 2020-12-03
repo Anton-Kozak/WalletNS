@@ -1,0 +1,8 @@
+.yellow-button {
+    border-radius: 10;
+    border-color: #ffb204;
+    border-width: 0.7;
+    background-color: #303030;
+    color: #ffb204;
+    font-size: 20;
+}

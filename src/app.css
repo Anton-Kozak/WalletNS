@@ -42,9 +42,9 @@ Button.-primary {
 .background {
     /* background: linear-gradient(to bottom, #c7f0de, #c9e8f1); */
     background-color: #424242;
-    border-top-width: 1;
+    /* border-top-width: 1;
     border-bottom-width: 1;
-    border-color: var(--yellow);
+    border-color: var(--yellow); */
 }
 
 .spinner {

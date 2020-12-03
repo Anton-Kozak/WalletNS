@@ -16,7 +16,7 @@ export class TokenCheckGuard implements CanActivateChild {
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('This guard should work every single call of wallet elements to prevent from token expiration. In case token has expired, auto login should fire and update the token.');
+    //console.log('This guard should work every single call of wallet elements to prevent from token expiration. In case token has expired, auto login should fire and update the token.');
     let hasToken = hasKey('token');
     var token;
     if (hasToken) {
@@ -27,6 +27,7 @@ export class TokenCheckGuard implements CanActivateChild {
       console.log('Current time', currDate);
       //если токен кончился, заходим для автологина
       if (expDate <= currDate) {
+        console.log('________________________________________');
         console.log('Token has expired. Initiating auto login.')
         if (hasKey("username") && hasKey('password')) {
           //если пароль есть, то идем на автологин

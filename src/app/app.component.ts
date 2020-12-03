@@ -104,17 +104,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     prevItem: number;
     onItemTap(path: string, addPath?: string) {
         if (addPath === undefined)
-            this.router.navigate(['/wallet/' + path], { clearHistory: true });
+            this.router.navigate([path], { clearHistory: true });
         else
-            this.router.navigate(['/wallet/' + addPath], { clearHistory: true });
-        // console.log('current route:', this.router.router.url.replace('/wallet/', ''));
-        let replace = this.router.router.url.replace('/wallet/', '');
-        let replace2 = replace.replace(/(\/.*)/, '');
-        // console.log('replace', replace);
+            this.router.navigate([addPath], { clearHistory: true });
+        console.log('current route:', this.router.router.url.replace('/wallet/', ''));
+        let replace = this.router.router.url.replace('/wallet/', '').replace(/(\/.*)/, '');;
+        let pathReplace = path.replace('/wallet/', '');
+        //let replace2 = replace.replace(/(\/.*)/, '');
+        console.log('replace', replace, 'path: ', path);
         let st: StackLayout = this.stack.nativeElement;
         //сделать прев не активным
-        (<GridLayout>st.getViewById(replace2)).className = 'nt-drawer__list-item';
-        (<GridLayout>st.getViewById(path)).className = 'nt-drawer__list-item active';
+        (<GridLayout>st.getViewById(replace)).className = 'nt-drawer__list-item';
+        (<GridLayout>st.getViewById(pathReplace)).className = 'nt-drawer__list-item active';
         this.dataService.toggleDrawer();
     }
 
