@@ -12,15 +12,9 @@
                         </FlexboxLayout>
                         <StackLayout col="2" row="0" class="card-data">
                             <TextField formControlName="title" class="text-center"></TextField>
-                            <StackLayout *ngIf="expenseForm.get('title').hasError('required') && expenseForm.get('title').touched" class="invalid-feedback">
-                                <Label class="text-center" text="Required"></Label>
-                            </StackLayout>
-                            <StackLayout *ngIf="expenseForm.get('title').hasError('minlength') && expenseForm.get('title').touched" class="invalid-feedback">
-                                <Label class="text-center" text="4 characters minimum"></Label>
-                            </StackLayout>
-                            <StackLayout *ngIf="expenseForm.get('title').hasError('maxlength') && expenseForm.get('title').touched" class="invalid-feedback">
-                                <Label class="text-center" text="No longer than 16 characters"></Label>
-                            </StackLayout>
+                            <Label *ngIf="expenseForm.get('title').hasError('required') && expenseForm.get('title').touched" class="text-center invalid-feedback" text="Required"></Label>
+                            <Label class="text-center invalid-feedback" *ngIf="expenseForm.get('title').hasError('minlength') && expenseForm.get('title').touched" text="4 characters minimum"></Label>
+                            <Label *ngIf="expenseForm.get('title').hasError('maxlength') && expenseForm.get('title').touched" class="text-center invalid-feedback" text="No longer than 16 characters"></Label>
                         </StackLayout>
                     </GridLayout>
 
@@ -57,7 +51,7 @@
                         </StackLayout>
                     </GridLayout>
                     <GridLayout columns="*" rows="auto, auto, auto" *ngIf="isAdmin !== null">
-                        <Button col="0" row="0" *ngIf="isAdmin" (tap)="onEditAdmin()" [isEnabled]="expenseForm.valid" text="Admin Edit" class="c-bg-forest c-white"></Button>
+                        <Button col="0" row="0" *ngIf="isAdmin" (tap)="onEditAdmin()" [isEnabled]="expenseForm.valid" text="Admin Edit" backgroundColor="#ffb204" class="c-white"></Button>
                         <Button col="0" row="0" *ngIf="!isAdmin" (tap)="onEdit()" [isEnabled]="expenseForm.valid" text="Edit" class="c-bg-forest c-white"></Button>
                         <Button col="0" row="1" (tap)="deleteExpense()" text="Delete" class="delete"></Button>
                         <Button col="0" row="2" (tap)="back()" text="Back" class="back"></Button>

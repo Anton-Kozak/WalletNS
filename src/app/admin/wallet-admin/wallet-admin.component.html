@@ -17,7 +17,7 @@
                             <Label class="date-item" text="Date"></Label>
                             <Label class="money-item" text="$"></Label>
                         </FlexboxLayout>
-                        <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of expenses; let i = index;">
+                        <FlexboxLayout (tap)="onExpenseTap(expense, i)" class="row-cell-data text-center" *ngFor="let expense of expenses; let i = index;">
                             <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
                             <Label class="category-item" [text]="expense.userName" textWrap="true"></Label>
                             <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
