@@ -1,11 +1,7 @@
-<!-- <ActionBar>
-    <ActionItem text="Logout" (tap)="logout()"></ActionItem>
-</ActionBar> -->
-<ns-action-bar></ns-action-bar>
-<FlexboxLayout class="outer">
-
-    <StackLayout class="regform">
-
+<ns-action-bar>
+</ns-action-bar>
+<FlexboxLayout class="background-reg" justifyContent="center" alignItems="center">
+    <StackLayout class="regform anim-delay-second">
         <!-- sign up -->
         <StackLayout *ngIf="isSignUp" class="form" [formGroup]="signUpForm">
             <StackLayout class="title">
@@ -52,9 +48,9 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Button class="btn btn-secondary btn-block" text="Create Account" (tap)="onSignUp()"></Button>
+                <Button class="buttons" text="Create Account" (tap)="onSignUp()"></Button>
             </StackLayout>
-            <Button text="Already have an account? Sign in!" (tap)="switchCard()"></Button>
+            <Button class="buttons" text="Already have an account? Sign in!" (tap)="switchCard()"></Button>
         </StackLayout>
         <!-- sign in -->
         <StackLayout *ngIf="!isSignUp" class="form" [formGroup]="signInForm">
@@ -101,7 +97,7 @@
                 </StackLayout>
             </StackLayout> -->
             <StackLayout>
-                <Button class="btn btn-secondary btn-block" text="Log in" (tap)="onSignIn()"></Button>
+                <Button class="buttons" text="Log in" (tap)="onSignIn()"></Button>
             </StackLayout>
             <Button text="Sign up" (tap)="switchCard()"></Button>
         </StackLayout>

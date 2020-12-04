@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { sitePath } from './environment';
@@ -16,12 +16,23 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
+
+
+  headers = new BehaviorSubject<HttpHeaders>(null);
+
   decodedToken: any;
   baseUrl: string = sitePath + 'auth/';
   isLoggedIn = new BehaviorSubject<boolean>(false);
   isAdmin = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient, private router: Router) { }
 
+  updateHeaders() {
+    this.headers.next(new HttpHeaders({
+      "Authorization": "Bearer " + getString('token')
+    }));
+  }
+
+  
   register(username: string, userpass: string, role: string) {
     return this.http.post(this.baseUrl + 'register', { username: username, password: userpass, role: role });
   }
@@ -35,6 +46,9 @@ export class AuthService {
         setString('password', userpass);
         setString('token', response['token']);
         this.isLoggedIn.next(true);
+        this.headers.next(new HttpHeaders({
+          "Authorization": "Bearer " + getString('token')
+        }));
       }
       return response;
     }));

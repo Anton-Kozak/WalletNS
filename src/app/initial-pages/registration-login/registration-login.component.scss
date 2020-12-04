@@ -1,28 +1,27 @@
 .regform {
-    background-color: #264653;
+    background-color: var(--darker-background);
     margin: 20;
     border-width: 1;
     border-radius: 20;
     height: 90%;
     width: 80%;
     padding: 10;
-    android-elevation: 7;
+    border-color: var(--yellow);
+    border-width: 0.3;
     font-family: "Montserrat-Regular", "Montserrat";
 }
 
-.title Label {
-    color: white;
+.background-reg {
+    background-color: rgba(19, 19, 19, 1);
 }
 
-.outer {
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #ddd9ff, #c5c5c5);
+.title Label {
+    color: var(--yellow);
 }
 
 .label,
 .input {
-    color: white;
+    color: var(--yellow);
     font-size: 20;
 }
 
@@ -39,4 +38,12 @@
 .valid {
     color: rgb(152, 255, 152);
     border-bottom-color: rgb(152, 255, 152);
+}
+
+.buttons {
+    background-color: var(--card-background);
+    color: var(--yellow);
+    border-width: 0.3;
+    border-color: var(--yellow);
+    font-size: 14;
 }

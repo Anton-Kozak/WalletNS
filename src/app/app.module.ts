@@ -25,7 +25,6 @@ import { UserStatisticsComponent } from './wallet-section/user-statistics/user-s
 import { CategoryStatisticsComponent } from './wallet-section/category-statistics/category-statistics.component';
 import { WalletAdminComponent } from './admin/wallet-admin/wallet-admin.component';
 
-import { HasRoleDirective } from './_directives/hasRole.directive';
 import { CheckRequestComponent } from './admin/check-request/check-request.component';
 import { CreateInviteComponent } from './admin/create-invite/create-invite.component';
 import { ModalExpenseComponent } from './expenses/modal-expense/modal-expense.component';
@@ -64,7 +63,6 @@ import { NewImageComponent } from './wallet-section/profile/new-image/new-image.
         UserStatisticsComponent,
         CategoryStatisticsComponent,
         WalletAdminComponent,
-        HasRoleDirective,
         CheckRequestComponent,
         CreateInviteComponent,
         ModalExpenseComponent,

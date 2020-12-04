@@ -18,7 +18,7 @@ import { RouterExtensions } from '@nativescript/angular';
 })
 export class AppComponent implements OnInit, AfterViewInit {
     categoryTitles: CategoryData[] = [];
-    //id: string;
+    id: string;
     showCategory = false;
     isAdmin = false;
     isAdminDefined = false;
@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         this.userName = this.authService.getToken()['unique_name'];
 
-        //this.id = this.authService.getToken().nameid;
+        this.id = this.authService.getToken().nameid;
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
             console.log('categories for first start of app');
             this.walletService.currentCategories.next(data);
