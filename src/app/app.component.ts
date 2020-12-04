@@ -6,7 +6,6 @@ import { AuthService } from './_services/auth.service';
 import { WalletService } from './_services/wallet.service';
 import { CategoryData } from './_models/categoryData';
 import { exit } from 'nativescript-exit';
-
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { DataService } from './_services/data.service';
 import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
@@ -19,7 +18,7 @@ import { RouterExtensions } from '@nativescript/angular';
 })
 export class AppComponent implements OnInit, AfterViewInit {
     categoryTitles: CategoryData[] = [];
-    id: string;
+    //id: string;
     showCategory = false;
     isAdmin = false;
     isAdminDefined = false;
@@ -36,13 +35,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         private changeDetectionRef: ChangeDetectorRef,
         private vcRef: ViewContainerRef, private router: RouterExtensions) {
         // Use the component constructor to inject services.
-        if (this.authService.roleMatch(['Admin'])) {
-            this.isAdmin = true;
-        }
-        else {
-            this.isAdmin = false;
-        }
-        this.isAdminDefined = true;
+        this.authService.isAdmin.subscribe(isAdmin => {
+            this.isAdmin = isAdmin;
+            this.isAdminDefined = true;
+        });
     }
 
     ngAfterViewInit(): void {
@@ -58,6 +54,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
     ngOnInit(): void {
+        this.authService.roleMatch(['Admin']);
+        console.log('app main');
         this.walletService.currentCategories.subscribe(categories => {
             console.log('categories in app component subject ', categories);
             this.categoryTitles = categories;
@@ -81,7 +79,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         this.userName = this.authService.getToken()['unique_name'];
 
-        this.id = this.authService.getToken().nameid;
+        //this.id = this.authService.getToken().nameid;
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
             console.log('categories for first start of app');
             this.walletService.currentCategories.next(data);

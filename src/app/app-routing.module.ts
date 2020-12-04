@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "@nativescript/angular";
 import { RegistrationLoginComponent } from "./initial-pages/registration-login/registration-login.component";
-import { AuthGuard } from './_guards/auth.guard';
 import { WalletExpensesComponent } from './wallet-section/wallet-expenses/wallet-expenses.component';
 import { HomeComponent } from './wallet-section/home/home.component';
 import { NoWalletComponent } from "./initial-pages/no-wallet/no-wallet.component";
