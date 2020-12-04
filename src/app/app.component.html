@@ -39,7 +39,7 @@
                     <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Profile" class="item-list "></Label>
                 </GridLayout>
-                <!-- <GridLayout id="walletAdmin" *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('walletAdmin')">
+                <GridLayout id="walletAdmin" *ngIf="isAdmin" columns="auto, *" class="nt-drawer__list-item" (tap)="onItemTap('/wallet/walletAdmin')">
                     <Label col="0" text="&#xf505;" fontSize="20" class="nt-icon fas"></Label>
                     <Label col="1" text="Admin Panel" class="item-list "></Label>
                 </GridLayout>
@@ -48,11 +48,11 @@
                     <Label col="1" text="Category" class="item-list "></Label>
                 </GridLayout>
                 <StackLayout *ngIf="showCategory">
-                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" (tap)="onItemTap('categoryStatistics','categoryStatistics/' + category.id)">
+                    <GridLayout marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" (tap)="onItemTap('/wallet/categoryStatistics','/wallet/categoryStatistics/' + category.id)">
                         <Label col="0" [text]="category.icon" fontSize="20" class="nt-icon fas"></Label>
                         <Label col="1" [text]="category.title" class="item-list "></Label>
                     </GridLayout>
-                </StackLayout> -->
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </GridLayout>

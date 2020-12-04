@@ -5,10 +5,8 @@ import { AdminService } from '../../_services/admin.service';
 import { ModalDialogService } from '@nativescript/angular/modal-dialog';
 import { DataService } from '../../_services/data.service';
 import { CreateInviteComponent } from '../create-invite/create-invite.component';
-import { ExpenseForTable } from '../../_models/expense-for-table'
 import { ModalExpenseComponent } from '../../expenses/modal-expense/modal-expense.component';
 import * as Toast from 'nativescript-toast';
-import { ExpenseService } from '../../_services/expense.service';
 @Component({
   selector: 'ns-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -20,23 +18,24 @@ export class WalletAdminComponent implements OnInit {
     private adminService: AdminService,
     private modalDialog: ModalDialogService,
     private vcRef: ViewContainerRef,
-    private dataService: DataService,
-    private expService: ExpenseService) { }
+    private dataService: DataService) { }
+
   expenses: ExpenseForAdminTable[] = [];
   users: UserForAdmin[] = [];
+  isLoading = false;
 
 
 
   ngOnInit(): void {
+    this.adminService.updateHeaders();
     this.admService.getAllExpenses().subscribe((expenses: ExpenseForAdminTable[]) => {
+      this.isLoading = true;
       this.expenses = expenses;
-      console.log(this.expenses);
+      this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
+        this.users = usersForAdmin;
+        this.isLoading = false;
+      });
     })
-
-    this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
-      this.users = usersForAdmin;
-    });
-
   }
 
   removeUser(userId: string, rowIndex: number) {

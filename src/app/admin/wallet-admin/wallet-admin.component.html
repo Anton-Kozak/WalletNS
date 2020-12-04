@@ -1,59 +1,60 @@
 <ns-action-bar></ns-action-bar>
 <ScrollView>
     <StackLayout class="background">
-        <StackLayout>
-            <Button text="Add new user" (tap)="addNewUser()" class="btn c-bg-charcoal c-sky"></Button>
-        </StackLayout>
-        <StackLayout *ngIf="expenses !== null" class="card-stats" shadow="25">
-            <StackLayout class="card-body">
-                <StackLayout class="card-chart-text">
-                    <StackLayout class="card-title">
-                        <Label color="black" text="Your Expenses"></Label>
+        <StackLayout *ngIf="!isLoading">
+            <StackLayout *ngIf="expenses !== null" class="card-stats anim" shadow="25">
+                <StackLayout class="card-body">
+                    <StackLayout class="card-chart-text">
+                        <StackLayout class="card-title">
+                            <Label text="Your Expenses"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout class="card-table">
+                        <FlexboxLayout class="row-cell-desc text-center">
+                            <Label class="title-item" text="Title"></Label>
+                            <Label class="category-item" text="Category"></Label>
+                            <Label class="user-item" text="User"></Label>
+                            <Label class="date-item" text="Date"></Label>
+                            <Label class="money-item" text="$"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="row-cell-data text-center" *ngFor="let expense of expenses; let i = index;">
+                            <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                            <Label class="category-item" [text]="expense.userName" textWrap="true"></Label>
+                            <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                            <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                            <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                        </FlexboxLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout class="card-table">
-                    <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-desc text-center">
-                        <Label col="0" text="Title"></Label>
-                        <Label col="1" text="Category"></Label>
-                        <Label col="2" text="User"></Label>
-                        <Label col="3" text="Date"></Label>
-                        <Label col="4" text="$"></Label>
-                    </GridLayout>
-                    <GridLayout (tap)="onExpenseTap(expense, i)" columns="2*, 2*, 2*, 2*, 2*" rows="auto" class="row-cell-data text-center" *ngFor="let expense of expenses; let i = index;">
-                        <Label col="0" [text]="expense.expenseTitle" textWrap="true"></Label>
-                        <Label col="1" [text]="expense.category" textWrap="true"></Label>
-                        <Label col="2" [text]="expense.userName" textWrap="true"></Label>
-                        <Label col="3" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                        <Label col="4" [text]="expense.moneySpent" textWrap="true"></Label>
-                    </GridLayout>
-                </StackLayout>
             </StackLayout>
-        </StackLayout>
-
-
-        <StackLayout *ngIf="users !== null" class="card-stats" shadow="25">
-            <StackLayout class="card-body">
-                <StackLayout class="card-chart-text">
-                    <StackLayout class="card-title">
-                        <Label color="black" text="Your Expenses"></Label>
+            <StackLayout *ngIf="users !== null" class="card-stats anim-delay" shadow="25">
+                <StackLayout class="card-body">
+                    <StackLayout class="card-chart-text">
+                        <StackLayout class="card-title">
+                            <Label text="Wallet Users"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout class="card-table">
+                        <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-desc text-center">
+                            <Label col="0" text="Username"></Label>
+                            <Label col="1" text="Date"></Label>
+                            <Label col="2" text="Roles"></Label>
+                        </GridLayout>
+                        <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-data text-center" *ngFor="let user of users">
+                            <Label col="0" [text]="user.username" textWrap="true"></Label>
+                            <Label col="1" [text]="user.dateJoined | date :'short'" textWrap="true"></Label>
+                            <Label col="2" [text]="user.userRoles" textWrap="true"></Label>
+                        </GridLayout>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout class="card-table">
-                    <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-desc text-center">
-                        <Label col="0" text="Username"></Label>
-                        <Label col="1" text="Date"></Label>
-                        <Label col="2" text="Roles"></Label>
-                    </GridLayout>
-                    <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-data text-center" *ngFor="let user of users">
-                        <Label col="0" [text]="user.username" textWrap="true"></Label>
-                        <Label col="1" [text]="user.dateJoined | date :'short'" textWrap="true"></Label>
-                        <Label col="2" [text]="user.userRoles" textWrap="true"></Label>
-                    </GridLayout>
-                </StackLayout>
+            </StackLayout>
+            <StackLayout *ngIf="true" class="anim-delay-second">
+                <Button text="Add new user" (tap)="addNewUser()" class="yellow-button"></Button>
+                <ns-check-request></ns-check-request>
             </StackLayout>
         </StackLayout>
-        <StackLayout>
-            <ns-check-request></ns-check-request>
-        </StackLayout>
+        <FlexboxLayout [visibility]="isLoading ? 'visible' : 'collapse'" class="spinner">
+            <ActivityIndicator class="spinner-loader" [busy]="isLoading" color="#ffb204" width="100" height="100"></ActivityIndicator>
+        </FlexboxLayout>
     </StackLayout>
 </ScrollView>

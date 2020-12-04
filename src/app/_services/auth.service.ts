@@ -64,24 +64,10 @@ export class AuthService {
     }
     return null;
   }
-
-  checkLogin() {
-    // this.isLoggedIn.next(!this.jwtHelper.isTokenExpired(localStorage.getItem('token')));
-  }
-
-  checkUserWallet() {
-    // const token = localStorage.getItem('token');
-    // if (token !== null) {
-    //   if (this.getToken().hasWallet === "true")
-    //     return true;
-    //   return false;
-    // }
-    // return false;
-  }
-
   roleMatch(allowedRoles): boolean {
     let isMatch = false;
-    const userRoles = this.decodedToken.role as Array<string>;
+    const userRoles = this.getToken().role as Array<string>;
+    console.log('roles', userRoles)
     allowedRoles.forEach(element => {
       if (userRoles.includes(element)) {
         isMatch = true;

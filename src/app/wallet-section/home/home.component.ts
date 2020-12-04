@@ -18,10 +18,11 @@ export class HomeComponent implements OnInit {
   members: { name: string, roles: string[] }[] = [];
   constructor(private router: Router, private walletService: WalletService) { }
   ngOnInit(): void {
-    if (this.walletService.currentCategories.value !== null)
-      this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-        this.walletService.currentCategories.next(data);
-      });
+    // if (this.walletService.currentCategories.value.length === 0)
+    //   this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+    //     console.log('home get categories at first start');
+    //     this.walletService.currentCategories.next(data);
+    //   });
 
     if (!isAndroid) {
       return;

@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit, ElementRef } from '@angular/core';
 import { RadSideDrawer, } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import { Page, isAndroid } from 'tns-core-modules/ui/page';
+import { isAndroid } from 'tns-core-modules/ui/page';
 import { AuthService } from './_services/auth.service';
 import { WalletService } from './_services/wallet.service';
 import { CategoryData } from './_models/categoryData';
@@ -17,7 +17,7 @@ import { RouterExtensions } from '@nativescript/angular';
     selector: "ns-app",
     templateUrl: "./app.component.html"
 })
-export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit {
     categoryTitles: CategoryData[] = [];
     id: string;
     showCategory = false;
@@ -34,22 +34,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         private walletService: WalletService,
         private dataService: DataService,
         private changeDetectionRef: ChangeDetectorRef,
-        private page: Page,
         private vcRef: ViewContainerRef, private router: RouterExtensions) {
         // Use the component constructor to inject services.
-        // if (this.authService.roleMatch(['Admin'])) {
-        //     this.isAdmin = true;
-        // }
-        // else {
-        //     this.isAdmin = false;
-        // }
-        // this.isAdminDefined = true;
+        if (this.authService.roleMatch(['Admin'])) {
+            this.isAdmin = true;
+        }
+        else {
+            this.isAdmin = false;
+        }
+        this.isAdminDefined = true;
     }
-    ngOnDestroy(): void {
-        console.log('sidedrawer destroyed');
-    }
-
-
 
     ngAfterViewInit(): void {
         this.drawer = this.drawerComponent.sideDrawer;
@@ -65,6 +59,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit(): void {
         this.walletService.currentCategories.subscribe(categories => {
+            console.log('categories in app component subject ', categories);
             this.categoryTitles = categories;
         })
         this.authService.isLoggedIn.subscribe((value: boolean) => {
@@ -88,7 +83,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.id = this.authService.getToken().nameid;
         this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-            console.log('categories for first start of app: ', data);
+            console.log('categories for first start of app');
             this.walletService.currentCategories.next(data);
             this.getIcons();
         });
