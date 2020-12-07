@@ -1,3 +1,30 @@
-.outer {
-    margin-top: 30;
+.yellow-button {
+    border-radius: 10;
+    border-color: #ffb204;
+    border-width: 0.7;
+    background-color: #303030;
+    color: #ffb204;
+    font-size: 20;
+    margin-bottom: 15;
+}
+
+.background {
+    background-color: #303030;
+}
+
+.card-title {
+    font-size: 20;
+    color: #ffb204;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-button {
+    border-radius: 10;
+    border-color: #ff6004;
+    border-width: 0.7;
+    background-color: #303030;
+    color: #ff6004;
+    font-size: 20;
+    margin-bottom: 15;
 }

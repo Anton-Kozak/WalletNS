@@ -1,8 +1,10 @@
-<StackLayout class="outer">
-    <form [formGroup]="emailForm" class="form-group">
-        <Label text="Email"></Label>
-        <TextField type="email" formControlName="email" placeholder="Enter name" class="form-control"></TextField>
-        <Button (tap)="confirm()" text="Send request" class="btn btn-outline-secondary btn-block mt-2"></Button>
-    </form>
-    <Button text="Back" (tap)="back()"></Button>
-</StackLayout>
+<ScrollView>
+    <StackLayout class="background p-t-20">
+        <StackLayout [formGroup]="emailForm" class="form-group">
+            <Label textWrap="true" class="card-title" text="Enter email of a person you want to send a request to!"></Label>
+            <TextField type="email" formControlName="email" class="form-control"></TextField>
+            <Button (tap)="confirm()" text="Send request" class="yellow-button"></Button>
+        </StackLayout>
+        <Button class="alert-button" text="Back" (tap)="back()"></Button>
+    </StackLayout>
+</ScrollView>

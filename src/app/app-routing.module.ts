@@ -12,11 +12,11 @@ import { WalletAdminComponent } from "./admin/wallet-admin/wallet-admin.componen
 import { PreviousExpensesComponent } from "./wallet-section/previous-expenses/previous-expenses.component";
 import { ProfileComponent } from "./wallet-section/profile/profile.component";
 import { TokenCheckGuard } from './_guards/token-check.guard';
+import { CreateWalletComponent } from "./initial-pages/create-wallet/create-wallet.component";
 const routes: Routes = [
     { path: '', redirectTo: 'wallet/home', pathMatch: 'full' },
     {
         path: 'wallet', canActivateChild: [TokenCheckGuard], children: [
-            { path: 'no-wallet', component: NoWalletComponent },
             { path: 'home', component: HomeComponent },
             { path: 'walletExpenses', component: WalletExpensesComponent },
             { path: 'previousExpenses', component: PreviousExpensesComponent },
@@ -27,7 +27,14 @@ const routes: Routes = [
             { path: 'walletAdmin', component: WalletAdminComponent },
         ]
     },
-    { path: 'registration', component: RegistrationLoginComponent},
+    {
+        path: 'initial', children: [
+            { path: 'registration', component: RegistrationLoginComponent },
+            { path: 'no-wallet', component: NoWalletComponent },
+            { path: 'create-wallet', component: CreateWalletComponent }
+        ]
+    }
+
 
 
 ]

@@ -39,6 +39,10 @@ Button.-primary {
     font-size: 18;
 }
 
+Button {
+    horizontal-alignment: center;
+}
+
 .background {
     /* background: linear-gradient(to bottom, #c7f0de, #c9e8f1); */
     background-color: #424242;

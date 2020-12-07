@@ -1,14 +1,8 @@
-<ActionBar>
-    <ActionItem text="Logout" (tap)="logout()"></ActionItem>
-</ActionBar>
-<StackLayout>
-    <FlexBoxLayout>
-        <Button text="Create Wallet" (tap)="onWalletCreateDialog()"></Button>
-    </FlexBoxLayout>
-    <FlexBoxLayout>
-        <Button text="Get invites" (tap)="onInvitesCheckDialog()"></Button>
-    </FlexBoxLayout>
-    <FlexBoxLayout>
-        <Button text="Send requests" (tap)="onRequestCreateDialog()"></Button>
-    </FlexBoxLayout>
+<ns-action-bar></ns-action-bar>
+<StackLayout class="background">
+    <FlexboxLayout class="outer">
+        <Button class="yellow-button" text="Create Wallet" (tap)="onWalletCreateDialog()"></Button>
+        <Button class="yellow-button" text="Get invites" (tap)="onInvitesCheckDialog()"></Button>
+        <Button class="yellow-button" text="Send requests" (tap)="onRequestCreateDialog()"></Button>
+    </FlexboxLayout>
 </StackLayout>

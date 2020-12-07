@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalDialogParams } from '@nativescript/angular/modal-dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Wallet } from '../../_models/wallet';
 import { WalletService } from '../../_services/wallet.service';
@@ -15,8 +14,7 @@ export class CreateWalletComponent implements OnInit {
   wallet: Wallet;
   finalCategories: number[] = [];
   isActive: { id: number, status: boolean }[] = [];
-  constructor(private modalParams: ModalDialogParams,
-    private walletService: WalletService,
+  constructor(private walletService: WalletService,
     private authService: AuthService,
     private router: Router) { }
 
@@ -73,8 +71,8 @@ export class CreateWalletComponent implements OnInit {
         this.walletService.addCategoriesToWallet(this.finalCategories).subscribe(() => {
           console.log("You have successfully created a wallet");
           console.log('Section chosen:', this.finalCategories);
-          this.router.navigate(['wallet']);
-          this.modalParams.closeCallback();
+          this.router.navigate(['initial/registration']);
+          //this.modalParams.closeCallback(true);
         }, error => {
           console.log(error.statusText);
           //this.alertify.error(error.statusText);
@@ -91,7 +89,8 @@ export class CreateWalletComponent implements OnInit {
 
 
   back() {
-    this.modalParams.closeCallback();
+    this.router.navigate(['initial/no-wallet']);
+
   }
 
 }

@@ -40,20 +40,26 @@ export class TokenCheckGuard implements CanActivateChild {
         //если пароля нет, идем на регистрацию
         else {
           console.log('go to registration as there is no password or login found');
-          this.router.navigate(['registration']);
+          this.router.navigate(['initial/registration']);
           return false;
         }
       } //токен не кончился, просто идем куда нажали - чаще всего будем заходить сюда 
       else {
-        if (!this.authService.isLoggedIn.value)
-          this.authService.isLoggedIn.next(true);
-        console.log('token is present and not expired. should be redirected to: ', childRoute.url);
-        return true;
+        if (token.hasWallet === "true") {
+          if (!this.authService.isLoggedIn.value)
+            this.authService.isLoggedIn.next(true);
+          console.log('token is present and not expired. should be redirected to: ', childRoute.url);
+          return true;
+        }
+        else {
+          console.log('user is logged in but has no wallet - go to nowallet section');
+          this.router.navigate(['initial/no-wallet']);
+        }
       }
     }
     else {
       console.log('go to registration because no token was found');
-      this.router.navigate(['registration']);
+      this.router.navigate(['initial/registration']);
       return false;
     }
   }
@@ -68,7 +74,7 @@ export class TokenCheckGuard implements CanActivateChild {
     else {
       console.log('go to wallet creation section');
       this.authService.isLoggedIn.next(false);
-      this.router.navigate(['wallet/no-wallet']);
+      this.router.navigate(['initial/no-wallet']);
     }
     return false;
   }

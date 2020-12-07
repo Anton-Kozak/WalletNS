@@ -71,7 +71,7 @@ export class RegistrationLoginComponent implements OnInit {
         }
         else {
           console.log('need to create wallet');
-          this.router.navigate(['/no-wallet']);
+          this.router.navigate(['initial/no-wallet']);
           //go to wallet creation
         }
       }, error => {

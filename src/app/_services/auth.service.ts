@@ -32,7 +32,7 @@ export class AuthService {
     }));
   }
 
-  
+
   register(username: string, userpass: string, role: string) {
     return this.http.post(this.baseUrl + 'register', { username: username, password: userpass, role: role });
   }
@@ -59,7 +59,7 @@ export class AuthService {
     remove('password');
     remove('token');
     this.isLoggedIn.next(false);
-    this.router.navigate(['registration']);
+    this.router.navigate(['initial/registration']);
   }
 
   getToken() {

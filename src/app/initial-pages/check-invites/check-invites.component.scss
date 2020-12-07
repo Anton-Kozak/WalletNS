@@ -1,43 +1,54 @@
-.row-cell {
-    /* flex-direction: column; */
-    border-width: 1;
-    border-color: red;
-    justify-content: center;
-    text-align: center;
-    font-size: 25;
+.card-stats {
+    margin-top: 20;
+    border-radius: 8;
+    width: 95%;
+    background-color: #303030;
+    font-family: "Montserrat", "Montserrat-Regular";
+    border-color: #ffb204;
+    border-width: 0.3;
 }
 
-.category-name {
-    text-align: center;
-    font-size: 23;
-    font-weight: bold;
-}
-
-.row-cell Label {
-    text-align: center;
+.card-title {
     font-size: 15;
+    color: #ffb204;
+    text-align: center;
+    border-bottom-color: #ffb204;
+    border-bottom-width: 0.3;
+    padding-bottom: 10;
 }
 
-.first-item {
+.card-items {
+    font-size: 13;
+    color: #e4d8c9;
+    text-align: center;
+}
+
+.from {
+    width: 30%;
+}
+
+.date {
+    width: 25%;
+}
+
+.title {
     width: 20%;
 }
 
-.second-item {
-    width: 15%;
+.actions {
+    width: 25%;
 }
 
-.third-item {
-    width: 15%;
+.background {
+    background-color: #424242;
 }
 
-.fourth-item {
-    width: 40%;
-}
-
-.fifth-item {
-    width: 10%;
-}
-
-.test {
-    background-color: red;
+.alert-button {
+    border-radius: 10;
+    border-color: #ff6004;
+    border-width: 0.7;
+    background-color: #303030;
+    color: #ff6004;
+    font-size: 20;
+    margin-bottom: 15;
 }
