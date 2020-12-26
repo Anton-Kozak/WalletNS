@@ -31,7 +31,11 @@
                     <Label *ngIf="newExpenseForm.get('money').hasError('required') && newExpenseForm.get('money').touched" class="invalid-feedback" text="Money required"></Label>
                 </StackLayout>
             </StackLayout>
-            <Button (tap)="createExpense()" class="yellow-button" isEnabled="{{newExpenseForm.valid}}" text="Add expense"></Button>
+            <Button (tap)="createExpense()" class="yellow-button" [isEnabled]="!newExpenseForm.get('title').errors && !newExpenseForm.get('desc').errors && !newExpenseForm.get('money').errors" text="Add expense"></Button>
+            <!-- <Label [text]="newExpenseForm.get('title').errors ? 'true' : 'false'"></Label>
+            <Label [text]="newExpenseForm.get('desc').errors ? 'true' : 'false'"></Label>
+            <Label [text]="newExpenseForm.get('money').errors ? 'true' : 'false'"></Label> -->
+
         </StackLayout>
         <Button text="Back" (tap)="back()" class="yellow-button"></Button>
     </StackLayout>
