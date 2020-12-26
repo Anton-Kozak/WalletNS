@@ -24,6 +24,7 @@ export class AuthService {
   baseUrl: string = sitePath + 'auth/';
   isLoggedIn = new BehaviorSubject<boolean>(false);
   isAdmin = new BehaviorSubject<boolean>(false);
+  id = new BehaviorSubject<any>(this.getToken() !== null ? this.getToken().nameid : null);
   constructor(private http: HttpClient, private router: Router) { }
 
   updateHeaders() {
@@ -42,13 +43,16 @@ export class AuthService {
     let date = new Date().toUTCString();
     return this.http.post(this.baseUrl + 'login', { username: username, password: userpass, date: date }).pipe(map((response: any) => {
       if (response) {
+
         setString('username', username);
         setString('password', userpass);
         setString('token', response['token']);
-        this.isLoggedIn.next(true);
         this.headers.next(new HttpHeaders({
           "Authorization": "Bearer " + getString('token')
         }));
+        this.id.next(this.getToken().nameid);
+        this.decodedToken = this.getToken();
+        this.isLoggedIn.next(true);
       }
       return response;
     }));
@@ -59,6 +63,7 @@ export class AuthService {
     remove('password');
     remove('token');
     this.isLoggedIn.next(false);
+    this.id.next(null);
     this.router.navigate(['initial/registration']);
   }
 

@@ -56,14 +56,40 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         this.authService.roleMatch(['Admin']);
         console.log('app main');
+        this.authService.id.subscribe(id => {
+            //console.log('change in id, probably after relogin');
+            this.id = id;
+        });
+
+        // this.authService.isLoggedIn.subscribe(value => {
+        //     if (!value) {
+        //         let st: StackLayout = this.stack.nativeElement;
+        //         st.eachChild((child) => {
+        //             console.log(child);
+        //             return true;
+        //         })
+        //     }
+        // })
+
         this.walletService.currentCategories.subscribe(categories => {
-            console.log('categories in app component subject ', categories);
+            console.log('categories length in app component subject upon login ', categories.length);
             this.categoryTitles = categories;
-        })
+        });
         this.authService.isLoggedIn.subscribe((value: boolean) => {
+            if (value) {
+                this.walletService.updateHeaders();
+                console.log('WE login');
+                this.walletService.getWalletsCategories();
+                this.getIcons();
+                this.userName = this.authService.getToken()['unique_name'];
+            }
+            else {
+                console.log('We logout');
+            }
+            //console.log('id after signup', this.id, 'name after sign up', this.userName);
             this.showWalletItems = value;
             console.log('value of showwalletites', this.showWalletItems)
-        })
+        });
         if (isAndroid) {
             app.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
                 data.cancel = true;
@@ -77,14 +103,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         })
         this.dataService.setRootVCRef(this.vcRef);
 
-        this.userName = this.authService.getToken()['unique_name'];
 
-        this.id = this.authService.getToken().nameid;
-        this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-            console.log('categories for first start of app');
-            this.walletService.currentCategories.next(data);
-            this.getIcons();
-        });
+
+        // this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
+        //     console.log('categories for first start of app');
+        //     this.walletService.currentCategories.next(data);
+        // });
     }
 
     prevItem: number;

@@ -51,7 +51,9 @@ export class WalletService {
 
 
   getWalletsCategories() {
-    return this.http.get<CategoryData[]>(this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories', { headers: this.headers });
+    this.http.get<CategoryData[]>(this.baseUrl + this.authService.getToken().nameid + '/getWalletCategories', { headers: this.headers }).subscribe((categories: CategoryData[]) => {
+      this.currentCategories.next(categories);
+    });
   }
 
   getProfileData() {

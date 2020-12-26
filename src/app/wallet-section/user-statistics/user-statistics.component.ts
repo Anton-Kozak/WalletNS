@@ -61,7 +61,9 @@ export class UserStatisticsComponent implements OnInit {
     if (userId === this.id)
       this.isThisUser = true;
     console.log('id', this.id);
+    console.log('userid', userId);
     this.walletService.currentCategories.subscribe(value => {
+      console.log('categories user', value);
       this.categories = value;
     });
 
@@ -69,7 +71,7 @@ export class UserStatisticsComponent implements OnInit {
     this.isLoading = true;
     //TODO: если в начале месяца, нет никаких трат, то здесь идет везде null, так как на сервере идет проверка на largestExpense > 0
     this.expService.getUserStatistics(this.id, new Date(Date.now()).toUTCString()).subscribe(response => {
-      console.log('response frm user', response);
+      //console.log('response frm user', response);
       this.expService.getUserExpenses(this.id, new Date(Date.now()).toUTCString()).subscribe((expensesRecieved: ExpenseForTable[]) => {
         this.expenses = expensesRecieved;
       })

@@ -22,9 +22,9 @@ export class TokenCheckGuard implements CanActivateChild {
     if (hasToken) {
       token = this.authService.getToken();
       const expDate = new Date(token.exp * 1000);
-      console.log('Current token expiration: ', expDate);
+      //console.log('Current token expiration: ', expDate);
       const currDate = new Date(Date.now());
-      console.log('Current time', currDate);
+      //console.log('Current time', currDate);
       //если токен кончился, заходим для автологина
       if (expDate <= currDate) {
         console.log('________________________________________');
