@@ -1,12 +1,13 @@
 <ns-action-bar [pageTitle]="'Previous Expenses'"></ns-action-bar>
 <ScrollView>
     <StackLayout class="background">
-        <StackLayout [visibility]="!isLoading ? 'visible' : 'collapse'">
-            <FlexboxLayout class="date-selection anim">
-                <Button class="yellow-button" text="Prev" (tap)="previousMonth()"></Button>
-                <Label class="date-value" text="{{monthName}}, {{year}}"></Label>
-                <Button class="yellow-button" text="Next" (tap)="next()"></Button>
-            </FlexboxLayout>
+        <FlexboxLayout class="date-selection anim">
+            <Button class="yellow-button" text="Prev" (tap)="previousMonth()"></Button>
+            <Label class="date-value" text="{{monthName}}, {{year}}"></Label>
+            <Button class="yellow-button" text="Next" (tap)="next()"></Button>
+        </FlexboxLayout>
+        <StackLayout [visibility]="!isLoading && hasData ? 'visible' : 'collapse'">
+
             <StackLayout>
                 <StackLayout class="card-chart anim-delay">
                     <GridLayout height="500" rows="auto, 2*">
@@ -339,6 +340,9 @@
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
+        </StackLayout>
+        <StackLayout class="card-stats text-center p-20" [visibility]="!isLoading && !hasData ? 'visible' : 'collapse'">
+            <Label class="card-title" text="No expenses this month"></Label>
         </StackLayout>
         <!-- loading spinner -->
         <FlexboxLayout [visibility]="isLoading ? 'visible' : 'collapse'" class="spinner">
