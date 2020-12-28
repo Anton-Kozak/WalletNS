@@ -17,6 +17,7 @@ export class CreateExpenseComponent implements OnInit {
   expense: Expense;
   newExpenseForm: FormGroup;
   categoryTitles: CategoryData[] = [];
+  isLoading = false;
   @ViewChild('selectedCategory', { static: false }) selectedCategory: ElementRef;
   constructor(private expenseService: ExpenseService,
     private walletService: WalletService,
@@ -37,6 +38,7 @@ export class CreateExpenseComponent implements OnInit {
   createExpense() {
     console.log('form submit!');
     if (this.newExpenseForm.errors == null) {
+      this.isLoading = true;
       let id = (<ListPicker>(this.selectedCategory.nativeElement)).selectedIndex;
       this.expense = {
         expenseCategoryId: (<CategoryData>(<ListPicker>(this.selectedCategory.nativeElement)).items[id]).id,
@@ -46,16 +48,18 @@ export class CreateExpenseComponent implements OnInit {
         moneySpent: this.newExpenseForm.value['money'],
         creationDate: new Date()
       }
-      console.log(this.expense);
+      //console.log(this.expense);
       this.expenseService.createExpense(this.expense).subscribe((response: any) => {
+        this.isLoading = false;
         if (response['message'] === null) {
-
-          this.modalParams.closeCallback();
+          this.expense.id = +response['expense']['id'];
+          this.modalParams.closeCallback(this.expense);
         }
         else {
           this.modalParams.closeCallback();
         }
       }, error => {
+        this.isLoading = false;
         console.log(error);
       });
     }

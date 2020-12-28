@@ -48,7 +48,7 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Button class="buttons" text="Create Account" (tap)="onSignUp()"></Button>
+                <Button class="buttons" [text]="isLoading == true ? 'Creating Account...':'Create Account'" (tap)="onSignUp()"></Button>
             </StackLayout>
             <Button class="buttons" text="Already have an account? Sign in!" (tap)="switchCard()"></Button>
         </StackLayout>
@@ -97,11 +97,9 @@
                 </StackLayout>
             </StackLayout> -->
             <StackLayout>
-                <Button class="buttons" text="Log in" (tap)="onSignIn()"></Button>
+                <Button [isEnabled]="!isLoading" class="buttons" [text]="isLoading == true ? 'Loggin in...':'Log in'" (tap)="onSignIn()"></Button>
             </StackLayout>
             <Button text="Sign up" (tap)="switchCard()"></Button>
         </StackLayout>
-
     </StackLayout>
-
 </FlexboxLayout>

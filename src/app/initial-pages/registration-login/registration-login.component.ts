@@ -14,6 +14,7 @@ export class RegistrationLoginComponent implements OnInit {
 
   signUpForm: FormGroup;
   signInForm: FormGroup;
+  isLoading = false;
   isSignUp = true;
   invites: number = 0;
 
@@ -55,10 +56,12 @@ export class RegistrationLoginComponent implements OnInit {
 
   onSignIn() {
     if (this.signInForm.valid) {
+      this.isLoading = true;
       const username = this.signInForm.value['usernameIn'];
       const password = this.signInForm.value['userpassIn'];
       console.log(username, password);
       this.authService.login(username, password).subscribe((data: any) => {
+        this.isLoading = false;
         if (isAndroid) {
           var toast = Toast.makeText("Welcome: " + data.user['userName']);
           toast.show();
@@ -75,6 +78,7 @@ export class RegistrationLoginComponent implements OnInit {
           //go to wallet creation
         }
       }, error => {
+        this.isLoading = false;
         if (isAndroid) {
           var toast = Toast.makeText(error.error);
           toast.show();

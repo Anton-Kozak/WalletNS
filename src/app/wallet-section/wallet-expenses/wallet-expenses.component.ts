@@ -12,6 +12,8 @@ import { DataService } from '../../_services/data.service';
 import { CreateExpenseComponent } from '../../expenses/create-expense/create-expense.component';
 import * as moment from 'moment';
 import { ExpenseForTable } from 'src/app/_models/expense-for-table';
+import { Expense } from 'src/app/_models/expense';
+import { WalletService } from '../../_services/wallet.service';
 
 @Component({
   selector: 'ns-wallet-expenses',
@@ -23,10 +25,9 @@ export class WalletExpensesComponent implements OnInit {
 
   constructor(private expenseService: ExpenseService,
     private authService: AuthService,
-    private route: ActivatedRoute,
     private modalDialog: ModalDialogService,
     private vcRef: ViewContainerRef,
-    private dataService: DataService) { }
+    private dataService: DataService, private walletService: WalletService) { }
   first: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   second: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
   third: ExpensesWithCategories = { categoryName: '', expenses: [], categoryId: 0 };
@@ -69,6 +70,10 @@ export class WalletExpensesComponent implements OnInit {
         this.expensesToShow = expData;
         this.checkLimit();
       });
+
+      this.walletService.currentCategories.subscribe(categories => {
+        this.categories = categories;
+      })
 
       this.currentSelectedDate = this.moment(this.dayForDailyExpenses).format('LL');
       console.log('date', this.currentSelectedDate);
@@ -159,9 +164,7 @@ export class WalletExpensesComponent implements OnInit {
       this.isLoading = false;
       console.log('isloading:', this.isLoading);
     });
-    this.route.data.subscribe(data => {
-      this.categories = data['categories'];
-    })
+
 
 
 
@@ -197,17 +200,22 @@ export class WalletExpensesComponent implements OnInit {
         viewContainerRef: this.dataService.getRootVCRef()
           ? this.dataService.getRootVCRef()
           : this.vcRef,
-      })
-  }
-
-  addCategoryExpense(categoryId: number, categoryName: string) {
-    this.modalDialog
-      .showModal(CreateExpenseComponent, {
-        fullscreen: true,
-        viewContainerRef: this.dataService.getRootVCRef()
-          ? this.dataService.getRootVCRef()
-          : this.vcRef,
-        context: { id: categoryId, name: categoryName }
+      }).then((expense: Expense) => {
+        if (expense !== undefined && this.dayForDailyExpenses.toDateString() === new Date(Date.now()).toDateString()) {
+          //TODO: разобраться как сделать без полного обновления
+          this.updateDailyExpenses();
+          // this.dailyExpenses.unshift(
+          //   {
+          //     id: expense.id,
+          //     expenseDescription: expense.expenseDescription,
+          //     userName: this.authService.getToken()['unique_name'],
+          //     expenseTitle: expense.expenseTitle,
+          //     expenseCategory: this.categories[expense.expenseCategoryId].title,
+          //     moneySpent: expense.moneySpent,
+          //     creationDate: expense.creationDate
+          //   });
+          // console.log('after', this.dailyExpenses);
+        }
       })
   }
 

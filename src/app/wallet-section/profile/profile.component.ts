@@ -17,7 +17,7 @@ import { NewImageComponent } from './new-image/new-image.component';
 })
 export class ProfileComponent implements OnInit {
 
-  imagePath = '~/assets/images/default-avatar.png';
+  imagePath = 'res://defaultavatar';
   photo: Photo = null;
   editProfileForm: FormGroup;
   profileData: ProfileData = null;
