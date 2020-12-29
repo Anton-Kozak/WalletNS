@@ -3,7 +3,6 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { ExpensesWithCategories } from '../../_models/expensesWithCategories';
 import { ExpenseService } from '../../_services/expense.service';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { CategoryData } from '../../_models/categoryData';
 import { WalletForPage } from '../../_models/wallet-for-page';
@@ -58,6 +57,7 @@ export class WalletExpensesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('wallet expenses started');
+    console.log('new', new Date(), 'moment', this.moment(new Date()).format());
     this.expenseService.updateHeaders();
     //this.id = this.authService.getToken().nameid;
     this.isLoading = true;
@@ -82,7 +82,7 @@ export class WalletExpensesComponent implements OnInit {
       this.checkLimit();
       this.expenseService.showAllExpenses();
       this.expenseService.firstSubject.subscribe(exp => {
-        console.log('exp', exp);
+        //console.log('exp', exp);
         if (exp != null) {
           this.first.expenses = exp;
           this.first.categoryName = this.expenseService.firstExpenses.categoryName;

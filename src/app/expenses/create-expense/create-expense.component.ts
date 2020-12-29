@@ -6,7 +6,7 @@ import { ExpenseService } from '../../_services/expense.service';
 import { WalletService } from '../../_services/wallet.service';
 import { ModalDialogParams } from '@nativescript/angular/modal-dialog';
 import { ListPicker } from "tns-core-modules/ui/list-picker";
-
+import * as moment from 'moment';
 @Component({
   selector: 'ns-create-expense',
   templateUrl: './create-expense.component.html',
@@ -18,6 +18,7 @@ export class CreateExpenseComponent implements OnInit {
   newExpenseForm: FormGroup;
   categoryTitles: CategoryData[] = [];
   isLoading = false;
+  moment: any = moment;
   @ViewChild('selectedCategory', { static: false }) selectedCategory: ElementRef;
   constructor(private expenseService: ExpenseService,
     private walletService: WalletService,
@@ -46,9 +47,9 @@ export class CreateExpenseComponent implements OnInit {
         expenseTitle: this.newExpenseForm.value['title'],
         expenseDescription: this.newExpenseForm.value['desc'],
         moneySpent: this.newExpenseForm.value['money'],
-        creationDate: new Date()
+        creationDate: this.moment(new Date()).format()
       }
-      //console.log(this.expense);
+      //console.log('before sending', this.expense);
       this.expenseService.createExpense(this.expense).subscribe((response: any) => {
         this.isLoading = false;
         if (response['message'] === null) {
