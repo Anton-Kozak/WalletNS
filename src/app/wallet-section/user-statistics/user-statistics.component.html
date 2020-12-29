@@ -10,7 +10,7 @@
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label color="#972600" textWarp="true" text="Most Used Category"></Label>
+                                <Label color="#972600" textWarp="true" text="Most Used In"></Label>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="mostUsedCategory"></Label>
@@ -31,7 +31,7 @@
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label color="#B65509" textWarp="true" text="Most Spent Category"></Label>
+                                <Label color="#B65509" textWarp="true" text="Most Spent In"></Label>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="mostSpentCategory"></Label>
@@ -40,8 +40,8 @@
                     </GridLayout>
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
-                    <Label class="fas footer-icon" color="#B65509" text="&#xf885;"></Label>
-                    <Label class="footer-text" text="Category with the largest expenses"></Label>
+                    <Label textWrap="true" class="fas footer-icon" color="#B65509" text="&#xf885;"></Label>
+                    <Label textWrap="true" class="footer-text" text="Category with the largest expenses"></Label>
                 </FlexboxLayout>
             </StackLayout>
             <StackLayout class="card-stats anim-delay-third" shadow="25">
@@ -146,7 +146,7 @@
                     <StackLayout class="card-table">
                         <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-desc text-center">
                             <Label col="0" text="Title"></Label>
-                            <Label col="1" text="Category"></Label>
+                            <Label textWrap="true" col="1" text="Category"></Label>
                             <Label col="2" text="Details"></Label>
                             <Label col="3" text="Date"></Label>
                             <Label col="4" text="$"></Label>
