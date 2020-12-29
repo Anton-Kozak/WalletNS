@@ -88,7 +88,7 @@
                 </StackLayout>
 
                 <StackLayout *ngIf="currentSelectedDate !== null" class="card-stats anim-delay-second" shadow="25" elevation="15">
-                    <Label class="card-title underline text-center m-t-10" text="Daily Expenses"></Label>
+                    <Label class="card-title underline text-center m-t-10" textWrap="true" text="Daily Expenses"></Label>
                     <FlexboxLayout class="date-selection anim">
                         <Button class="dark-button" text="Prev" (tap)="changeDay(0)"></Button>
                         <Label class="date-value" [text]="currentSelectedDate"></Label>

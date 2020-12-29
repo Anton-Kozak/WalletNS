@@ -1,5 +1,5 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class DataService {
   private _rootVCRef: ViewContainerRef;
   constructor() { }
   private _drawerState = new BehaviorSubject<void>(null);
-
+  changeItemSubject = new Subject<[string, string]>();
   setRootVCRef(vcRef: ViewContainerRef) {
     this._rootVCRef = vcRef;
   }
@@ -24,5 +24,6 @@ export class DataService {
   getRootVCRef() {
     return this._rootVCRef;
   }
+
 
 }

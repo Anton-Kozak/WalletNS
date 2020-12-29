@@ -61,6 +61,12 @@ export class AppComponent implements OnInit, AfterViewInit {
             this.id = id;
         });
 
+        this.dataService.changeItemSubject.subscribe((data: [string, string]) => {
+            if (data[0] !== '' && data[1] !== '') {
+                this.manualSwitch(data[0], data[1]);
+            }
+        })
+
         // this.authService.isLoggedIn.subscribe(value => {
         //     if (!value) {
         //         let st: StackLayout = this.stack.nativeElement;
@@ -221,5 +227,13 @@ export class AppComponent implements OnInit, AfterViewInit {
                     this.categoryTitles[i].icon = String.fromCharCode(0xf042);
             }
         }
+    }
+
+    manualSwitch(from: string, to: string) {
+        let st: StackLayout = this.stack.nativeElement;
+        console.log('from', from, 'to', to);
+        //сделать прев не активным
+        (<GridLayout>st.getViewById(from)).className = 'nt-drawer__list-item';
+        (<GridLayout>st.getViewById(to)).className = 'nt-drawer__list-item active';
     }
 }

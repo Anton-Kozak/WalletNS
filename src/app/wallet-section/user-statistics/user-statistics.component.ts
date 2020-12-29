@@ -63,7 +63,7 @@ export class UserStatisticsComponent implements OnInit {
     console.log('id', this.id);
     console.log('userid', userId);
     this.walletService.currentCategories.subscribe(value => {
-      console.log('categories user', value);
+      //console.log('categories user', value);
       this.categories = value;
     });
 

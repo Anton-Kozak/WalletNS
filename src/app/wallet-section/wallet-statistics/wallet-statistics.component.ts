@@ -6,7 +6,8 @@ import { CategoryData } from '../../_models/categoryData';
 import { TopUsersStat } from '../../_models/top-users-stat'
 import { User } from '../../_models/user'
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
-import { ExpenseForBar } from 'src/app/_models/barExpense';
+import { ExpenseForBar } from '../../_models/barExpense';
+import { DataService } from '../../_services/data.service';
 @Component({
   selector: 'ns-wallet-statistics',
   templateUrl: './wallet-statistics.component.html',
@@ -16,7 +17,7 @@ export class WalletStatisticsComponent implements OnInit {
 
   constructor(private expService: ExpenseService,
     private router: Router,
-    private walletService: WalletService) { }
+    private walletService: WalletService, private dataService: DataService) { }
 
   userColors: string[] = ['#EAA219', '#D77D13', '#C4590C', '#B03406', '#9D1000'];
 
@@ -90,6 +91,9 @@ export class WalletStatisticsComponent implements OnInit {
   }
 
   getUserStatistics(id: string) {
-    this.router.navigate(['/userStatistics', id]);
+    this.dataService.changeItemSubject.next(['walletStatistics', 'userStatistics']);
+    this.router.navigate(['/wallet/userStatistics', id]);
   }
+
+
 }
