@@ -19,35 +19,32 @@ export class CategoryStatisticsComponent implements OnInit {
     private route: ActivatedRoute,
     private walletService: WalletService) {
   }
+  userColors: string[] = ['#EAA219', '#D77D13', '#C4590C', '#B03406', '#9D1000'];
 
   largestExpense: number;
   currentMonthLargestExpense: number;
   spentThisMonth: number;
   spentAll: number;
-
   chosenCategory: number;
   chosenCategoryName: string;
-
   currentMonthDataToCompare = null;
   lastMonthDataToCompare = null;
   mostSpentUser: TopUsersStat = { Amount: 0, userName: '' };
   //here sum is count
   mostUsedUser: TopUsersStat = { Amount: 0, userName: '' };
-  topFiveUsers = null;
-  lastSixMonths = null;
-
+  // topFiveUsers = null;
+  topFiveUsers: TopUsersStat[] = [];
+  lastSixMonths: {month: string, expenseSum: number}[] = [];
   expenses: ExpenseForTable[] = [];
-
   showData = true;
 
   isLoading: boolean;
   ngOnInit(): void {
     this.expService.updateHeaders();
-    this.route.params.subscribe(params => {
-
-      this.walletService.getCurrentWallet();
-      this.chosenCategoryName = this.walletService.currentCategories.value.find(x => x.id === this.chosenCategory).title;
-      this.chosenCategory = +params['id'] || 0;
+    this.walletService.getCurrentWallet();
+    this.chosenCategoryName = this.route.snapshot.params['title'];//this.walletService.currentCategories.value.find(x => x.id === this.chosenCategory).title;
+    this.chosenCategory = +this.route.snapshot.params['id'];
+    if (this.chosenCategory !== null) {
       this.isLoading = true;
       this.expService.getCategoryStatistics(this.chosenCategory, new Date(Date.now()).toUTCString()).subscribe(data => {
         if (data['categoryExpenses'].length === 0) {
@@ -67,15 +64,18 @@ export class CategoryStatisticsComponent implements OnInit {
           }
           this.spentThisMonth = data['spentThisMonth'];
           this.spentAll = data['spentAll'];
-          this.topFiveUsers = new ObservableArray([...data['topFiveUsers']]);
+          data['topFiveUsers'].forEach((val) => {
+            this.topFiveUsers.push({ Amount: val['sum'], userName: val['userName'] })
+          });
+          data['lastSixMonths'].forEach(val => {
+            this.lastSixMonths.push({ expenseSum: val['expenseSum'], month: val['month'] })
+          });
+          //this.topFiveUsers = new ObservableArray([...data['topFiveUsers']]);
           this.lastSixMonths = new ObservableArray([...data['lastSixMonths']]).reverse();
-          console.log(this.topFiveUsers);
           this.showData = true;
         }
         this.isLoading = false;
       });
-    });
-
+    }
   }
-
 }

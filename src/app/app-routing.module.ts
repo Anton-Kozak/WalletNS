@@ -23,7 +23,7 @@ const routes: Routes = [
             { path: 'walletStatistics', component: WalletStatisticsComponent },
             { path: 'userStatistics/:id', component: UserStatisticsComponent },
             { path: 'userStatistics/:id/:name', component: UserStatisticsComponent },
-            { path: 'categoryStatistics/:id', component: CategoryStatisticsComponent },
+            { path: 'categoryStatistics/:id/:title', component: CategoryStatisticsComponent },
             { path: 'profile', component: ProfileComponent },
             { path: 'walletAdmin', component: WalletAdminComponent },
         ]
