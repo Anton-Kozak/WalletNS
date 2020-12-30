@@ -3,7 +3,7 @@
     <StackLayout class="background">
         <FlexboxLayout class="date-selection anim">
             <Button class="yellow-button" text="Prev" (tap)="previousMonth()"></Button>
-            <Label class="date-value" text="{{monthName}}, {{year}}"></Label>
+            <AutoFitText class="date-value" text="{{monthName}}, {{year}}"></AutoFitText>
             <Button class="yellow-button" text="Next" (tap)="next()"></Button>
         </FlexboxLayout>
         <StackLayout [visibility]="!isLoading && hasData ? 'visible' : 'collapse'">

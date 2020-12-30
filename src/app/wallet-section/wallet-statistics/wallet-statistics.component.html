@@ -12,7 +12,7 @@
                     <GridLayout columns="1*, 7*, 1*, 1*" rows="50" *ngFor="let member of walletMembers" class="members">
                         <Label col="1" color="#ffb204" fontSize="18" [text]="member.username" class="text-capitalize"></Label>
                         <FlexboxLayout col="2" class="user-icon">
-                            <Label (tap)="getUserStatistics(member.id)" text="&#xf007;" fontSize="18" class="fas"></Label>
+                            <Label (tap)="getUserStatistics(member.id, member.username)" text="&#xf007;" fontSize="18" class="fas"></Label>
                         </FlexboxLayout>
                     </GridLayout>
                 </StackLayout>
@@ -27,7 +27,7 @@
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label textWarp="true" color="#28a745" text="Most Used Category"></Label>
+                                <AutoFitText color="#28a745" text="Most Used Category"></AutoFitText>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="mostUsedCategory"></Label>
@@ -48,7 +48,7 @@
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label textWarp="true" color="#6c757d" text="Most Spent Category"></Label>
+                                <AutoFitText color="#6c757d" text="Most Spent Category"></AutoFitText>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="mostSpentCategory"></Label>
@@ -57,8 +57,8 @@
                     </GridLayout>
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
-                    <Label class="fas footer-icon" textWrap="true" color="#6c757d" text="&#xf161;"></Label>
-                    <Label class="footer-text" textWrap="true" text="Category with the largest expensesaфsdfsfsfsdfывфвsdasd"></Label>
+                    <AutoFitText textWrap="false" class="fas footer-icon" color="#6c757d" text="&#xf161;"></AutoFitText>
+                    <AutoFitText class="footer-text" text="Category with the largest expenses" textWrap="false"></AutoFitText>
                 </FlexboxLayout>
             </StackLayout>
             <StackLayout class="card-stats anim-delay-fourth" shadow="25">
@@ -69,7 +69,7 @@
                         </StackLayout>
                         <StackLayout col="1" row="0" class="card-text">
                             <StackLayout class="card-title">
-                                <Label fontSize="17" color="#a38721" textWarp="true" text="Average Daily Expenses"></Label>
+                                <AutoFitText fontSize="17" color="#a38721" text="Average Daily Expenses"></AutoFitText>
                             </StackLayout>
                             <StackLayout class="card-description">
                                 <Label [text]="avgDailyExpenses"></Label>
@@ -79,7 +79,7 @@
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
                     <Label class="fas footer-icon" color="#ffc107" text="&#xf885;"></Label>
-                    <Label class="footer-text" text="Average per 1 day"></Label>
+                    <AutoFitText class="footer-text" text="Average per 1 day"></AutoFitText>
                 </FlexboxLayout>
             </StackLayout>
             <StackLayout class="card-stats" shadow="25">

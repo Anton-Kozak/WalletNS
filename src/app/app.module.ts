@@ -11,6 +11,7 @@ import { RegistrationLoginComponent } from './initial-pages/registration-login/r
 import { NativeScriptUIChartModule } from "nativescript-ui-chart/angular";
 import { SharedModule } from './shared/shared.module';
 import { NgShadowModule } from "nativescript-ngx-shadow";
+import { AutoFitTextModule } from "nativescript-auto-fit-text/angular"
 
 import { AppComponent } from "./app.component";
 import { CreateWalletComponent } from './initial-pages/create-wallet/create-wallet.component';
@@ -46,7 +47,8 @@ import { NewImageComponent } from './wallet-section/profile/new-image/new-image.
         NativeScriptUISideDrawerModule,
         NativeScriptUIChartModule,
         SharedModule,
-        NgShadowModule
+        NgShadowModule,
+        AutoFitTextModule
     ],
     declarations: [
         AppComponent,

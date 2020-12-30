@@ -90,9 +90,9 @@ export class WalletStatisticsComponent implements OnInit {
 
   }
 
-  getUserStatistics(id: string) {
+  getUserStatistics(id: string, name: string) {
     this.dataService.changeItemSubject.next(['walletStatistics', 'userStatistics']);
-    this.router.navigate(['/wallet/userStatistics', id]);
+    this.router.navigate(['/wallet/userStatistics', id, name]);
   }
 
 

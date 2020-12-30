@@ -49,6 +49,7 @@ export class UserStatisticsComponent implements OnInit {
   lastSixMonths: LastMonthStat[];
   categories: CategoryData[] = [];
   isThisUser: boolean;
+  username: string = '';
   showModal = false;
 
   @ViewChildren('rows') tableBody: QueryList<ElementRef>;
@@ -58,8 +59,11 @@ export class UserStatisticsComponent implements OnInit {
     this.isThisUser = false;
     let userId = this.authService.decodedToken.nameid;
     this.id = this.route.snapshot.params['id'];
-    if (userId === this.id)
+    this.username = this.route.snapshot.params['name'] !== undefined ? this.route.snapshot.params['name'] + "'s" : "Your";
+    if (userId === this.id) {
       this.isThisUser = true;
+      this.username = "Your";
+    }
     console.log('id', this.id);
     console.log('userid', userId);
     this.walletService.currentCategories.subscribe(value => {

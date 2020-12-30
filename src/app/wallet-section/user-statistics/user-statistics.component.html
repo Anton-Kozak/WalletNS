@@ -1,4 +1,4 @@
-<ns-action-bar [pageTitle]="'User Statistics'"></ns-action-bar>
+<ns-action-bar [pageTitle]="username + ' Statistics'"></ns-action-bar>
 <ScrollView>
     <StackLayout class="background">
         <StackLayout [visibility]="!isLoading && amountOfMoneySpent > 0 ? 'visible' : 'collapse'">
@@ -40,8 +40,8 @@
                     </GridLayout>
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
-                    <Label textWrap="true" class="fas footer-icon" color="#B65509" text="&#xf885;"></Label>
-                    <Label textWrap="true" class="footer-text" text="Category with the largest expenses"></Label>
+                    <AutoFitText class="fas footer-icon" color="#B65509" text="&#xf885;"></AutoFitText>
+                    <AutoFitText class="footer-text" text="Category with the largest expenses"></AutoFitText>
                 </FlexboxLayout>
             </StackLayout>
             <StackLayout class="card-stats anim-delay-third" shadow="25">
@@ -62,7 +62,7 @@
                 </StackLayout>
                 <FlexboxLayout class="card-footer">
                     <Label class="fas footer-icon" color="#F38C13" text="&#xf885;"></Label>
-                    <Label class="footer-text" text="Average per 1 day"></Label>
+                    <AutoFitText class="footer-text" text="Average per 1 day"></AutoFitText>
                 </FlexboxLayout>
             </StackLayout>
             <StackLayout class="card-stats anim-delay-fourth" shadow="25">
@@ -146,7 +146,7 @@
                     <StackLayout class="card-table">
                         <GridLayout columns="2*, 2*, 3*, 2*, 1*" rows="auto" class="row-cell-desc text-center">
                             <Label col="0" text="Title"></Label>
-                            <Label textWrap="true" col="1" text="Category"></Label>
+                            <AutoFitText col="1" text="Category"></AutoFitText>
                             <Label col="2" text="Details"></Label>
                             <Label col="3" text="Date"></Label>
                             <Label col="4" text="$"></Label>

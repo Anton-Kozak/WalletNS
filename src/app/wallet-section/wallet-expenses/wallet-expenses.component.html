@@ -91,7 +91,7 @@
                     <Label class="card-title underline text-center m-t-10" textWrap="true" text="Daily Expenses"></Label>
                     <FlexboxLayout class="date-selection anim">
                         <Button class="dark-button" text="Prev" (tap)="changeDay(0)"></Button>
-                        <Label class="date-value" textWrap="true" [text]="currentSelectedDate"></Label>
+                        <AutoFitText class="date-value" [text]="currentSelectedDate"></AutoFitText>
                         <Button class="dark-button" text="Next" (tap)="changeDay(1)"></Button>
                     </FlexboxLayout>
                     <StackLayout class="card-body">
@@ -99,7 +99,7 @@
                             <FlexboxLayout class="row-cell-desc daily text-center">
                                 <Label class="user-item" text="User"></Label>
                                 <Label class="title-item" text="Title"></Label>
-                                <Label textWrap="true" class="category-item" text="Category"></Label>
+                                <AutoFitText class="category-item" text="Category"></AutoFitText>
                                 <Label class="date-item" text="Date"></Label>
                                 <Label class="money-item" text="$"></Label>
                             </FlexboxLayout>
