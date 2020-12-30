@@ -11,6 +11,7 @@ import { DataService } from './_services/data.service';
 import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
 import { GridLayout, StackLayout } from 'tns-core-modules';
 import { RouterExtensions } from '@nativescript/angular';
+import { Router } from '@angular/router';
 
 @Component({
     selector: "ns-app",
@@ -33,12 +34,16 @@ export class AppComponent implements OnInit, AfterViewInit {
         private walletService: WalletService,
         private dataService: DataService,
         private changeDetectionRef: ChangeDetectorRef,
-        private vcRef: ViewContainerRef, private router: RouterExtensions) {
+        private vcRef: ViewContainerRef, private router: Router) {
         // Use the component constructor to inject services.
         this.authService.isAdmin.subscribe(isAdmin => {
             this.isAdmin = isAdmin;
             this.isAdminDefined = true;
         });
+
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
     }
 
     ngAfterViewInit(): void {
@@ -119,19 +124,36 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     prevItem: number;
     onItemTap(path: string, addPath?: string) {
+        let currentPath = this.router.url;
         if (addPath === undefined)
-            this.router.navigate([path], { clearHistory: true });
+            this.router.navigateByUrl(path);
         else
-            this.router.navigate([addPath], { clearHistory: true });
-        console.log('current route:', this.router.router.url.replace('/wallet/', ''));
-        let replace = this.router.router.url.replace('/wallet/', '').replace(/(\/.*)/, '');;
-        let pathReplace = path.replace('/wallet/', '');
-        //let replace2 = replace.replace(/(\/.*)/, '');
-        console.log('replace', replace, 'path: ', path);
+            this.router.navigateByUrl(addPath);
+        console.log('current route:', currentPath.replace('/wallet/', ''));
+        let currentActive;
+        let nextActive;
+        if (path.includes('categoryStatistics')) {
+            console.log('path to which we move - ', path);
+            nextActive = addPath.replace('/wallet/', '');
+        }
+        else {
+            nextActive = path.replace('/wallet/', '');
+        }
+        if (currentPath.includes('categoryStatistics')) {
+            console.log('we were on cat stat and go to cat stat');
+            currentActive = currentPath.replace('/wallet/', '');
+        } else {
+            currentActive = currentPath.replace('/wallet/', '').replace(/(\/.*)/, '');
+        }
+
+
+        console.log('current active that will change:', currentActive, '; path that will be active: ', nextActive);
         let st: StackLayout = this.stack.nativeElement;
         //сделать прев не активным
-        (<GridLayout>st.getViewById(replace)).className = 'nt-drawer__list-item';
-        (<GridLayout>st.getViewById(pathReplace)).className = 'nt-drawer__list-item active';
+        (<GridLayout>st.getViewById(currentActive)).className = 'nt-drawer__list-item';
+        console.log('prev item removed');
+        (<GridLayout>st.getViewById(nextActive)).className = 'nt-drawer__list-item active';
+        console.log('next item set');
         this.dataService.toggleDrawer();
     }
 
