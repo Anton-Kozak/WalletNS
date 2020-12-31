@@ -10,7 +10,6 @@ import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-
 import { DataService } from './_services/data.service';
 import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
 import { GridLayout, StackLayout } from 'tns-core-modules';
-import { RouterExtensions } from '@nativescript/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -39,6 +38,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.authService.isAdmin.subscribe(isAdmin => {
             this.isAdmin = isAdmin;
             this.isAdminDefined = true;
+            console.log('is admin', isAdmin);
         });
 
         this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -49,7 +49,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         this.drawer = this.drawerComponent.sideDrawer;
         this.changeDetectionRef.detectChanges();
-        this.prevItem = 0;
         let st: StackLayout = this.stack.nativeElement;
         let gr: GridLayout = <GridLayout>st.getChildAt(0);
         gr.className = 'nt-drawer__list-item active';
@@ -62,7 +61,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.authService.roleMatch(['Admin']);
         console.log('app main');
         this.authService.id.subscribe(id => {
-            //console.log('change in id, probably after relogin');
             this.id = id;
         });
 
@@ -72,32 +70,22 @@ export class AppComponent implements OnInit, AfterViewInit {
             }
         })
 
-        // this.authService.isLoggedIn.subscribe(value => {
-        //     if (!value) {
-        //         let st: StackLayout = this.stack.nativeElement;
-        //         st.eachChild((child) => {
-        //             console.log(child);
-        //             return true;
-        //         })
-        //     }
-        // })
-
         this.walletService.currentCategories.subscribe(categories => {
             console.log('categories length in app component subject upon login ', categories.length);
             this.categoryTitles = categories;
+            this.getIcons();
+
         });
         this.authService.isLoggedIn.subscribe((value: boolean) => {
             if (value) {
                 this.walletService.updateHeaders();
                 console.log('WE login');
                 this.walletService.getWalletsCategories();
-                this.getIcons();
                 this.userName = this.authService.getToken()['unique_name'];
             }
             else {
                 console.log('We logout');
             }
-            //console.log('id after signup', this.id, 'name after sign up', this.userName);
             this.showWalletItems = value;
             console.log('value of showwalletites', this.showWalletItems)
         });
@@ -113,16 +101,8 @@ export class AppComponent implements OnInit, AfterViewInit {
                 this.drawer.toggleDrawerState();
         })
         this.dataService.setRootVCRef(this.vcRef);
-
-
-
-        // this.walletService.getWalletsCategories().subscribe((data: CategoryData[]) => {
-        //     console.log('categories for first start of app');
-        //     this.walletService.currentCategories.next(data);
-        // });
     }
 
-    prevItem: number;
     onItemTap(path: string, addPath?: string) {
         let currentPath = this.router.url;
         if (addPath === undefined)
@@ -158,7 +138,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     getIcons() {
+        console.log('get icons');
         for (let i = 0; i < this.categoryTitles.length; i++) {
+            console.log(this.categoryTitles[i].title);
             switch (this.categoryTitles[i].title) {
                 case 'Food':
                     this.categoryTitles[i].icon = String.fromCharCode(0xf2e7);

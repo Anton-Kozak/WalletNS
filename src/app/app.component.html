@@ -49,12 +49,12 @@
                 </GridLayout>
                 <GridLayout *ngIf="isAdminDefined" columns="auto, *, *" class="nt-drawer__list-item" (tap)="showCategory = !showCategory">
                     <Label col="0" text="&#xf200;" fontSize="20" class="nt-icon fas"></Label>
-                    <Label col="1" text="Category" class="item-list "></Label>
+                    <Label col="1" textWrap="true" text="Category Statistics" class="item-list "></Label>
                 </GridLayout>
                 <StackLayout *ngIf="showCategory">
                     <GridLayout [id]="'categoryStatistics/' + category.id + '/' + category.title" marginLeft="15" *ngFor="let category of categoryTitles" columns="auto, *" class="nt-drawer__list-item sub" (tap)="onItemTap('/wallet/categoryStatistics','/wallet/categoryStatistics/' + category.id + '/' + category.title)">
                         <Label col="0" [text]="category.icon" fontSize="20" class="nt-icon fas"></Label>
-                        <Label col="1" [text]="category.title" class="item-list "></Label>
+                        <Label col="1" textWrap="true" [text]="category.title" class="item-list "></Label>
                     </GridLayout>
                 </StackLayout>
             </StackLayout>

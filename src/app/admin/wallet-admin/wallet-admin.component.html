@@ -1,32 +1,7 @@
-<ns-action-bar></ns-action-bar>
+<ns-action-bar pageTitle="Admin Page"></ns-action-bar>
 <ScrollView>
     <StackLayout class="background">
         <StackLayout *ngIf="!isLoading">
-            <StackLayout *ngIf="expenses !== null" class="card-stats anim" shadow="25">
-                <StackLayout class="card-body">
-                    <StackLayout class="card-chart-text">
-                        <StackLayout class="card-title">
-                            <Label text="Your Expenses"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout class="card-table">
-                        <FlexboxLayout class="row-cell-desc text-center">
-                            <Label class="title-item" text="Title"></Label>
-                            <Label class="category-item" text="Category"></Label>
-                            <Label class="user-item" text="User"></Label>
-                            <Label class="date-item" text="Date"></Label>
-                            <Label class="money-item" text="$"></Label>
-                        </FlexboxLayout>
-                        <FlexboxLayout (tap)="onExpenseTap(expense, i)" class="row-cell-data text-center" *ngFor="let expense of expenses; let i = index;">
-                            <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
-                            <Label class="category-item" [text]="expense.userName" textWrap="true"></Label>
-                            <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
-                            <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
-                            <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
-                        </FlexboxLayout>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
             <StackLayout *ngIf="users !== null" class="card-stats anim-delay" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
@@ -51,6 +26,31 @@
             <StackLayout *ngIf="true" class="anim-delay-second">
                 <Button text="Add new user" (tap)="addNewUser()" class="yellow-button"></Button>
                 <ns-check-request></ns-check-request>
+            </StackLayout>
+            <StackLayout *ngIf="expenses !== null" class="card-stats anim" shadow="25">
+                <StackLayout class="card-body">
+                    <StackLayout class="card-chart-text">
+                        <StackLayout class="card-title">
+                            <Label text="Your Expenses"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout class="card-table">
+                        <FlexboxLayout class="row-cell-desc text-center">
+                            <Label class="title-item" text="Title"></Label>
+                            <Label class="category-item" text="Category"></Label>
+                            <Label class="user-item" text="User"></Label>
+                            <Label class="date-item" text="Date"></Label>
+                            <Label class="money-item" text="$"></Label>
+                        </FlexboxLayout>
+                        <FlexboxLayout (tap)="onExpenseTap(expense, i)" class="row-cell-data text-center" *ngFor="let expense of expenses; let i = index;">
+                            <Label class="title-item" [text]="expense.expenseTitle" textWrap="true"></Label>
+                            <Label class="category-item" [text]="expense.userName" textWrap="true"></Label>
+                            <Label class="user-item" [text]="expense.userName" textWrap="true"></Label>
+                            <Label class="date-item" [text]="expense.creationDate | date :'short'" textWrap="true"></Label>
+                            <Label class="money-item" [text]="expense.moneySpent" textWrap="true"></Label>
+                        </FlexboxLayout>
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
         <FlexboxLayout [visibility]="isLoading ? 'visible' : 'collapse'" class="spinner">
