@@ -1,5 +1,27 @@
-<StackLayout>
-    <FlexboxLayout class="row-cell">
+<StackLayout *ngIf="requests.length > 0" class="card-stats anim-delay">
+    <StackLayout class="card-body">
+        <StackLayout class="card-chart-text">
+            <StackLayout class="card-title text-center">
+                <Label text="Requests From Users"></Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="card-table">
+            <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-desc text-center">
+                <Label col="0" text="From"></Label>
+                <Label col="1" text="Date"></Label>
+                <Label col="2" text="Action"></Label>
+            </GridLayout>
+            <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-data text-center" *ngFor="let request of requests; let i = index">
+                <Label col="0" [text]="request.requestCreatorEmail" textWrap="true"></Label>
+                <Label col="1" [text]="request.inviteCreationTime" textWrap="true"></Label>
+                <FlexboxLayout col="2">
+                    <Button text="Accept" (tap)="acceptRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-forest"></Button>
+                    <Button text="Decline" (tap)="declineRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-error"></Button>
+                </FlexboxLayout>
+            </GridLayout>
+        </StackLayout>
+    </StackLayout>
+    <!-- <FlexboxLayout class="row-cell">
         <Label class="first-item" text="From"></Label>
         <Label class="first-item" text="Date"></Label>
         <Label class="third-item" text="Action"></Label>
@@ -11,5 +33,5 @@
             <Button text="Accept" (tap)="acceptRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-forest"></Button>
             <Button text="Decline" (tap)="declineRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-error"></Button>
         </FlexboxLayout>
-    </FlexboxLayout>
+    </FlexboxLayout> -->
 </StackLayout>

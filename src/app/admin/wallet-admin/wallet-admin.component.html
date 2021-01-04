@@ -5,7 +5,7 @@
             <StackLayout *ngIf="users !== null" class="card-stats anim-delay" shadow="25">
                 <StackLayout class="card-body">
                     <StackLayout class="card-chart-text">
-                        <StackLayout class="card-title">
+                        <StackLayout class="card-title text-center">
                             <Label text="Wallet Users"></Label>
                         </StackLayout>
                     </StackLayout>
@@ -25,7 +25,7 @@
             </StackLayout>
             <StackLayout *ngIf="true" class="anim-delay-second">
                 <Button text="Add new user" (tap)="addNewUser()" class="yellow-button"></Button>
-                <ns-check-request></ns-check-request>
+                <ns-check-request *ngIf=""></ns-check-request>
             </StackLayout>
             <StackLayout *ngIf="expenses !== null" class="card-stats anim" shadow="25">
                 <StackLayout class="card-body">
