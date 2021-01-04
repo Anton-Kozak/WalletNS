@@ -1,39 +1,15 @@
-.row-cell {
-    /* flex-direction: column; */
-    border-width: 1;
-    border-color: red;
-    justify-content: center;
-    text-align: center;
-    font-size: 25;
+.buttons {
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }
 
-.category-name {
-    text-align: center;
-    font-size: 23;
-    font-weight: bold;
+.row-cell-data Label {
+    border-bottom-width: 0;
+    border-color: transparent;
 }
 
-.row-cell Label {
-    text-align: center;
-    font-size: 15;
-}
-
-.first-item {
-    width: 25%;
-}
-
-.second-item {
-    width: 40%;
-}
-
-.fourth-item {
-    width: 25%;
-}
-
-.fifth-item {
-    width: 10%;
-}
-
-.test {
-    background-color: red;
+.row-cell-data {
+    border-bottom-width: 0.3;
+    border-color: rgb(255, 255, 255);
 }

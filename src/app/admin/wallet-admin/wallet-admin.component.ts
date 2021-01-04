@@ -23,6 +23,7 @@ export class WalletAdminComponent implements OnInit {
   expenses: ExpenseForAdminTable[] = [];
   users: UserForAdmin[] = [];
   isLoading = false;
+  
 
 
 

@@ -13,10 +13,10 @@
             </GridLayout>
             <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-data text-center" *ngFor="let request of requests; let i = index">
                 <Label col="0" [text]="request.requestCreatorEmail" textWrap="true"></Label>
-                <Label col="1" [text]="request.inviteCreationTime" textWrap="true"></Label>
-                <FlexboxLayout col="2">
-                    <Button text="Accept" (tap)="acceptRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-forest"></Button>
-                    <Button text="Decline" (tap)="declineRequest(request.requestCreatorEmail, i)" class="btn btn-primary c-white c-bg-error"></Button>
+                <Label col="1" [text]="request.inviteCreationTime |  date :'short'" textWrap="true"></Label>
+                <FlexboxLayout class="buttons" col="2">
+                    <Label text="Accept" (tap)="acceptRequest(request.requestCreatorEmail, i)" class="accept btn btn-primary c-white c-bg-forest"></Label>
+                    <Label text="Decline" (tap)="declineRequest(request.requestCreatorEmail, i)" class="decline btn btn-primary c-white c-bg-error"></Label>
                 </FlexboxLayout>
             </GridLayout>
         </StackLayout>

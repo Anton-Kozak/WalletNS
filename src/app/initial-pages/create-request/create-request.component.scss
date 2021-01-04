@@ -9,7 +9,15 @@
 }
 
 .background {
+    height: 100%;
     background-color: #303030;
+    align-items: center;
+}
+
+.input {
+    font-size: 18;
+    color: #ffb204;
+    text-align: center;
 }
 
 .card-title {

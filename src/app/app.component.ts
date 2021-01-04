@@ -79,12 +79,15 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.authService.isLoggedIn.subscribe((value: boolean) => {
             if (value) {
                 this.walletService.updateHeaders();
+                this.authService.roleMatch(['Admin']);
                 console.log('WE login');
                 this.walletService.getWalletsCategories();
                 this.userName = this.authService.getToken()['unique_name'];
             }
             else {
                 console.log('We logout');
+                this.isAdmin = false;
+                //this.isAdminDefined = false;
             }
             this.showWalletItems = value;
             console.log('value of showwalletites', this.showWalletItems)
