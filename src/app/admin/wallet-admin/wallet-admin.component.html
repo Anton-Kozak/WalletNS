@@ -10,15 +10,17 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout class="card-table">
-                        <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-desc text-center">
+                        <GridLayout columns="3*, 2*, 2*, 2*" rows="auto" class="row-cell-desc text-center">
                             <Label col="0" text="Username"></Label>
                             <Label col="1" text="Date"></Label>
                             <Label col="2" text="Roles"></Label>
+                            <Label col="3" text="Actions"></Label>
                         </GridLayout>
-                        <GridLayout columns="3*, 3*, 4*" rows="auto" class="row-cell-data text-center" *ngFor="let user of users">
+                        <GridLayout columns="3*, 2*, 2*, 2*" rows="auto" class="row-cell-data text-center" *ngFor="let user of users; let i = index">
                             <Label col="0" [text]="user.username" textWrap="true"></Label>
                             <Label col="1" [text]="user.dateJoined | date :'short'" textWrap="true"></Label>
                             <Label col="2" [text]="user.userRoles" textWrap="true"></Label>
+                            <Label col="3" (tap)="removeUser(user.id, user.username)" class="fa del-user" text="&#xf235;"></Label>
                         </GridLayout>
                     </StackLayout>
                 </StackLayout>

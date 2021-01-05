@@ -7,6 +7,7 @@ import { DataService } from '../../_services/data.service';
 import { CreateInviteComponent } from '../create-invite/create-invite.component';
 import { ModalExpenseComponent } from '../../expenses/modal-expense/modal-expense.component';
 import * as Toast from 'nativescript-toast';
+import { confirm } from 'tns-core-modules/ui/dialogs';
 @Component({
   selector: 'ns-wallet-admin',
   templateUrl: './wallet-admin.component.html',
@@ -23,7 +24,7 @@ export class WalletAdminComponent implements OnInit {
   expenses: ExpenseForAdminTable[] = [];
   users: UserForAdmin[] = [];
   isLoading = false;
-  
+
 
 
 
@@ -39,13 +40,27 @@ export class WalletAdminComponent implements OnInit {
     })
   }
 
-  removeUser(userId: string, rowIndex: number) {
-    this.admService.removeUser(userId).subscribe(response => {
-      //this.alertify.success(response);
-      var el: any = (document.getElementById(rowIndex.toString())) as HTMLTableElement;
-      el.remove(rowIndex);
-    }, error => {
-      //this.alertify.error(error.error);
+  removeUser(userId: string, username: string) {
+    let options = {
+      title: "Remove User From Wallet",
+      message: "Are you sure you want to remove " + username + " from wallet?",
+      okButtonText: "Yes",
+      cancelButtonText: "No",
+      neutralButtonText: "Cancel"
+    };
+    confirm(options).then((result: boolean) => {
+      if (result) {
+        this.admService.removeUser(userId).subscribe(response => {
+          var toast = Toast.makeText(response);
+          toast.show();
+          this.admService.getUsers().subscribe((usersForAdmin: UserForAdmin[]) => {
+            this.users = usersForAdmin;
+          });
+        }, error => {
+          var toast = Toast.makeText(error.error);
+          toast.show();
+        });
+      }
     });
   }
 
