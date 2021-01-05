@@ -7,12 +7,17 @@ import {
   hasKey,
 } from 'tns-core-modules/application-settings';
 import { AuthService } from '../_services/auth.service';
-
 @Injectable({
   providedIn: 'root'
 })
 export class TokenCheckGuard implements CanActivateChild {
-  constructor(private authService: AuthService, private router: RouterExtensions) { }
+
+
+  constructor(private authService: AuthService, private router: RouterExtensions) {}
+
+
+
+
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -78,6 +83,8 @@ export class TokenCheckGuard implements CanActivateChild {
     }
     return false;
   }
+
+
 
 }
 

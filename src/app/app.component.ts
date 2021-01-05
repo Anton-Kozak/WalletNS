@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ViewContainerRef, AfterViewInit, ElementRef, NgZone } from '@angular/core';
 import { RadSideDrawer, } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { isAndroid } from 'tns-core-modules/ui/page';
@@ -11,6 +11,7 @@ import { DataService } from './_services/data.service';
 import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application';
 import { GridLayout, StackLayout } from 'tns-core-modules';
 import { Router } from '@angular/router';
+import * as Connectivity from "tns-core-modules/connectivity";
 
 @Component({
     selector: "ns-app",
@@ -29,11 +30,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     drawer: RadSideDrawer;
     @ViewChild('stack') stack: ElementRef;
 
+    connectionType: { type: number, message: string };
+
     constructor(private authService: AuthService,
         private walletService: WalletService,
         private dataService: DataService,
         private changeDetectionRef: ChangeDetectorRef,
-        private vcRef: ViewContainerRef, private router: Router) {
+        private vcRef: ViewContainerRef,
+        private router: Router,
+        private zone: NgZone) {
         // Use the component constructor to inject services.
         this.authService.isAdmin.subscribe(isAdmin => {
             this.isAdmin = isAdmin;
@@ -53,11 +58,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         let gr: GridLayout = <GridLayout>st.getChildAt(0);
         gr.className = 'nt-drawer__list-item active';
     }
-
-
-
-
     ngOnInit(): void {
+        this.connectionType = this.connectionToString(Connectivity.getConnectionType());
+        Connectivity.startMonitoring(connectionType => {
+            this.zone.run(() => {
+                console.log("Internet connection has changed: ", this.connectionType.message);
+                this.connectionType = this.connectionToString(connectionType);
+            });
+        });
         this.authService.roleMatch(['Admin']);
         console.log('app main');
         this.authService.id.subscribe(id => {
@@ -138,6 +146,25 @@ export class AppComponent implements OnInit, AfterViewInit {
         (<GridLayout>st.getViewById(nextActive)).className = 'nt-drawer__list-item active';
         console.log('next item set');
         this.dataService.toggleDrawer();
+    }
+
+
+    connectionToString(connectionType: number): { type: number, message: string } {
+        switch (connectionType) {
+            case Connectivity.connectionType.none: {
+                alert("NO INTERNET CONNECTION FOUND. PLEASE CHECK YOUR WIFI CONNECTION!");
+                return { type: 0, message: "No Connection!" };
+            }
+            case Connectivity.connectionType.wifi:
+                return { type: 1, message: "Connected to WiFi!" };
+            case Connectivity.connectionType.mobile: {
+                alert("YOU HAVE SWITCHED TO MOBILE INTERNET");
+                return { type: 2, message: "Connected to Cellular!" };
+            }
+            default: {
+                return { type: 3, message: "Unknown" };
+            }
+        }
     }
 
     getIcons() {
